@@ -30,9 +30,42 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/theme/css/plugins.bundle.css",
+              "src/assets/theme/css/style.bundle.css",
+              "src/assets/theme/css/datatables.bundle.css",
+              "node_modules/intl-tel-input/build/css/intlTelInput.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/card/dist/card.js",
+              "src/assets/theme/js/plugins/popper.min.js",
+              "src/assets/theme/js/plugins/flex-microform.min.js",
+              "src/assets/theme/js/plugins/bootstrap.min.js",
+              "src/assets/theme/js/plugins/wNumb.min.js",
+              "src/assets/theme/js/plugins/select2.min.js",
+              "src/assets/theme/js/plugins/smooth-scroll.polyfills.min.js",
+              "src/assets/theme/js/components/util.js",
+              "src/assets/theme/js/components/blockui.js",
+              "src/assets/theme/js/components/drawer.js",
+              "src/assets/theme/js/components/event-handler.js",
+              "src/assets/theme/js/components/cookie.js",
+              "src/assets/theme/js/components/menu.js",
+              "src/assets/theme/js/components/scroll.js",
+              "src/assets/theme/js/components/scrolltop.js",
+              "src/assets/theme/js/components/sticky.js",
+              "src/assets/theme/js/components/stepper.js",
+              "src/assets/theme/js/components/swapper.js",
+              "src/assets/theme/js/components/toggle.js",
+              "src/assets/theme/js/layout/app.js",
+              "src/assets/theme/js/layout/aside.js",
+              "src/assets/theme/js/layout/toolbar.js",
+              "src/assets/theme/js/plugins/FormValidation.full.min.js",
+              "src/assets/theme/js/plugins/FormValidationBootstrap.min.js",
+              "src/assets/theme/js/plugins/Bootstrap5.min.js",
+              "src/assets/theme/js/plugins/datatables.bundle.js",
+              "node_modules/intl-tel-input/build/js/intlTelInput.js"
+            ]
           },
           "configurations": {
             "production": {
