@@ -12,4 +12,11 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  phofile(){
+    console.log("perfil")
+  }
+
+  logout(){
+    console.log("cerrar sesion")
+  }
 }
