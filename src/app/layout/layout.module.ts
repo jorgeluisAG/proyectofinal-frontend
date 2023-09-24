@@ -12,15 +12,16 @@ import { RouterModule } from "@angular/router";
     HeaderComponent,
     SubHeaderComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule
-  ],
   exports: [
     SidebarComponent,
     HeaderComponent,
     SubHeaderComponent
-  ]
+  ],
+  imports: [
+    CommonModule,
+    RouterModule
+  ],
+
 })
 export class LayoutModule {
 

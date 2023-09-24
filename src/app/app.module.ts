@@ -1,26 +1,41 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './auth/login/login.component';
 import { HeaderComponent } from './layout/header/header.component';
-import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { SubHeaderComponent } from './layout/sub-header/sub-header.component';
-import { LayoutModule } from './layout/layout.module';
+import { SidebarComponent } from './layout/sidebar/sidebar.component';
+import { AppComponent } from './app.component';
+import { RouterModule } from '@angular/router';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
+
+import {AppRoutingModule} from './app-routing.module';
+import {HttpClientModule} from '@angular/common/http';
+import { PagesComponent } from './pages/pages.component';
+
+import { InlineSVGModule } from 'ng-inline-svg';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     LoginComponent,
+    HeaderComponent,
+    SidebarComponent,
+    SubHeaderComponent,
+    PagesComponent,
 
   ],
   imports: [
-    BrowserModule,
+    RouterModule,
+    RouterModule,
     AppRoutingModule,
-    LayoutModule
+    FormsModule,
+    HttpClientModule,
+    BrowserModule,
+    ReactiveFormsModule,
+    InlineSVGModule,
+    AppRoutingModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
