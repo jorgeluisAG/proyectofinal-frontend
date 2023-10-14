@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,18 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-
   tipoFacturas: any;
   isRegisteredSiat = false;
+  role: any;
   constructor(
-      //public authService: AuthService,
+      public authService: AuthService,
   ) {
   }
 
   ngOnInit(): void {
            this.getSiatByBusiness();
-
-
+    this.role = localStorage.getItem('role')
+    console.log(this.role);
   }
 
   getSiatByBusiness() {
@@ -51,8 +52,7 @@ export class SidebarComponent implements OnInit {
   }
 
   logout() {
-      //this.authService.logout();
+      this.authService.logout();
   }
-
 
 }
