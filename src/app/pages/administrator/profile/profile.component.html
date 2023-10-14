@@ -1,0 +1,338 @@
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+
+    <div class="toolbar " id="kt_toolbar">
+        <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+            <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
+                 data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
+                 class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                 <!-- <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Mi Perfil  - {{ getFullName() }}</h1> -->
+                 <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Mi Perfil</h1>
+                <span class="h-20px border-gray-200 border-start mx-4"></span>
+                <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
+                    <li class="breadcrumb-item text-muted">
+                        <a  class="text-muted text-hover-primary">Datos Personales</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+  <div class="post d-flex flex-column-fluid" id="kt_post">
+    <div id="kt_content_container" class="container-fluid ">
+      <div class="d-flex flex-column flex-xl-col ">
+        <div class="flex-lg-row-fluid">
+          <div class="row g-5 g-xxl-8">
+
+             <!-- CONTAINER PERFILLLLLLLL-->
+            <div class="col-xl-5">
+              <div class="card mb-5 mb-xxl-8 p-4 pb-5 pt-10">
+
+
+                <div class="d-flex flex-center flex-column mb-5">
+                  <div class="symbol symbol-100px symbol-circle mb-7">
+                      <a href="javascript:void(0);">
+                          <div class="symbol-label fs-2 bg-light-danger text-danger"> {{ user.person.firstName }} </div>
+                      </a>
+                  </div>
+                  <div  class="fs-3 text-gray-800 text-hover-primary fw-bolder mb-1">{{ getFullName() }}</div>
+                  <div class="fs-5 fw-bold text-muted mb-2">{{ user.mail }}</div>
+                </div>
+                  <div class="">
+                    <div class="fw-bolder mt-5">Usuario</div>
+                      <div class="text-gray-600">{{ user.person.firstName }}</div>
+                      <div class="fw-bolder mt-5">Email</div>
+                      <div class="text-gray-600">{{ user.mail}}</div>
+                  </div>
+                <div class="separator separator-dashed my-3"></div>
+                  <div class="">
+                    <div class="fw-bolder mt-2">CI</div>
+                    <div class="text-gray-600">{{ user.person.documentNumber }}</div>
+                    <div class="fw-bolder mt-5">Celular</div>
+                    <div class="text-gray-600">{{ user.person.phoneNumber }}</div>
+                    <div class="fw-bolder mt-5">Creado en</div>
+                    <div class="text-gray-600">{{ user.createdAt | bolivianDate }}</div>
+                  </div>
+
+              </div>
+            </div>
+
+          <!-- COLUMNAAAAAAAAAAAA -->
+            <div class="col-xl-7">
+
+          <!-- CONTAINER DE LOS DATOS PERSONALES -->
+
+          <div class="card mb-5 mb-xxl-8 p-4 pb-5 pt-5">
+
+            <div class="d-flex flex-stack fs-4 py-3">
+              <div class="fw-bolder rotate collapsible" data-bs-toggle="collapse" href="#kt_customer_view_details" role="button" aria-expanded="false" aria-controls="kt_customer_view_details">
+                Datos Personales</div>
+
+               <span data-bs-toggle="tooltip" data-bs-trigger="hover" title="Editar perfil">
+                  <a href="#" class="btn btn-sm btn-light-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_update_customer" style="background-color: #161654; color: white">Editar</a>
+              </span>
+            </div>
+            <div class="separator separator-dashed my-3"></div>
+            <div class="container p-3">
+              <div class="form-group row">
+                <div class="col">
+                  <label for="staticName" class="fw-bolder pb-2">Nombre(s):</label>
+                  <input type="text" readonly class="form-control-plaintext" id="staticName" disabled placeholder="{{user.person.firstName}}">
+                </div>
+                <div class="col">
+                  <label for="staticLastName" class="fw-bolder pb-2">Apellido(s):</label>
+                  <input type="text" readonly class="form-control-plaintext" id="staticLastName" disabled placeholder="{{user.person.lastName}}">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col">
+                  <label for="staticEmail" class="fw-bolder pt-2 pb-2">Email:</label>
+                  <input type="email" readonly class="form-control-plaintext" id="staticEmail" disabled placeholder="{{user.mail}}">
+                </div>
+                <div class="col">
+                  <label for="staticPhoneNumber" class="fw-bolder pt-2 pb-2">Celular:</label>
+                  <input type="number" readonly class="form-control-plaintext" id="staticPhoneNumber" disabled placeholder="{{user.person.phoneNumber}}">
+                </div>
+              </div>
+
+            </div>
+
+        </div>
+
+         <!-- CONTAINER DE LOS OTRA INFORMACION -->
+
+
+              <div class="card mb-5 mb-xxl-8 p-4 pb-5 pt-5">
+
+                <div class="d-flex flex-stack fs-4 ">
+                  <div class="fw-bolder rotate collapsible" data-bs-toggle="collapse" href="#kt_customer_view_details" role="button" aria-expanded="false" aria-controls="kt_customer_view_details">
+                    Otra Informacion</div>
+
+                   <span data-bs-toggle="tooltip" data-bs-trigger="hover" title="Editar perfil">
+                      <a href="#" class="btn btn-sm btn-light-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_update_customer" style="background-color: #161654; color: white">Editar</a>
+                  </span>
+                </div>
+                <div class="separator separator-dashed my-3"></div>
+                <div class="container p-3">
+                  <div class="form-group row">
+                    <div class="col">
+                      <label for="staticBusiness" class="fw-bolder pb-2">Numero de la empresa:</label>
+                      <input type="text" readonly class="form-control-plaintext" id="staticBusiness" disabled placeholder="00">
+                    </div>
+                    <div class="col">
+                      <label for="staticCountry" class="fw-bolder pb-2">Pais:</label>
+                      <input type="text" readonly class="form-control-plaintext" id="staticCountry" disabled placeholder="{{user.address.description}}">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col">
+                      <label for="staticAddress" class="fw-bolder pt-2 pb-2">Direccion:</label>
+                      <input type="email" readonly class="form-control-plaintext" id="staticAddress" disabled placeholder="{{user.address.description}}">
+                    </div>
+                    <div class="col">
+                      <label for="staticDepartament" class="fw-bolder pt-2 pb-2">Departamento:</label>
+                      <input type="number" readonly class="form-control-plaintext" id="staticDepartament" disabled placeholder="{{user.address.description}}">
+                    </div>
+                  </div>
+
+                </div>
+
+            </div>
+
+
+
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+<!-- CONTAINER OPCIONES AVANZADAS -->
+      <div class="flex-lg-row-fluid">
+        <div class="card pt-4 mb-6 mb-xl-9">
+            <div class="card-header border-0">
+                <div class="card-title">
+                    <h2 class="fw-bolder mb-0">Opciones avanzadas</h2>
+                </div>
+            </div>
+            <div class="card-body pt-2">
+                <div class="d-flex flex-stack fs-4 px-2">
+                    <div class="fw-bolder rotate collapsible" data-bs-toggle="collapse" href="#kt_customer_view_details" role="button" aria-expanded="false" aria-controls="kt_customer_view_details">Cambiar contraseña
+
+                    </div>
+                     <span data-bs-toggle="tooltip" data-bs-trigger="hover">
+                        <a href="#" class="btn btn-sm btn-light-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_new_password" style="background-color: #161654; color: white">Actualizar</a>
+                    </span>
+                </div>
+
+            </div>
+        </div>
+      </div>
+<!-- CONTAINER LISTA DE NEGOCIOS -->
+      <div class="flex-lg-row-fluid">
+        <div class="card pt-4 mb-6 mb-xl-9">
+            <div class="card-header border-0">
+                <div class="card-title">
+                    <h2 class="fw-bolder mb-0">Lista de Negocios</h2>
+                </div>
+            </div>
+
+            <div class="card-header border-0 pt-6">
+              <div class="card-title">
+                  <div class="d-flex align-items-center position-relative my-1">
+                      <span class="svg-icon svg-icon-1 position-absolute ms-6">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                              <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="" />
+                              <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="" />
+                          </svg>
+                      </span>
+                      <input type="text" data-kt-customer-table-filter="search" class="form-control form-control-solid w-250px ps-15" placeholder="Buscar" />
+                  </div>
+              </div>
+              <div class="card-toolbar">
+
+                  <div class="d-flex justify-content-end" data-kt-customer-table-toolbar="base">
+                          <button type="button" class="btn btn-light-primary me-3"  id="kt_drawer_filter_toggle">
+                          <span class="svg-icon svg-icon-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                            </svg>
+                          </span>Editar</button>
+                  </div>
+                  <div class="d-flex justify-content-end" data-kt-customer-table-toolbar="base">
+                      <button type="button" class="btn btn-light-danger me-3" >
+                          <span class="svg-icon svg-icon-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                              <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                            </svg>
+                          </span>Eliminar</button>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTAINER UBICACION DEL NEGOCIO -->
+      <div class="flex-lg-row-fluid">
+        <div class="card pt-4 mb-6 mb-xl-9">
+            <div class="card-header border-0">
+                <div class="card-title">
+                    <h2 class="fw-bolder mb-0">Ubicacion de Negocio</h2>
+                </div>
+            </div>
+            <div class="separator separator-dashed my-3"></div>
+
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="kt_modal_update_customer" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header" id="kt_modal_update_user_headerqwe">
+                <h2 class="fw-bolder">Actualizar Usuario</h2>
+                <div class="btn btn-icon btn-sm btn-active-icon-primary" data-bs-dismiss="modal" aria-label="Close">
+                    <span class="svg-icon svg-icon-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
+                                  transform="rotate(-45 6 17.3137)" fill=""/>
+                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)"
+                                  fill=""/>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <form class="mx-5" novalidate="novalidate"  id="form" (ngSubmit)="updateUser()">
+                    <div class="mb-5">
+                        <div class="fv-row mb-10">
+                            <label class="form-label required">Nombres</label>
+                            <input name="name" [(ngModel)]="userUpdated.person.firstName" id="firstName2" class="form-control form-control-lg form-control-solid"/>
+                        </div>
+                        <div class="fv-row mb-10">
+                            <label class="form-label required">Apellidos</label>
+                            <input name="lastname" class="form-control form-control-lg form-control-solid" [(ngModel)]="userUpdated.person.lastName" id="lastname2"/>
+                        </div>
+                        <div class="fv-row mb-10">
+                            <label class="fs-6 fw-bold form-label required">Correo Electrónico de Contacto</label>
+                            <input name="email" class="form-control form-control-lg form-control-solid" [(ngModel)]="userUpdated.mail" id="email2" disabled />
+                        </div>
+                        <div class="fv-row mb-10">
+                            <label class="fs-6 fw-bold form-label required me-2">Nro de Celular de Contacto</label>
+                            <input name="phone" id="phone2" type="tel"
+                                   class="form-control form-control-lg form-control-solid" [(ngModel)]="userUpdated.person.phoneNumber"/>
+                            <div class="form-text">Reportes diarios le llegaran a este número de Whatsapp.</div>
+                        </div>
+                        <div class="fv-row mb-10">
+                            <label class="fs-6 fw-bold form-label required">Nro de Carnet</label>
+                            <input name="ci" class="form-control form-control-lg form-control-solid" [(ngModel)]="userUpdated.person.documentNumber" id="ci2"/>
+                        </div>
+                        <div class="fv-row mb-10">
+                            <button type="submit" class="btn btn-primary w-100" style="background-color: #161654; color: white">Actualizar Usuario</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="kt_modal_new_password" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="fw-bolder">Actualizar Contraseña</h2>
+                <div class="btn btn-icon btn-sm btn-active-icon-primary" data-bs-dismiss="modal" aria-label="Close">
+                    <span class="svg-icon svg-icon-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
+                                  transform="rotate(-45 6 17.3137)" fill=""/>
+                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)"
+                                  fill=""/>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="fv-row mb-10">
+                    <label class="form-label required">Contraseña Actual</label>
+                    <input name="name" id="currentPassword" type="password" class="form-control form-control-lg form-control-solid"/>
+                </div>
+                <div class="fv-row mb-10">
+                    <label class="form-label required">Nueva Contraseña</label>
+                    <input name="lastname" type="password" class="form-control form-control-lg form-control-solid" id="newPassword"/>
+                </div>
+
+                <div class="fv-row mb-10">
+                    <label class="form-label required">Confirmar Contraseña</label>
+                    <input name="lastname" type="password" class="form-control form-control-lg form-control-solid" id="confirmPassword" />
+                </div>
+                <div class="fv-row mb-10">
+                    <button type="submit" class="btn btn-primary w-100" (click)="changePassword()" style="background-color: #161654; color: white">Actualizar Contraseña</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

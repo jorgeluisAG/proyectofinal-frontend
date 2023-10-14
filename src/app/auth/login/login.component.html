@@ -1,0 +1,93 @@
+<div class="d-flex flex-column flex-root" style="height: 100% !important;">
+    <div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat  bgi-attachment-fixed">
+        <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
+            <div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
+                <div *ngIf="!isForgotPassword">
+                    <div class="text-center mb-10">
+                        <h1 class="text-dark mb-3">Ingresar a Sistema de Aluminio</h1>
+                        <!-- <div class="text-gray-400 fw-bold fs-4">No tienes cuenta?
+                            <a href="../../proyectofinal-frontend/dist/authentication/flows/basic/sign-up.html" class="link-primary fw-bolder">Create una</a></div> -->
+                    </div>
+                    <!-- <button type="button" class="btn btn-light-primary fw-bolder w-100 mb-6" >
+                        <img alt="Logo" src="assets/img/google-icon.svg" class="h-20px me-3"
+                        />Ingresa con Google
+                    </button>
+                    <button type="button" class="btn btn-light-primary fw-bolder w-100 mb-6" >
+                        <img alt="Logo" src="assets/img/facebook-4.svg" class="h-20px me-3"
+                        />Ingresa con Facebook
+                    </button> -->
+                    <form class="form w-100"  id="kt_sign_in_form" action="#" [formGroup]="loginForm" #formDir="ngForm" (ngSubmit)="login()">
+                        <div class="fv-row mb-6">
+                            <label class="form-label fs-6 fw-bolder text-dark">Correo Electrónico ó Número de Celular</label>
+                            <input class="form-control form-control-lg form-control-solid" required id="email" type="text" name="email" autocomplete="off" formControlName="email" />
+                            <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert">
+                                <div *ngIf="email.errors">
+                                    <span class="form-text text-danger error">
+                                        {{  getMessageError('email', email.errors) }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fv-row mb-10">
+                            <div class="d-flex flex-stack mb-2">
+                                <label class="form-label fw-bolder text-dark fs-6 mb-0">Contraseña</label>
+                                <span (click)="isForgotPassword = !isForgotPassword" class="link-primary fs-6 fw-bolder" style="cursor:pointer;" >Olvidó su contraseña?</span>
+                            </div>
+                           <div class="position-relative mb-3">
+                                <input class="form-control form-control-lg form-control-solid"
+                                    [type]="show ? 'password' : 'text'" formControlName="password"  id="password"  name="password" autocomplete="off" />
+
+                                <span (click)="show = !show" class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2"
+                                    data-kt-password-meter-control="visibility">
+                                    <i class="bi bi-eye-slash fs-2" *ngIf="show"></i>
+
+                                    <i class="bi bi-eye fs-2" *ngIf="!show"></i>
+                                </span>
+                            </div>
+                            <div *ngIf="password.errors && (password.dirty || password.touched)" class="alert">
+                                <div *ngIf="password.errors">
+                                    <span class="form-text text-danger error">
+                                        {{  getMessageError('password', password.errors) }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" id="kt_sign_in_submit" class="btn btn-lg btn-primary w-100 mb-5"  [disabled]="loginForm.invalid">
+                                <span class="indicator-label">Ingresar</span>
+                                <span class="indicator-progress">Please wait...
+                                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div *ngIf="isForgotPassword">
+                    <div class="text-center mb-10">
+                        <h1 class="text-dark mb-3">Olvidaste tu contraseña?</h1>
+                        <div class="text-gray-400 fw-bold fs-5">Ingresa tu <a class="text-dark">Correo electrónico</a> para restablecer tu contraseña.
+                            </div>
+                    </div>
+
+                    <form class="form w-100  mb-1"  id="kt_forgot_password_form" action="#" [formGroup]="forgotPasswordForm" #formDir="ngForm" (ngSubmit)="forgotPassword()">
+                        <div class="fv-row mb-8">
+                            <label class="form-label fs-6 fw-bolder text-dark">Correo Electrónico</label>
+                            <input class="form-control form-control-lg form-control-solid" required id="emailForgot" type="text" name="emailForgot" autocomplete="off" formControlName="emailForgot" />
+
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" id="kt_forgot_password_form" class="btn btn-lg btn-primary w-100 mb-5"  [disabled]="forgotPasswordForm.invalid">
+                                <span class="indicator-label">Ingresar</span>
+                                <span class="indicator-progress">Please wait...
+                                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+                        </div>
+
+                    </form>
+                    <div class="text-center">
+                        <h4 (click)="isForgotPassword = !isForgotPassword"style="cursor:pointer;" class="link-primary fw-bolder">volver</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
