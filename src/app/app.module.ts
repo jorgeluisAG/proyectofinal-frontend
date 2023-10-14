@@ -9,35 +9,44 @@ import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
+import {PipesModule} from './pipes/pipes.module';
+import {LoaderModule} from './shared/loader/loader.module';
 
+
+
+
+import { InlineSVGModule } from 'ng-inline-svg';
 import {AppRoutingModule} from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import { PagesComponent } from './pages/pages.component';
+import { LayoutModule } from './layout/layout.module';
 
-import { InlineSVGModule } from 'ng-inline-svg';
+
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    HeaderComponent,
-    SidebarComponent,
-    SubHeaderComponent,
-    PagesComponent,
+    declarations: [
 
-  ],
-  imports: [
-    RouterModule,
-    RouterModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    BrowserModule,
-    ReactiveFormsModule,
-    InlineSVGModule,
-    AppRoutingModule,
+        AppComponent,
+        LoginComponent,
+        // HeaderComponent,
+        // SubHeaderComponent,
+        // SidebarComponent,
+        PagesComponent,
+    ],
+    imports: [
+        RouterModule,
+        AppRoutingModule,
+        FormsModule,
+        LoaderModule,
+        HttpClientModule,
+        InlineSVGModule,
+        BrowserModule,
+        ReactiveFormsModule,
+        PipesModule,
+        LayoutModule,
+    ],
+    providers: [
 
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    ],
+    bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

@@ -19,4 +19,5 @@ export class HeaderComponent implements OnInit {
   logout(){
     console.log("cerrar sesion")
   }
+
 }
