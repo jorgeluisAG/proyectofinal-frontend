@@ -13,6 +13,7 @@ declare var $: any;
 })
 export class CustomerComponent implements OnInit {
 
+  cambioTabla=true;
   customerListFilter: string = 'ALL';
   table: any;
   projectUrl = `${environment.projectEndpoint}`;
@@ -97,6 +98,13 @@ export class CustomerComponent implements OnInit {
           }
       ],
       columnDefs: [
+        {
+          targets: 0,
+          render: function (data: any) {
+            let date = new Date(data)
+            return date.toLocaleString();
+        }
+        },
         {
           targets: 4,
           render: function (data: any, type: any, row: any) {
