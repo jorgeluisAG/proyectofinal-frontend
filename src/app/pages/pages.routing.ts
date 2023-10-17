@@ -12,6 +12,7 @@ import { LayoutModule } from '../layout/layout.module';
 import { LocationsComponent } from './administrator/locations/locations.component';
 import { PersonalComponent } from './administrator/personal/personal.component';
 import { StoreProductComponent } from './client-pages/store-product/store-product.component';
+import { InventoryComponent } from './administrator/inventory/inventory.component';
 
 const pagesRoutes: Routes = [
 
@@ -27,6 +28,14 @@ const pagesRoutes: Routes = [
       path: 'inventario',
       component: ProductListComponent,
       data: { title: 'Panel de los Productos'},
+      // canActivate: [AuthGuard],
+      // canActivate: [UserGuard]
+
+    },
+    {
+      path: 'inventario/producto/:id',
+      component: InventoryComponent,
+      data: { title: 'Panel de los inventario'},
       // canActivate: [AuthGuard],
       // canActivate: [UserGuard]
 

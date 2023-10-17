@@ -4,6 +4,7 @@ import { Product } from 'src/app/model/Product';
 import { ProductService } from 'src/app/services/product.service';
 import { environment } from 'src/environments/environment';
 import {HttpHeaders, HttpResponse} from '@angular/common/http';
+import { Router } from '@angular/router';
 
 
 declare var $: any;
@@ -14,6 +15,7 @@ declare var $: any;
 })
 export class ProductListComponent implements OnInit {
 
+  cambioTabla=true;
   productListFilter: string = 'ALL';
   valorE = 'Algo';
   table: any;
@@ -40,6 +42,7 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -122,7 +125,7 @@ export class ProductListComponent implements OnInit {
           },
           {
               className: 'text-center',
-              data: 'stock'
+              data: 'stockTotal'
           },
           {
               className: 'text-center',
@@ -138,7 +141,8 @@ export class ProductListComponent implements OnInit {
           targets: 6,
           render: function (data: any, type: any, row: any) {
               return '<a href="javascript:void(0);" class="btn btn-sm btn-light btn-active-light-primary" data-watch-id="' + row.id + '" data-bs-toggle="modal" data-bs-target="#kt_modal_update_product_1">Ver' +
-                  '</a>';
+                  '</a>'+
+                  '<a  href="javascript:void(0);" class="btn btn-sm btn-light btn-active-light-primary" data-id-product="' + row.id + '">edit</a>';
 
           }
       }
@@ -162,13 +166,17 @@ export class ProductListComponent implements OnInit {
       // @ts-ignore
       that.watchPayment($(this).data('watch-id'));
   });
-  this.table.on('click', '[data-payment-id]', '[data-payment-code]', function () {
+  this.table.on('click', '[data-id-product]', function () {
       // @ts-ignore
-      that.dataSeePayment($(this).data('payment-id'),$(this).data('payment-code'));
+      that.dataSeePayment($(this).data('id-product'));
   });
 
   }
   watchPayment(id: string) {
     console.log(id);
+}
+dataSeePayment(id: string){
+  this.router.navigate([`/inventario/producto/${id}`]);
+  console.log(id)
 }
 }

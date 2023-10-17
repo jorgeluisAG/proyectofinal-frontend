@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/model/Product';
 import { environment } from 'src/environments/environment';
 
@@ -14,16 +15,25 @@ export class InventoryComponent implements OnInit {
   table: any;
   proyectUrl = `${environment.projectEndpoint}`;
   product: Product[]=[];
-
+  id: string;
   constructor(
-    //private productService: ProductService,
-  ) { }
+
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {
+
+    activatedRoute.params.subscribe( params => {
+      this.id = params.id;
+  });
+  }
 
   ngOnInit(): void {
     console.log("ENTRE 1")
-
+    console.log(this.id)
   }
 
-
+  vamons(){
+    this.router.navigate(['/inventario'])
+  }
 
 }

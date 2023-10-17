@@ -1,0 +1,14 @@
+.fondo{
+  background: yellow;
+}
+
+.algo{
+
+    padding: 2rem 2.25rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    flex-direction: column;
+
+}
