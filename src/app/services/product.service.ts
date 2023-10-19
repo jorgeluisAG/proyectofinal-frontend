@@ -30,4 +30,8 @@ export class ProductService {
     return this.http.get(`${this.projectUrl}`, {headers: this.header, observe: 'response'});
   };
 
+  getById(id: number): Observable<HttpResponse<any>>{
+    return this.http.get(`${this.projectUrl}/${id}`, {headers: this.header, observe: 'response'});
+  }
+
 }
