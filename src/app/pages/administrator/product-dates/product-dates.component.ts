@@ -14,6 +14,25 @@ export class ProductDatesComponent implements OnInit {
   projectUrl = `${environment.projectEndpoint}`;
   productDates: Product[]=[];
   id: string;
+
+  productColor = [
+    {
+      id: 1,
+      colorName: 'negro',
+      colorHex: '#000000'
+    },
+    {
+      id: 2,
+      colorName: 'azul',
+      colorHex: 'blue'
+    },
+    {
+      id: 2,
+      colorName: 'blanco',
+      colorHex: 'red'
+    }
+  ]
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router
