@@ -34,4 +34,16 @@ export class ProductService {
     return this.http.get(`${this.projectUrl}/${id}`, {headers: this.header, observe: 'response'});
   }
 
+  getProductCategoryAll(id: number): Observable<HttpResponse<any>>{
+    return this.http.get(`${this.projectUrl}/category/${id}`, {headers: this.header, observe: 'response'});
+  }
+
+  getProductColorAll(id: number): Observable<HttpResponse<any>>{
+    return this.http.get(`${this.projectUrl}/color/${id}`, {headers: this.header, observe: 'response'});
+  }
+
+  getProductSeriesAll(id: number): Observable<HttpResponse<any>>{
+    return this.http.get(`${this.projectUrl}/series/${id}`, {headers: this.header, observe: 'response'});
+  }
+
 }

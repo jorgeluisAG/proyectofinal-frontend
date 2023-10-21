@@ -5,6 +5,8 @@ import { environment } from 'src/environments/environment';
 import { ProductService } from '../../../services/product.service';
 import { LoaderService } from 'src/app/services/loader.service';
 import { Category } from 'src/app/model/Category';
+import { ProductColorDTO } from 'src/app/model/DTO/ProductColorDTO';
+import { AluminumSeries } from 'src/app/model/AluminumSeries';
 @Component({
   selector: 'app-product-dates',
   templateUrl: './product-dates.component.html',
@@ -18,9 +20,14 @@ export class ProductDatesComponent implements OnInit {
   productDates: Product[]=[];
   id: number;
 
+  //categoryAll: Category[] = [];
+  categoryAll: Array<Category> = [];
+  colorAll: Array<ProductColorDTO> = [];
+  seriesAll: Array<AluminumSeries> = [];
   category: Category = new Category(0,'');
+  //product: Product = new Product(0,'','',0,0,0,[]);
+  //productUpdate: Product = new Product(0,'','',0,0,0,[]);
   product: Product = new Product(0,'','',0,0,0,this.category);
-
   productColor = [
     {
       id: 1,
@@ -39,10 +46,14 @@ export class ProductDatesComponent implements OnInit {
     }
   ]
 
+  //categoryData = Object.values();
+
+
   constructor(
     private loader: LoaderService,
     private activatedRoute: ActivatedRoute,
     private productService: ProductService,
+    //private categoryService: CategoryService,
     private router: Router
   ) {
     activatedRoute.params.subscribe( params => {
@@ -53,18 +64,57 @@ export class ProductDatesComponent implements OnInit {
   ngOnInit(): void {
     console.log("DALE 1")
     console.log(this.id)
+    this.getProductById();
+    this.getCategoryAll();
+    this.getColorAll();
+    this.getSeriesAll();
+    //console.log(this.categoryData);
   }
 
   vamons(){
     this.router.navigate(['/inventario'])
   }
 
-  // getProductById(){
-  //   this.loader.startLoading('Cargando...');
-  //   this.productService.getById(this.id)
-  //       .subscribe((resp) => {
+  getProductById(){
+    this.loader.startLoading('Cargando...');
+    this.productService.getById(this.id)
+        .subscribe((resp) => {
+          this.product = resp.body;
+          //this.productUpdate = this.product;
+          console.log(this.product)
+    })
+  }
 
-  //   })
-  // }
+  getCategoryAll(){
+    this.loader.startLoading('Cargando...');
+    this.productService.getProductCategoryAll(this.id)
+        .subscribe((resp) => {
+          this.categoryAll = resp.body;
+          //this.productUpdate = this.product;
+          console.log(this.categoryAll)
+
+    })
+  }
+  getColorAll(){
+    this.loader.startLoading('Cargando...');
+    this.productService.getProductColorAll(this.id)
+        .subscribe((resp) => {
+          this.colorAll = resp.body;
+          //this.productUpdate = this.product;
+          console.log(this.colorAll)
+
+    })
+  }
+
+  getSeriesAll(){
+    this.loader.startLoading('Cargando...');
+    this.productService.getProductSeriesAll(this.id)
+        .subscribe((resp) => {
+          this.seriesAll = resp.body;
+          //this.productUpdate = this.product;
+          console.log(this.seriesAll)
+
+    })
+  }
 
 }

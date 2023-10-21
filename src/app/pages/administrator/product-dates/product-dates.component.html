@@ -27,7 +27,7 @@
                     Nombre del Producto
                   </label>
                   <div class="col-lg-8">
-                    <input type="text" name="product_name" class="form-control form-control-sm form-control-solid" placeholder="Nombre del Producto" value="Nombre del Producto">
+                    <input type="text" name="name" class="form-control form-control-sm form-control-solid" placeholder="Nombre del Producto" [(ngModel)]="product.nameProduct">
                   </div>
                 </div>
 
@@ -36,7 +36,7 @@
                     Cantida
                   </label>
                   <div class="col-lg-6">
-                    <input type="text" name="stock_total" class="form-control form-control-sm form-control-solid" placeholder="Cantidad" value="Cantidad">
+                    <input type="text" name="stock" class="form-control form-control-sm form-control-solid" placeholder="Cantidad" [(ngModel)]="product.stockTotal">
                   </div>
                 </div>
 
@@ -45,18 +45,17 @@
                     Precio
                   </label>
                   <div class="col-lg-6">
-                    <input type="text" name="product_price" class="form-control form-control-sm form-control-solid" placeholder="Precio" value="Precio">
+                    <input type="text" name="price" class="form-control form-control-sm form-control-solid" placeholder="Precio" [(ngModel)]="product.price">
                   </div>
                 </div>
 
                 <div class="form-group row mb-6  px-5">
                   <label for="" class="col-lg-4 col-form-label required  fs-6">Categoria</label>
                   <div class="col-lg-8">
+                    <!-- <select class="form-select form-select-sm form-select-solid" id="" data-control="select2" data-placeholder="Seleccionar la opcion"></select> -->
                     <select class="form-select form-select-sm form-select-solid" id="" data-control="select2" data-placeholder="Seleccionar la opcion">
-                      <option selected>Seleccionar</option>
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
+                      <option >{{product.category.nameCategory}}</option>
+                      <option *ngFor="let categoryAlls of categoryAll;">{{categoryAlls.nameCategory}}</option>
                     </select>
                   </div>
                 </div>
@@ -66,7 +65,7 @@
                     Descripcion
                   </label>
                   <div class="col-lg-8">
-                    <textarea class="form-control form-control-sm form-control-solid" id="" rows="3" placeholder="Descripcion"></textarea>
+                    <textarea class="form-control form-control-sm form-control-solid" id="" rows="3" placeholder="Descripcion" [(ngModel)]="product.descriptionProduct">{{product.descriptionProduct}}</textarea>
                   </div>
                 </div>
 
@@ -86,10 +85,14 @@
                     <div class="col-xl-8">
                       <div class="row pb-5">
                         <label for="" class="fw-bolder pt-2 pb-2">Color del Material</label>
-                        <div *ngFor="let valor of productColor" class="col-1" >
+                        <div *ngFor="let colorAll1 of colorAll" class="col-1" >
                           <div class="">
-                            <div  *ngIf="valor.id>0" [ngStyle]="{'background': valor.colorHex}" style="height: 40px; width: 40px; ">
+                            <div class="border border-dark" *ngIf="colorAll1.id>0" [ngStyle]="{'background': colorAll1.hex}" style="height: 35px; width: 40px; ">
+
                             </div>
+                          </div>
+                          <div class="h-50 d-flex align-items-center justify-content-center">
+                            <h5>{{colorAll1.stockColor}}</h5>
                           </div>
                         </div>
                       </div>
@@ -107,18 +110,26 @@
 
                 <div class="mb-5 mt-8">
                   <div class="form-group row">
-                    <div class="col-xl-6">
+                    <div class="col-xl-8">
                       <div class="row pb-5">
-                        <label for="" class="fw-bolder pt-2 pb-2">Serie del Material</label>
+                        <!-- <label for="" class="fw-bolder pt-2 pb-2">Serie del Material</label>
                         <div *ngFor="let valor of productColor" class="col-lg-1" >
                           <div class="pl-5">
                             <div  *ngIf="valor.id>0" [ngStyle]="{'background': valor.colorHex}" style="height: 40px; width: 40px; ">
                             </div>
                           </div>
+                        </div> -->
+                        <div *ngFor="let seriesAlls of seriesAll" class="card border border-success m-3" style="height: 70px; width: 180px;">
+                          <!-- <div class="card-header">Header</div> -->
+                          <div  class="col-8 card-body text-success">
+                            <!-- <h5 class="card-title">Success card title</h5> -->
+                            <p  class="card-text">{{seriesAlls.seriesProduct}}</p>
+                          </div>
                         </div>
+
                       </div>
                     </div>
-                    <div class="col-xl-6">
+                    <div class="col-xl-4">
                       <a href="#" class="btn btn-icon btn-primary">
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
                           <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
