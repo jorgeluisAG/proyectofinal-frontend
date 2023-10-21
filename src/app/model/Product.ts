@@ -9,5 +9,6 @@ export class Product {
     public state: number,
     public stockTotal: number,
     public category: Category,
+    //public category: Category[],
   ) { }
 }
