@@ -14,7 +14,7 @@ export class AuthService {
     // @ts-ignore
     user: User;
     // @ts-ignore
-    token: string;
+    token = "123456";
 
     constructor(
         private http: HttpClient,
@@ -34,4 +34,8 @@ export class AuthService {
 
     logout() {
     }
+
+    isLogged() {
+      return (this.token.length > 5);
+     }
 }
