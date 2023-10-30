@@ -98,7 +98,7 @@
                       <span class="menu-title">Inventario</span>
                     </a>
                 </div>
-                <div class="menu-item">
+                <div class="menu-item" *ngIf="role==='USER'">
                   <a class="menu-link" href="javascript:void(0);" [routerLink]="['/tienda']" routerLinkActive="active"  >
                     <span class="menu-icon">
                       <span class="svg-icon svg-icon-2">

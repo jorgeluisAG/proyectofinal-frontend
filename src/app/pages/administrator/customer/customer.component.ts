@@ -70,7 +70,7 @@ export class CustomerComponent implements OnInit {
           url: `${url}`,
           contentType: 'application/json',
           headers: {
-              // 'Authorization':`Bearer ${localStorage.getItem('token_v2')}`,
+              'Authorization':`Bearer ${localStorage.getItem('token')}`,
               'Content-Type':'application/json',
           },
           dataSrc: '',
@@ -86,11 +86,11 @@ export class CustomerComponent implements OnInit {
           },
           {
               className: 'text-center',
-              data: 'person.phoneNumber',
+              data: 'email',
           },
           {
               className: 'text-center',
-              data: 'address.description'
+              data: 'person.phoneNumber'
           },
           {
               className: 'text-center',

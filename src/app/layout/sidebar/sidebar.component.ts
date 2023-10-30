@@ -16,14 +16,11 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-           this.getSiatByBusiness();
-    this.role = localStorage.getItem('role')
+    this.role = localStorage.getItem('rol')
     console.log(this.role);
   }
 
-  getSiatByBusiness() {
 
-  }
 
   titleCase(title: String) {
     title = title.toLowerCase();
