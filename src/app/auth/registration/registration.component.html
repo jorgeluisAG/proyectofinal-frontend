@@ -1,0 +1,256 @@
+<div class="d-flex flex-column flex-root" style="height: 100% ">
+
+  <div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat  bgi-attachment-fixed">
+      <!--begin::Content-->
+    <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20" >
+          <!-- <a routerLink="/" class="mb-12">
+              <img alt="Logo" src="assets/img/Logo_BaniPay.png" class="h-90px"/>
+          </a> -->
+
+          <!--begin::Content body-->
+      <div class="w-lg-700px bg-white rounded shadow-sm p-10 p-lg-15 mx-auto">
+        <form class="form w-100 fv-plugins-bootstrap5 fv-plugins-framework" id="kt_sign_up_form" action="#" (ngSubmit)="createUser()">
+              <!-- <form class="form w-100 fv-plugins-bootstrap5 fv-plugins-framework" id="kt_sign_up_form" action="#" [formGroup]="loginForm" #formDir="ngForm" (ngSubmit)="createUser()"> -->
+                  <!--begin::Heading-->
+                  <!-- <div *ngIf="isLogged"> -->
+                  <!-- <div >
+                      <div class="mb-10 text-center">
+                          <h1 class="text-dark mb-3">Completa los datos para registrarte</h1>
+                          <h2 class="text-gray-800 fw-bold fs-4">Correo: {{emailUser}}</h2>
+                          <div class="text-gray-400 fw-bold fs-4">No olvides que los datos deben ser autenticos y unicos</div>
+                      </div>
+                  </div> -->
+                  <!-- <div *ngIf="!isLogged"> -->
+          <div >
+            <div class="mb-10 text-center">
+              <h1 class="text-dark mb-3">Crea una cuenta</h1>
+              <div class="text-gray-400 fw-bold fs-4">¿Ya tienes una cuenta?
+                <a href="/" [routerLink]="['/login']" class="link-primary fw-bolder">¿Iniciar sesión?</a>
+              </div>
+            </div>
+                  <!--end::Heading-->
+
+                      <!-- <button type="button" class="btn btn-light-primary fw-bolder w-100 mb-4" (click)="signInWithGoogle()"> -->
+                      <!-- <button type="button" class="btn btn-light-primary fw-bolder w-100 mb-4">
+                          <img alt="Logo" src="assets/img/google-icon.svg" class="h-20px me-3"
+                          />Crear cuenta con Google
+                      </button> -->
+
+
+                      <!-- <div class="d-flex align-items-center mb-2"></div> -->
+                      <!-- <button type="button" class="btn btn-light-primary fw-bolder w-100 mb-4" (click)="signInWithFB()"> -->
+                      <!-- <button type="button" class="btn btn-light-primary fw-bolder w-100 mb-4">
+                          <img alt="Logo" src="assets/img/facebook-4.svg" class="h-20px me-3"
+                          />Crear cuenta con Facebook
+                      </button> -->
+
+
+
+            <div class="d-flex align-items-center mb-2">
+              <div class="border-bottom border-gray-300 mw-50 w-100"></div>
+              <span class="fw-bold text-gray-400 fs-7 mx-2">OR</span>
+              <div class="border-bottom border-gray-300 mw-50 w-100"></div>
+            </div>
+                  <!--begin::Form group-->
+
+            <div class="fv-row mb-7">
+              <label class="form-label fw-bolder text-dark fs-6 required">Nombre de Usuario</label>
+              <input class="form-control form-control-lg form-control-solid" [(ngModel)]="userName"
+                    required type="text" name="userName" placeholder="Usuario" autocomplete="off"/>
+            </div>
+
+            <div class="col-lg-12 mb-7">
+              <div class="row">
+                <div class="col-lg-6 fv-row">
+                  <label class="form-label fw-bolder text-dark fs-6 required" >Nombre</label>
+                  <input class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" [(ngModel)]="firstName"
+                        required type="text" name="firstName"  placeholder="Nombre(s)" autocomplete="off"/>
+                </div>
+                <div class="col-lg-6 fv-row">
+                  <label class="form-label fw-bolder text-dark fs-6 required" >Apellido</label>
+                  <input class="form-control form-control-lg form-control-solid" [(ngModel)]="lastName"
+                        required type="text" name="lastName"  placeholder="Apellidos" autocomplete="off"/>
+                </div>
+              </div>
+            </div>
+
+                  <!--end::Form group-->
+                  <!--begin::Form group-->
+            <div class="fv-row mb-7">
+              <label class="form-label fw-bolder text-dark fs-6 required">Email</label>
+              <input class="form-control form-control-lg form-control-solid" [(ngModel)]="email"
+                    type="email" placeholder="Email" name="email" autocomplete="off"/>
+            </div>
+          </div>
+                  <!--end::Form group-->
+                  <div class="row">
+                    <div class="fv-row col-6 form-outline contenido col-12 col-sm-6 mb-10">
+                      <label class="form-label fw-bolder text-dark fs-6 required">Fecha de Nacimiento </label>
+                      <input class="form-control form-control-lg form-control-solid" [(ngModel)]="birthdate"
+                            type="date" placeholder="" name="birthdate" autocomplete="off"/>
+                    </div>
+
+                    <div class="fv-row col-6 form-outline contenido col-12 col-sm-6 mb-10">
+                          <!--begin::Label-->
+                      <label class="form-label fw-bolder text-dark fs-6 required">Nro de Celular de Contacto</label>
+                          <!--end::Label-->
+                          <!--begin::Input-->
+                      <input class="form-control form-control-lg form-control-solid" [(ngModel)]="phone"
+                            name="phone" id="phone" type="tel"  autocomplete="off"/>
+                          <!--end::Input-->
+                    </div>
+                      <!--end::Input group-->
+                      <!--begin::Input group-->
+
+                  </div>
+
+                  <!-- <div>
+                    <p>The selected Fruit is <b>{{birthdate}}</b></p>
+                  </div> -->
+
+                  <div class="fv-row mb-7">
+                    <label class="form-label fw-bolder text-dark fs-6 required">Nro de Carnet</label>
+                    <input class="form-control form-control-lg form-control-solid" [(ngModel)]="documentNumber"
+                            type="text" name="account_ci" autocomplete="off" />
+                  </div>
+          <!-- RADIO BUTTON -->
+                  <div class="col-lg-12 mb-7">
+                    <div class="row">
+                      <label class="form-label fw-bolder text-dark fs-6 required" >Genero</label>
+                      <div class="col-lg-6 fv-row" *ngFor="let sexAll of sexAlls">
+                        <label class="form-check-label ps-2" for="{{sexAll}}">
+                          <input class="form-check-input" id="{{sexAll}}" [value]='sexAll' type="radio" name="sexAlls" [(ngModel)]="gender">
+                          {{sexAll}}
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- <div class="fv-row mb-7">
+                    <label for="" class="fs-6 fw-bold form-label required">Fecha de Nacimiento </label>
+                    <input class="form-control form-control-lg form-control-solid" type="date"  placeholder="date" id="kt_datepicker_2"/>
+                  </div>
+
+                  <div class="mb-0">
+                    <label for="" class="form-label">Solid background style</label>
+                    <input class="form-control form-control-solid" type="date"  id="kt_datepicker_2"/>
+                </div> -->
+
+                  <!--begin::Form group-->
+                  <!-- <div *ngIf="!isLogged"> -->
+                  <div >
+                  <div class="mb-10 fv-row">
+                      <label class="form-label fw-bolder text-dark fs-6 required" >Contraseña</label>
+                      <input class="form-control form-control-lg form-control-solid" [(ngModel)]="password"
+                          type="password" placeholder="Contraseña" name="password"  autocomplete="off"
+                      />
+                  </div>
+                  <!--end::Form group-->
+                  <!--begin::Form group-->
+                  <div class="fv-row mb-5">
+                      <label class="form-label fw-bolder text-dark fs-6 required">Confirmar contraseña</label>
+                      <input class="form-control form-control-lg form-control-solid" [(ngModel)]="passwordC"
+                      type="password" placeholder="Confirmar contraseña" name="cPassword" autocomplete="off"
+                      />
+                  </div>
+                  <!--end::Form group-->
+
+                  <!--begin::Form group-->
+                  <div class="fv-row mb-2">
+                      <div class="form-check form-check-custom form-check-solid">
+                          <!-- <input class="form-check-input"
+                              id="kt_sign_up_agree" type="checkbox" name="agree"
+                          />
+                          <label class="form-check-label fw-bold text-gray-700 fs-6" for="kt_sign_up_agree">
+                              Acepto los&nbsp;<a href="https://keenthemes.com/metronic/?page=faq"
+                              target="_blank" class="ms-1 link-primary">términos y condiciones</a>.
+                          </label> -->
+                      </div>
+                  </div>
+                  <!--end::Form group-->
+              </div>
+
+
+
+                  <!--begin::Form group-->
+                  <div class="text-center">
+                      <!-- <button class="btn btn-lg btn-primary w-100 mb-5" type="submit" id="kt_sign_up_submit" (click)="createUser()" [disabled]="loginForm.invalid"> -->
+                        <button class="btn btn-lg btn-primary w-100 mb-5" type="submit" id="kt_sign_up_submit" >
+                          Guardar
+                          <!-- <ng-container ><span class="indicator-label">Guardar</span></ng-container>
+                          <ng-container >
+                              <span class="indicator-progress" [style.display]="'block'">Porfavor espere...
+                                  <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                              </span>
+                          </ng-container> -->
+                      </button>
+                      <!-- <a routerLink="/auth/login" type="button" id="kt_sign_up_form_cancel_button" class="btn btn-lg btn-light-primary w-100 mb-5">Cancelar</a> -->
+                  </div>
+                  <!--end::Form group-->
+
+                  <!-- <pre>{{ user | json }}</pre> -->
+            </form>
+
+                  <!-- <ng-template
+                  #formError
+                  let-control="control"
+                  let-message="message"
+                  let-validation="validation"
+                  >
+                  <ng-container *ngIf="control.hasError(validation) && (control.dirty || control.touched)">
+                      <div class="fv-plugins-message-container">
+                      <div class="fv-help-block">
+                          <span role="alert">{{ message }}</span>
+                      </div>
+                      </div>
+                  </ng-container>
+                  </ng-template> -->
+
+
+          </div>
+          <!--end::Content body-->
+
+
+
+
+          <!-- <div class="modal fade" id="kt_filter_modal" tabindex="-1" aria-hidden="true" >
+              <div class="modal-dialog modal-dialog-centered mw-350px">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h2 class="fw-bolder">Opciones de Filtrado</h2>
+                          <div id="kt_customers_export_close" class="btn btn-icon btn-sm btn-active-icon-primary">
+                              <span class="svg-icon svg-icon-1" data-bs-dismiss="modal">
+                                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                          <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="" />
+                                                          <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="" />
+                                                      </svg>
+                                                  </span>
+                          </div>
+                      </div>
+                      <div class="modal-body scroll-y ">
+                          <div class="">
+                              <div class="d-flex justify-content-end">
+                                  <button type="reset" class="btn btn-light btn-active-light-primary me-2" data-bs-dismiss="modal" >Restablecer</button>
+                                  <button type="submit" class="btn btn-primary" data-kt-menu-dismiss="true" data-bs-dismiss="modal" >Registrarse</button>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div> -->
+      </div>
+      <!--end::Content-->
+
+      <!-- begin::Footer -->
+      <!-- <div class="d-flex flex-center flex-column-auto p-2">
+          <div class="d-flex align-items-center fw-bold fs-6">
+          <a class="text-muted text-hover-primary px-2 cursor-pointer">Banipay</a>
+          </div>
+      </div>
+      <div class="p-2"></div> -->
+      <!-- end::Footer -->
+  </div>
+
+
+  </div>
+
