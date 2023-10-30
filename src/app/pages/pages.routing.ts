@@ -17,7 +17,13 @@ import { ProductDatesComponent } from './administrator/product-dates/product-dat
 
 const pagesRoutes: Routes = [
 
-
+    {
+      path: '',
+      component: ProfileComponent,
+      data: { title: 'Panel de Usuario'},
+      // canActivate: [AuthGuard],
+      // canActivate: [UserGuard]
+    },
     {
         path: 'perfil',
         component: ProfileComponent,

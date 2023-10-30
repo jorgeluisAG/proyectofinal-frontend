@@ -4,6 +4,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import { LoginDTO } from '../../model/DTO/LoginDTO';
+import { AuthService } from 'src/app/services/auth/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,17 +12,17 @@ import { LoginDTO } from '../../model/DTO/LoginDTO';
 })
 export class LoginComponent implements OnInit {
     user: LoginDTO = new LoginDTO('', '');
-    
+
     loginForm!: FormGroup;
     forgotPasswordForm!: FormGroup;
     show= true;
     codConfirm = "";
     isForgotPassword!: boolean;
     constructor(
-        
+        private authService: AuthService,
         private router: Router,
     ) {
-        
+
     }
 
     ngOnInit(): void {
@@ -29,7 +30,8 @@ export class LoginComponent implements OnInit {
         this.isForgotPassword = false;
         this.confirmEmail();
         this.loadLoginForm();
-        
+
+
     }
 
     confirmEmail(){
@@ -75,15 +77,57 @@ export class LoginComponent implements OnInit {
                 Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")
             ]),
         });
+
+        console.log(this.user.userName)
     }
-    login() {
+    async login() {
         this.logout();
         if (!this.loginForm.valid) {
             this.loginForm.controls['email'].markAsTouched();
             this.loginForm.controls['password'].markAsTouched();
+
+
         } else {
+          // console.log(this.loginForm.controls['email'].value)
+          //   console.log(this.loginForm.controls['password'].value)
+
             // this.loader.startLoading('Procesando...');
             // this.loader.stopLoading();
+
+            this.authService.login({
+              ...this.loginForm.value
+          }).subscribe(
+              async (resp) => {
+                  if ( resp && resp.body.id_token ) {
+                      await this.authService.saveLogin(resp.body.user, resp.body.id_token);
+                      this.router.navigate([resp.body.user.authority?.id === 'ADMIN' ? '/perfil' : '/perfil']).then(r => {
+                          console.log('AUTORIZADO');
+                      });
+                  } else {
+                      Swal.fire({
+                          title: 'Error al Iniciar Sesión',
+                          text: 'Credenciales Incorrectas',
+                          icon: 'error',
+                          buttonsStyling: false,
+                          confirmButtonText: "Cerrar",
+                          customClass: {
+                              confirmButton: 'btn btn-danger'
+                          }
+                      }).then(r => {});
+                  }
+              },
+              (error) => {
+                  Swal.fire({
+                      title: 'Error al Iniciar Sesión',
+                      text: 'Credenciales Incorrectas',
+                      icon: 'error',
+                      buttonsStyling: false,
+                      confirmButtonText: "Cerrar",
+                      customClass: {
+                          confirmButton: 'btn btn-danger'
+                      }
+                  }).then(r => {});
+              });
         }
     }
     logout() {

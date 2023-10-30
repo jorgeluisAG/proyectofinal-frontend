@@ -20,6 +20,8 @@ import {AppRoutingModule} from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import { PagesComponent } from './pages/pages.component';
 import { LayoutModule } from './layout/layout.module';
+import { RegisterComponent } from './auth/register/register.component';
+import { RegistrationComponent } from './auth/registration/registration.component';
 
 
 @NgModule({
@@ -31,6 +33,8 @@ import { LayoutModule } from './layout/layout.module';
         // SubHeaderComponent,
         // SidebarComponent,
         PagesComponent,
+        RegisterComponent,
+        RegistrationComponent,
     ],
     imports: [
         RouterModule,
