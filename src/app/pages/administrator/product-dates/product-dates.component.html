@@ -85,9 +85,9 @@
                     <div class="col-xl-8">
                       <div class="row pb-5">
                         <label for="" class="fw-bolder pt-2 pb-2">Color del Material</label>
-                        <div *ngFor="let colorAll1 of colorAll" class="col-1" >
+                        <div *ngFor="let colorAll1 of colorAll" class="col-auto" >
                           <div class="">
-                            <div class="border border-dark" *ngIf="colorAll1.id>0" [ngStyle]="{'background': colorAll1.hex}" style="height: 35px; width: 40px; ">
+                            <div class="border border-dark" *ngIf="colorAll1.id>0" [ngStyle]="{'background': colorAll1.hex}" style="height: 45px; width: 50px; ">
 
                             </div>
                           </div>
@@ -95,16 +95,22 @@
                             <h5>{{colorAll1.stockColor}}</h5>
                           </div>
                         </div>
+                        <a href="#" class="btn btn-icon btn-primary mx-3"  style="height: 45px; width: 50px; " >
+                          <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="" viewBox="0 0 16 16">
+                            <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                          </svg>
+                        </a>
                       </div>
                     </div>
-                    <div class="col-xl-4">
+                    <!-- <div class="col-xl-4">
                       <a href="#" class="btn btn-icon btn-primary">
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
                           <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
                           <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
                         </svg>
                       </a>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
 
@@ -119,14 +125,22 @@
                             </div>
                           </div>
                         </div> -->
-                        <div *ngFor="let seriesAlls of seriesAll" class="card border border-success m-3" style="height: 70px; width: 180px;">
-                          <!-- <div class="card-header">Header</div> -->
+                        <!-- <div *ngFor="let seriesAlls of seriesAll" class="card border border-success m-3" style="height: 70px; width: 180px;">
                           <div  class="col-8 card-body text-success">
-                            <!-- <h5 class="card-title">Success card title</h5> -->
+                            <p  class="card-text">{{seriesAlls.seriesProduct}}</p>
+                          </div>
+                        </div> -->
+                        <div *ngFor="let seriesAlls of seriesAll" class="card border border-success col-auto m-2">
+                          <div  class="col-auto text-success p-1">
                             <p  class="card-text">{{seriesAlls.seriesProduct}}</p>
                           </div>
                         </div>
-
+                        <a href="#" class="btn btn-icon btn-primary">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
+                            <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                          </svg>
+                        </a>
                       </div>
                     </div>
                     <div class="col-xl-4">

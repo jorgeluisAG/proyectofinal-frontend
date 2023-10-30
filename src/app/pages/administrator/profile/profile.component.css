@@ -1,0 +1,7 @@
+.image-input-placeholder {
+  background-image: url('/assets/img/perfil1.png');
+}
+
+[data-bs-theme="dark"] .image-input-placeholder {
+  background-image: url('/assets/img/perfil3.png');
+}

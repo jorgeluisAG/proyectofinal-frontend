@@ -27,7 +27,7 @@ export class ProductDatesComponent implements OnInit {
   category: Category = new Category(0,'');
   //product: Product = new Product(0,'','',0,0,0,[]);
   //productUpdate: Product = new Product(0,'','',0,0,0,[]);
-  product: Product = new Product(0,'','',0,0,0,this.category);
+  product: Product = new Product(0,'','',0,true,0,this.category);
   productColor = [
     {
       id: 1,

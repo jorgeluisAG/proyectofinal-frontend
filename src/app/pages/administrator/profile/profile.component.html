@@ -25,32 +25,61 @@
           <div class="row g-5 g-xxl-8">
 
              <!-- CONTAINER PERFILLLLLLLL-->
-            <div class="col-xl-5">
-              <div class="card mb-5 mb-xxl-8 p-4 pb-5 pt-10">
+            <div class="col-xl-5 pb-8">
+              <div class="card mb-5 mb-xxl-8 p-4 pt-15 h-100 ">
 
+                <div class="d-flex flex-center flex-column">
+<!--IMAGEN -->
+                  <div class="image-input image-input-circle" data-kt-image-input="true" style="background-image: url(assets/img/perfil1.png)">
+                    <img *ngIf="user?.imageUser===null && userCargaImagen===''" src="assets/img/user_blank.png" class="image-input-wrapper w-125px h-125px" alt="">
+                    <img *ngIf="user?.imageUser!==null && userCargaImagen===''" src="data:image/png;base64,{{user.imageUser}}" class="image-input-wrapper w-125px h-125px" alt="">
+                    <img *ngIf="userCargaImagen!=='' || user?.imageUser===null" src="{{userCargaImagen}}" class="image-input-wrapper w-125px h-125px" alt="">
 
+                    <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                          data-kt-image-input-action="change"
+                          title="Cambiar Imagen">
+                      <i class="bi bi-pencil-fill"><span class="path1"></span><span class="path2"></span></i>
+                      <input #myInput type="file" name="avatar" accept=".png, .jpg, .jpeg" (change)="cargaImagen($event)"/>
+                      <input type="hidden" name="avatar_remove" />
+                    </label>
+
+                    <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" *ngIf="userCargaImagen!==''"
+                        data-kt-image-input-action="remove"
+                        (click)="eliminarImage()"
+                        title="Eliminar Imagen">
+                      <i class="bi bi-x-lg"></i>
+                    </span>
+                  </div>
+      <!--Boton Guardar Imagen-->
+                  <span title="Guardar Imagen" *ngIf="userCargaImagen!==''" class="mt-2">
+                    <a href="#" class="btn btn-sm btn-light-primary" style="background-color: #161654; color: white" (click)="guardarImagen()">Guardar Imagen</a>
+                  </span>
+                </div>
                 <div class="d-flex flex-center flex-column mb-5">
-                  <div class="symbol symbol-100px symbol-circle mb-7">
+                  <!-- <div class="symbol symbol-100px symbol-circle mb-7">
                       <a href="javascript:void(0);">
                           <div class="symbol-label fs-2 bg-light-danger text-danger"> {{ user.person.firstName }} </div>
                       </a>
-                  </div>
-                  <div  class="fs-3 text-gray-800 text-hover-primary fw-bolder mb-1">{{ getFullName() }}</div>
-                  <div class="fs-5 fw-bold text-muted mb-2">{{ user.mail }}</div>
+                  </div> -->
+                  <div  class="fs-2 text-gray-800 text-hover-primary fw-bolder mt-4">{{ user.userName }}</div>
+                  <div class="fs-4 fw-bold text-muted mt-3">{{ user.email }}</div>
                 </div>
-                  <div class="">
-                    <div class="fw-bolder mt-5">Usuario</div>
+                  <!-- <div class="">
+                    <div class="fw-bolder mt-5">Nombre</div>
                       <div class="text-gray-600">{{ user.person.firstName }}</div>
                       <div class="fw-bolder mt-5">Email</div>
-                      <div class="text-gray-600">{{ user.mail}}</div>
-                  </div>
-                <div class="separator separator-dashed my-3"></div>
+                      <div class="text-gray-600">{{ user.email}}</div>
+                  </div> -->
+
+                  <!-- <pre>{{ user | json }}</pre> -->
+
+                <div class="separator separator-dashed mt-3"></div>
                   <div class="">
-                    <div class="fw-bolder mt-2">CI</div>
+                    <div class="fw-bolder mt-8">CI</div>
                     <div class="text-gray-600">{{ user.person.documentNumber }}</div>
-                    <div class="fw-bolder mt-5">Celular</div>
+                    <div class="fw-bolder mt-8">Celular</div>
                     <div class="text-gray-600">{{ user.person.phoneNumber }}</div>
-                    <div class="fw-bolder mt-5">Creado en</div>
+                    <div class="fw-bolder mt-8">Creado en</div>
                     <div class="text-gray-600">{{ user.createdAt | bolivianDate }}</div>
                   </div>
 
@@ -62,17 +91,17 @@
 
           <!-- CONTAINER DE LOS DATOS PERSONALES -->
 
-          <div class="card mb-5 mb-xxl-8 p-4 pb-5 pt-5">
+          <div class="card mb-8 mb-xxl-8 p-4 pt-5">
 
             <div class="d-flex flex-stack fs-4 py-3">
               <div class="fw-bolder rotate collapsible" data-bs-toggle="collapse" href="#kt_customer_view_details" role="button" aria-expanded="false" aria-controls="kt_customer_view_details">
                 Datos Personales</div>
 
                <span data-bs-toggle="tooltip" data-bs-trigger="hover" title="Editar perfil">
-                  <a href="#" class="btn btn-sm btn-light-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_update_customer" style="background-color: #161654; color: white">Editar</a>
+                  <a href="#" class="btn btn-sm btn-light-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_update_profile" style="background-color: #161654; color: white">Editar</a>
               </span>
             </div>
-            <div class="separator separator-dashed my-3"></div>
+            <div class="separator separator-dashed my-2"></div>
             <div class="container p-3">
               <div class="form-group row">
                 <div class="col">
@@ -86,14 +115,15 @@
               </div>
               <div class="form-group row">
                 <div class="col">
-                  <label for="staticEmail" class="fw-bolder pt-2 pb-2">Email:</label>
-                  <input type="email" readonly class="form-control-plaintext" id="staticEmail" disabled placeholder="{{user.mail}}">
+                  <label for="staticEmail" class="fw-bolder pb-2">E-mail:</label>
+                  <input type="email" readonly class="form-control-plaintext" id="staticEmail" disabled placeholder="{{user.email}}">
                 </div>
                 <div class="col">
-                  <label for="staticPhoneNumber" class="fw-bolder pt-2 pb-2">Celular:</label>
-                  <input type="number" readonly class="form-control-plaintext" id="staticPhoneNumber" disabled placeholder="{{user.person.phoneNumber}}">
+                  <label for="staticPhoneNumber" class="fw-bolder pb-2">Celuar:</label>
+                  <input type="text" readonly class="form-control-plaintext" id="staticPhoneNumber" disabled placeholder="{{user.person.phoneNumber}}">
                 </div>
               </div>
+
 
             </div>
 
@@ -102,37 +132,43 @@
          <!-- CONTAINER DE LOS OTRA INFORMACION -->
 
 
-              <div class="card mb-5 mb-xxl-8 p-4 pb-5 pt-5">
+              <div class="card mb-8 mb-xxl-8 p-4 pt-5">
 
-                <div class="d-flex flex-stack fs-4 ">
+                <div class="d-flex flex-stack fs-4 mt-1 mb-2">
                   <div class="fw-bolder rotate collapsible" data-bs-toggle="collapse" href="#kt_customer_view_details" role="button" aria-expanded="false" aria-controls="kt_customer_view_details">
                     Otra Informacion</div>
 
-                   <span data-bs-toggle="tooltip" data-bs-trigger="hover" title="Editar perfil">
+                   <!-- <span data-bs-toggle="tooltip" data-bs-trigger="hover" title="Editar perfil">
                       <a href="#" class="btn btn-sm btn-light-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_update_customer" style="background-color: #161654; color: white">Editar</a>
-                  </span>
+                  </span> -->
                 </div>
-                <div class="separator separator-dashed my-3"></div>
+                <div class="separator separator-dashed my-2"></div>
                 <div class="container p-3">
                   <div class="form-group row">
                     <div class="col">
-                      <label for="staticBusiness" class="fw-bolder pb-2">Numero de la empresa:</label>
-                      <input type="text" readonly class="form-control-plaintext" id="staticBusiness" disabled placeholder="00">
+                      <label for="staticBirthdate" class="fw-bolder pt-2 pb-2">Fecha de Nacimiento:</label>
+                      <input type="text" readonly class="form-control-plaintext" id="staticBirthdate" disabled placeholder="{{birthdateUser}}">
                     </div>
                     <div class="col">
-                      <label for="staticCountry" class="fw-bolder pb-2">Pais:</label>
-                      <input type="text" readonly class="form-control-plaintext" id="staticCountry" disabled placeholder="{{user.address.description}}">
+                      <label for="staticSex" class="fw-bolder pt-2 pb-2">Genero:</label>
+                      <input type="text" readonly class="form-control-plaintext" id="staticSex" disabled placeholder="{{user.person.sex}}">
                     </div>
                   </div>
                   <div class="form-group row">
                     <div class="col">
                       <label for="staticAddress" class="fw-bolder pt-2 pb-2">Direccion:</label>
-                      <input type="email" readonly class="form-control-plaintext" id="staticAddress" disabled placeholder="{{user.address.description}}">
+                      <div  *ngFor="let address of user.addressRequests">
+                          <input type="text" readonly class="form-control-plaintext" id="staticAddress" disabled placeholder="{{address.description}}">
+                      </div>
+                      <input type="text" readonly class="form-control-plaintext" *ngIf="user.addressRequests.length===0" id="staticAddress" disabled placeholder="">
+
+                      <!-- <span class="form-control-plaintext">{{user.addressRequests[0].description}}</span> -->
+                      <!-- <input type="text" readonly class="form-control-plaintext" id="staticAddress" disabled placeholder="{{user.addressRequests[0].description}}"> -->
                     </div>
-                    <div class="col">
+                    <!-- <div class="col">
                       <label for="staticDepartament" class="fw-bolder pt-2 pb-2">Departamento:</label>
-                      <input type="number" readonly class="form-control-plaintext" id="staticDepartament" disabled placeholder="{{user.address.description}}">
-                    </div>
+                      <input type="number" readonly class="form-control-plaintext" id="staticDepartament" disabled placeholder="{{address.description}}">
+                    </div> -->
                   </div>
 
                 </div>
@@ -229,6 +265,50 @@
       </div>
 
 
+
+      <!-- OTRO LUGAR
+      <select  [(ngModel)]="valorselect">
+        <option value="CLIENTE">cliente</option>
+        <option value="PERSONL" >PERSONL</option>
+        <option value="ADMIN" >ADMIN</option>
+      </select>
+      {{valorselect}}
+      <div class="flex-lg-row-fluid" *ngIf="valorselect==='CLIENTE'">
+        <div class="card pt-4 mb-6 mb-xl-9">
+            <div class="card-header border-0">
+                <div class="card-title">
+                    <h2 class="fw-bolder mb-0">CREAR CLIENTE</h2>
+                </div>
+            </div>
+            <div class="separator separator-dashed my-3"></div>
+
+        </div>
+      </div>
+
+      <div class="flex-lg-row-fluid" *ngIf="valorselect==='PERSONL'">
+        <div class="card pt-4 mb-6 mb-xl-9">
+            <div class="card-header border-0">
+                <div class="card-title">
+                    <h2 class="fw-bolder mb-0">CREAR PERSONAL</h2>
+                </div>
+            </div>
+            <div class="separator separator-dashed my-3"></div>
+
+        </div>
+      </div>
+
+      <div class="flex-lg-row-fluid" *ngIf="valorselect==='ADMIN'">
+        <div class="card pt-4 mb-6 mb-xl-9">
+            <div class="card-header border-0">
+                <div class="card-title">
+                    <h2 class="fw-bolder mb-0">CREAR ADMIN</h2>
+                </div>
+            </div>
+            <div class="separator separator-dashed my-3"></div>
+
+        </div>
+      </div> -->
+
     </div>
   </div>
 
@@ -247,8 +327,8 @@
 
 
 
-<div class="modal fade" id="kt_modal_update_customer" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+<div class="modal fade" id="kt_modal_update_profile" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header" id="kt_modal_update_user_headerqwe">
                 <h2 class="fw-bolder">Actualizar Usuario</h2>
@@ -266,30 +346,75 @@
             <div class="modal-body">
                 <form class="mx-5" novalidate="novalidate"  id="form" (ngSubmit)="updateUser()">
                     <div class="mb-5">
+                      <!-- <div class="form-group row">
+                        <div class="col">
+                          <label for="staticName" class="fw-bolder pb-2">Nombre(s):</label>
+                          <input type="text" readonly class="form-control-plaintext" id="staticName" disabled placeholder="{{user.person.firstName}}">
+                        </div>
+                        <div class="col">
+                          <label for="staticLastName" class="fw-bolder pb-2">Apellido(s):</label>
+                          <input type="text" readonly class="form-control-plaintext" id="staticLastName" disabled placeholder="{{user.person.lastName}}">
+                        </div>
+                      </div> -->
+                        <div class="fv-row mb-10">
+                            <label class="form-label required">Nombres de Usuario</label>
+                            <input name="userName" [(ngModel)]="user.userName" class="form-control form-control-lg form-control-solid"/>
+                        </div>
+
+                         <!-- NOMBRE Y APELLIDO -->
                         <div class="fv-row mb-10">
                             <label class="form-label required">Nombres</label>
-                            <input name="name" [(ngModel)]="userUpdated.person.firstName" id="firstName2" class="form-control form-control-lg form-control-solid"/>
+                            <input name="firstName" [(ngModel)]="user.person.firstName" class="form-control form-control-lg form-control-solid"/>
                         </div>
                         <div class="fv-row mb-10">
                             <label class="form-label required">Apellidos</label>
-                            <input name="lastname" class="form-control form-control-lg form-control-solid" [(ngModel)]="userUpdated.person.lastName" id="lastname2"/>
+                            <input name="lastName" [(ngModel)]="user.person.lastName" class="form-control form-control-lg form-control-solid"  id="lastname2"/>
                         </div>
+
+                        <!-- FECHA Y GENERO -->
+
+                    <!--
                         <div class="fv-row mb-10">
-                            <label class="fs-6 fw-bold form-label required">Correo Electrónico de Contacto</label>
-                            <input name="email" class="form-control form-control-lg form-control-solid" [(ngModel)]="userUpdated.mail" id="email2" disabled />
+                          <label class="form-label fw-bolder text-dark fs-6 required">Fecha de Nacimiento </label>
+                          <input class="form-control form-control-lg form-control-solid" [(ngModel)]="user.person.birthdate"
+                                type="date" placeholder="" name="birthdate" autocomplete="on"/>
                         </div>
+
+                        <div class="col-lg-12 mb-7">
+                          <div class="row">
+                            <label class="form-label fw-bolder text-dark fs-6 required" >Genero</label>
+                            <div class="col-lg-6 fv-row" *ngFor="let sexAll of sexAlls">
+                              <label class="form-check-label ps-2" for="{{sexAll}}">
+                                <input class="form-check-input" id="{{sexAll}}" [value]='sexAll' type="radio" name="sexAlls" [(ngModel)]="gender" value="option1" checked>
+                                {{sexAll}}
+                              </label>
+                            </div>
+                          </div>
+                        </div> -->
+
                         <div class="fv-row mb-10">
-                            <label class="fs-6 fw-bold form-label required me-2">Nro de Celular de Contacto</label>
-                            <input name="phone" id="phone2" type="tel"
-                                   class="form-control form-control-lg form-control-solid" [(ngModel)]="userUpdated.person.phoneNumber"/>
-                            <div class="form-text">Reportes diarios le llegaran a este número de Whatsapp.</div>
+                            <label class="fs-6 fw-bold form-label required">Correo Electrónico</label>
+                            <input name="email" class="form-control form-control-lg form-control-solid" [(ngModel)]="user.email" id="email2" disabled />
                         </div>
                         <div class="fv-row mb-10">
                             <label class="fs-6 fw-bold form-label required">Nro de Carnet</label>
-                            <input name="ci" class="form-control form-control-lg form-control-solid" [(ngModel)]="userUpdated.person.documentNumber" id="ci2"/>
+                            <input name="ci" class="form-control form-control-lg form-control-solid" [(ngModel)]="user.person.documentNumber" id="ci2"/>
                         </div>
                         <div class="fv-row mb-10">
-                            <button type="submit" class="btn btn-primary w-100" style="background-color: #161654; color: white">Actualizar Usuario</button>
+                          <label class="fs-6 fw-bold form-label required me-2">Nro de Celular</label>
+                          <input name="phone" id="phone2" type="tel"
+                                 class="form-control form-control-lg form-control-solid" [(ngModel)]="user.person.phoneNumber"/>
+                        </div>
+                        <div class="fv-row mb-10" *ngFor="let address of user.addressRequests" >
+                          <label class="fs-6 fw-bold form-label required me-2">Direccion</label>
+                          <input name="addressDescription" class="form-control form-control-lg form-control-solid" [(ngModel)]="address.description"/>
+                        </div>
+                        <div class="fv-row mb-10" *ngIf="user.addressRequests.length===0" >
+                          <label class="fs-6 fw-bold form-label required me-2">Direccion</label>
+                          <input name="addressDescription" class="form-control form-control-lg form-control-solid" [(ngModel)]="direccionPut"/>
+                        </div>
+                        <div class="fv-row mb-10">
+                            <button type="submit" class="btn btn-primary w-100" data-bs-dismiss="modal"  style="background-color: #161654; color: white">Actualizar Usuario</button>
                         </div>
                     </div>
                 </form>
@@ -304,7 +429,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h2 class="fw-bolder">Actualizar Contraseña</h2>
-                <div class="btn btn-icon btn-sm btn-active-icon-primary" data-bs-dismiss="modal" aria-label="Close">
+                <div class="btn btn-icon btn-sm btn-active-icon-primary" data-bs-dismiss="modal" aria-label="Close" (click)="closeResetPasword()">
                     <span class="svg-icon svg-icon-1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
@@ -318,19 +443,19 @@
             <div class="modal-body">
                 <div class="fv-row mb-10">
                     <label class="form-label required">Contraseña Actual</label>
-                    <input name="name" id="currentPassword" type="password" class="form-control form-control-lg form-control-solid"/>
+                    <input name="name" id="currentPassword" type="password" class="form-control form-control-lg form-control-solid" [(ngModel)]="resetPasswordDTO.password"/>
                 </div>
                 <div class="fv-row mb-10">
                     <label class="form-label required">Nueva Contraseña</label>
-                    <input name="lastname" type="password" class="form-control form-control-lg form-control-solid" id="newPassword"/>
+                    <input name="lastname" type="password" class="form-control form-control-lg form-control-solid" id="newPassword" [(ngModel)]="resetPasswordDTO.newPassword"/>
                 </div>
 
                 <div class="fv-row mb-10">
                     <label class="form-label required">Confirmar Contraseña</label>
-                    <input name="lastname" type="password" class="form-control form-control-lg form-control-solid" id="confirmPassword" />
+                    <input name="lastname" type="password" class="form-control form-control-lg form-control-solid" id="confirmPassword" [(ngModel)]="resetPasswordDTO.confirmPassword"/>
                 </div>
                 <div class="fv-row mb-10">
-                    <button type="submit" class="btn btn-primary w-100" (click)="changePassword()" style="background-color: #161654; color: white">Actualizar Contraseña</button>
+                    <button type="submit" class="btn btn-primary w-100" id="kt_update_true_password" (click)="changePassword()" style="background-color: #161654; color: white">Actualizar Contraseña</button>
                 </div>
             </div>
         </div>

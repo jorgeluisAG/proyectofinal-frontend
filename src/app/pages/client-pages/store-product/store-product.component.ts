@@ -3,6 +3,11 @@ import { environment } from 'src/environments/environment';
 import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/model/Product';
 import {HttpHeaders, HttpResponse} from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
+import { LoaderService } from 'src/app/services/loader.service';
+import { Category } from 'src/app/model/Category';
+import { ProductColorDTO } from 'src/app/model/DTO/ProductColorDTO';
+import { AluminumSeries } from 'src/app/model/AluminumSeries';
 
 
 declare var $: any;
@@ -13,7 +18,14 @@ declare var $: any;
 })
 export class StoreProductComponent implements OnInit {
 
-
+  id: number;
+  categoryAll: Array<Category> = [];
+  colorAll: Array<ProductColorDTO> = [];
+  seriesAll: Array<AluminumSeries> = [];
+  category: Category = new Category(0,'');
+  //product: Product = new Product(0,'','',0,0,0,[]);
+  //productUpdate: Product = new Product(0,'','',0,0,0,[]);
+  product: Product = new Product(0,'','',0,true,0,this.category);
 
 //   products = [{
 //     titulo: 'RODON',
@@ -45,6 +57,10 @@ export class StoreProductComponent implements OnInit {
   projectUrl = `${environment.projectEndpoint}`;
   products: Product[]=[];
   constructor(
+    private loader: LoaderService,
+    private activatedRoute: ActivatedRoute,
+    //private categoryService: CategoryService,
+    private router: Router,
     private productService: ProductService,
   ) { }
 
@@ -61,5 +77,47 @@ export class StoreProductComponent implements OnInit {
       this.products = resp.body;
 
     });
+  }
+
+  getProductById(){
+    this.loader.startLoading('Cargando...');
+    this.productService.getById(this.id)
+        .subscribe((resp) => {
+          this.product = resp.body;
+          //this.productUpdate = this.product;
+          console.log(this.product)
+    })
+  }
+
+  getCategoryAll(){
+    this.loader.startLoading('Cargando...');
+    this.productService.getProductCategoryAll(this.id)
+        .subscribe((resp) => {
+          this.categoryAll = resp.body;
+          //this.productUpdate = this.product;
+          console.log(this.categoryAll)
+
+    })
+  }
+  getColorAll(){
+    this.loader.startLoading('Cargando...');
+    this.productService.getProductColorAll(this.id)
+        .subscribe((resp) => {
+          this.colorAll = resp.body;
+          //this.productUpdate = this.product;
+          console.log(this.colorAll)
+
+    })
+  }
+
+  getSeriesAll(){
+    this.loader.startLoading('Cargando...');
+    this.productService.getProductSeriesAll(this.id)
+        .subscribe((resp) => {
+          this.seriesAll = resp.body;
+          //this.productUpdate = this.product;
+          console.log(this.seriesAll)
+
+    })
   }
 }
