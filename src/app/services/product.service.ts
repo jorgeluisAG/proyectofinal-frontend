@@ -10,19 +10,16 @@ import {Observable} from 'rxjs';
 export class ProductService {
   private projectUrl = `${environment.projectEndpoint}/product`;
   private header = new HttpHeaders().set('Content-Type', 'application/json')
-        // .set('Authorization', `Bearer ${localStorage.getItem('token_v2')}`);
+        .set('Authorization', `Bearer ${localStorage.getItem('token')}`);
   constructor(
     private http: HttpClient
   ) { }
 
   getListProductRegister(registerId: String): Observable<HttpResponse<any>> {
     let url = `${this.projectUrl}/list/${registerId}`;
-
-    const headers = new HttpHeaders().set('Content-Type', 'application/json')
-    .set('Authorization', `Bearer ${localStorage.getItem('token_v2')}`);
       return this.http.get(url ,{
         observe: 'response',
-        headers
+        headers: this.header
       });
   };
 

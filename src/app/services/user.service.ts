@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
 import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import { UserCreateDTO } from '../model/DTO/UserCreateDTO';
+import { UserCreateNewDTO } from '../model/DTO/UserCreateNewDTO';
 
 @Injectable({
     providedIn: 'root'
@@ -10,6 +12,7 @@ import {Observable} from 'rxjs';
 export class UserService {
     private projectUrl = `${environment.projectEndpoint}/user`;
     private header = new HttpHeaders().set('Content-Type', 'application/json')
+        .set('Authorization', `Bearer ${localStorage.getItem('token')}`);
     constructor(
         private http: HttpClient
     ) {
@@ -17,17 +20,28 @@ export class UserService {
 
     getUserDate(userId: Number): Observable<HttpResponse<any>> {
         let url=`${this.projectUrl}/${userId}`;
-        //let url=`${this.projectUrl}/2`;
-        console.log(url)
-        const headers = new HttpHeaders().set('Content-Type', 'application/json')
-        //.set('Authorization', `Bearer ${localStorage.getItem('token_v2')}`);
         return this.http.get(url ,{
             observe: 'response',
-            headers
+            headers: this.header
         });
     };
 
     getUserAll(): Observable<HttpResponse<any>> {
       return this.http.get(`${this.projectUrl}`, {headers: this.header, observe: 'response'});
     };
+
+    createNewUserByConfirm(user: UserCreateDTO): Observable<HttpResponse<any>> {
+      //const headers = new HttpHeaders().set('Content-Type', 'application/json');
+      return this.http.post(`${this.projectUrl}/confirm/`,user, {headers: this.header, observe: 'response'});
+    }
+
+    putImagenUser(imageUser: any): Observable<HttpResponse<any>> {
+      return this.http.put(`${this.projectUrl}/image/update`,imageUser, {headers: this.header, observe: 'response'});
+    }
+
+    updateUser(user: UserCreateNewDTO): Observable<HttpResponse<any>> {
+      //const headers = new HttpHeaders().set('Content-Type', 'application/json');
+      return this.http.put(`${this.projectUrl}/change/`, user, {headers: this.header, observe: 'response'});
+    }
+
 }

@@ -10,7 +10,7 @@ import {Observable} from 'rxjs'
 export class PersonalService {
   private projectUrl = `${environment.projectEndpoint}/user`;
   private header = new HttpHeaders().set('Content-Type', 'application/json')
-        // .set('Authorization', `Bearer ${localStorage.getItem('token_v2')}`);
+        .set('Authorization', `Bearer ${localStorage.getItem('token')}`);
   constructor(
     private http: HttpClient
   ) { }
