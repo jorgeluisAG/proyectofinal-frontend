@@ -6,7 +6,7 @@ export class Sale {
       public id: number,
       public saleDate: string = 'null',
       public tatalPrice: number,
-      public state: number,
+      public status: boolean,
       public user: User,
       public product: Product,
   ) { }

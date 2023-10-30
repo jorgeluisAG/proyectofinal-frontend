@@ -6,7 +6,7 @@ export class Product {
     public descriptionProduct: string,
     public nameProduct: string,
     public price: number,
-    public state: number,
+    public status: boolean,
     public stockTotal: number,
     public category: Category,
     //public category: Category[],
