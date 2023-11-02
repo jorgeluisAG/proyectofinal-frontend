@@ -2,7 +2,7 @@ import { Person } from "../Person";
 
 export class UserCreateDTO {
   constructor(
-      public nameUser: string,
+      public userName: string,
       public email: string,
       public status: boolean,
       public password: string,

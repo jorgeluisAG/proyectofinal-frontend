@@ -37,7 +37,7 @@ export class RegistrationComponent implements OnInit {
   authority = '';
 
   gender: string;
-  sexAlls: string[] = ["hombre","mujer"];
+  sexAlls: string[] = ["Hombre","Mujer"];
   valor:any;
   passwordC: any;
 
@@ -114,7 +114,7 @@ export class RegistrationComponent implements OnInit {
   // }
 
   createUser(){
-    this.user.nameUser=this.userName;
+    this.user.userName=this.userName;
     this.user.person.firstName=this.firstName;
     this.user.person.lastName=this.lastName;
     this.user.email=this.email;
@@ -131,7 +131,8 @@ export class RegistrationComponent implements OnInit {
             this.loader.stopLoading();
             Swal.fire({
                 title: 'Se creo la cuenta exitosamente',
-                text: 'Porfavor revise su correo electronico para la verificacion',
+                // text: 'Porfavor revise su correo electronico para la verificacion',
+                text: 'Al ingresar actualice sus datos personales',
                 icon: 'success',
                 buttonsStyling: false,
                 confirmButtonText: "Cerrar",
@@ -168,7 +169,7 @@ export class RegistrationComponent implements OnInit {
           }
       }).then(r => {});
     }
-    console.log(this.user.nameUser)
+    console.log(this.user.userName)
     console.log(this.userName)
     console.log(this.gender)
 
