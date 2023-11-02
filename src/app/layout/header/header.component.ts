@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -7,17 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public authService: AuthService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+
   }
 
   phofile(){
-    console.log("perfil")
-  }
+    // @ts-ignore
+    let idUserAuthorized = JSON.parse(localStorage?.getItem('dataUser')).id;
+    console.log(idUserAuthorized)
+    this.router.navigate(['/perfil'])
+    //this.router.navigate(['/perfil',this.authService.getUser().id]).then();
+}
 
-  logout(){
-    console.log("cerrar sesion")
+  logout() {
+    this.authService.logout();
   }
 
 }

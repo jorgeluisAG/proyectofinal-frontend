@@ -14,6 +14,8 @@ import { PersonalComponent } from './administrator/personal/personal.component';
 import { StoreProductComponent } from './client-pages/store-product/store-product.component';
 import { InventoryComponent } from './administrator/inventory/inventory.component';
 import { ProductDatesComponent } from './administrator/product-dates/product-dates.component';
+import { CustomerDataComponent } from './administrator/customer/customer-data/customer-data.component';
+import { PersonalDataComponent } from './administrator/personal/personal-data/personal-data.component';
 
 const pagesRoutes: Routes = [
 
@@ -64,9 +66,25 @@ const pagesRoutes: Routes = [
 
     },
     {
+      path: 'clientes/informacion/:id',
+      component: CustomerDataComponent,
+      data: { title: 'Panel del cliente'},
+      // canActivate: [AuthGuard],
+      // canActivate: [UserGuard]
+
+    },
+    {
       path: 'personales',
       component: PersonalComponent,
       data: { title: 'Panel del Personal de la empresa'},
+      // canActivate: [AuthGuard],
+      // canActivate: [UserGuard]
+
+    },
+    {
+      path: 'personales/informacion/:id',
+      component: PersonalDataComponent,
+      data: { title: 'Panel del empleado'},
       // canActivate: [AuthGuard],
       // canActivate: [UserGuard]
 

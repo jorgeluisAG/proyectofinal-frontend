@@ -65,6 +65,7 @@ export class ProfileComponent implements OnInit {
         //this.userService.getUserDate("13d96253-3048-4e93-ba50-28512be4fcfd")
         // @ts-ignore
         let idUserAuthorized = JSON.parse(localStorage?.getItem('dataUser')).id;
+        console.log(idUserAuthorized);
         this.userService.getUserDate(idUserAuthorized)
             .subscribe((resp: HttpResponse<any>) => {
                 this.user = resp.body;

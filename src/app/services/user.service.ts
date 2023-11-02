@@ -43,5 +43,14 @@ export class UserService {
       //const headers = new HttpHeaders().set('Content-Type', 'application/json');
       return this.http.put(`${this.projectUrl}/change/`, user, {headers: this.header, observe: 'response'});
     }
+    deleteUserById(id: number) {
+      return this.http.delete(`${this.projectUrl}/deleted/${id}`, {headers: this.header, observe: 'response'});
+    }
 
+    deleteCustomerById(id: number) {
+      return this.http.delete(`${this.projectUrl}/deleted/${id}`, {headers: this.header, observe: 'response'});
+    }
+    deletePersonalById(id: number) {
+      return this.http.delete(`${this.projectUrl}/deleted/${id}`, {headers: this.header, observe: 'response'});
+    }
 }

@@ -81,7 +81,7 @@ export class StoreProductComponent implements OnInit {
 
   getProductById(){
     this.loader.startLoading('Cargando...');
-    this.productService.getById(this.id)
+    this.productService.getProductById(this.id)
         .subscribe((resp) => {
           this.product = resp.body;
           //this.productUpdate = this.product;

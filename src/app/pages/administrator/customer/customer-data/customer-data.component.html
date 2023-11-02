@@ -2,14 +2,14 @@
   <div class="toolbar" id="kt_toolbar">
       <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
           <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-              <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Inventario</h1>
+              <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Clientes</h1>
               <span class="h-20px border-gray-200 border-start mx-4"></span>
               <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-6 my-1">
-                  <li class="breadcrumb-item text-dark">Lista de los Materiales</li>
+                  <li class="breadcrumb-item text-dark">Lista de Clientes</li>
               </ul>
               <span class="h-20px border-gray-100 border-start mx-4"></span>
               <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-6 my-1">
-                <li class="breadcrumb-item text-dark">Editar Producto</li>
+                <li class="breadcrumb-item text-dark">Editar Cliente</li>
             </ul>
           </div>
       </div>
@@ -19,55 +19,108 @@
     <div id="kt_content_container" class="container-fluid" >
         <div class="card">
           <div class="card-body pt-8" >
-            <h2 class="fw-bolder alineandoCentro">Datos del Producto</h2>
+            <h2 class="fw-bolder alineandoCentro">Datos del Cliente</h2>
 
-            <form class="mx-4" novalidate="novalidate" id="form" (ngSubmit)="vamons()">
+            <form class="mx-4" novalidate="novalidate" id="form" (ngSubmit)="returnCustomers()">
                 <div class="row mb-6 mt-8 px-5">
                   <label for="" class="col-lg-4 col-form-label required  fs-6">
-                    Nombre del Producto
+                    Nombre de Usuario
                   </label>
                   <div class="col-lg-8">
-                    <input type="text" name="nameProduct" class="form-control form-control-sm form-control-solid" placeholder="Nombre del Producto" [(ngModel)]="productOne.nameProduct">
+                    <input type="text" name="userName" class="form-control form-control-sm form-control-solid" placeholder="Nombre de Usuario" [(ngModel)]="customerOne.userName">
                   </div>
                 </div>
 
                 <div class="row mb-6  px-5">
                   <label for="" class="col-lg-4 col-form-label required  fs-6">
-                    Cantida
+                    Email
                   </label>
                   <div class="col-lg-6">
-                    <input type="text" name="stockTotal" class="form-control form-control-sm form-control-solid" placeholder="Cantidad" [(ngModel)]="productOne.stockTotal">
+                    <input type="email" name="email" class="form-control form-control-sm form-control-solid" placeholder="Correo Electrónico" [(ngModel)]="customerOne.email">
                   </div>
                 </div>
 
                 <div class="row mb-6  px-5">
                   <label for="" class="col-lg-4 col-form-label required  fs-6">
-                    Precio
+                    Numero de Celular
                   </label>
                   <div class="col-lg-6">
-                    <input type="text" name="price" class="form-control form-control-sm form-control-solid" placeholder="Precio" [(ngModel)]="productOne.price">
+                    <input type="text" name="phoneNumber" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="customerOne.person.phoneNumber">
                   </div>
                 </div>
 
-                <div class="form-group row mb-6  px-5">
+                <div class="row mb-6  px-5">
+                  <label for="" class="col-lg-4 col-form-label required  fs-6">
+                    Nombre(s)
+                  </label>
+                  <div class="col-lg-6">
+                    <input type="text" name="firstName" class="form-control form-control-sm form-control-solid" placeholder="Nombre" [(ngModel)]="customerOne.person.firstName">
+                  </div>
+                </div>
+
+                <div class="row mb-6  px-5">
+                  <label for="" class="col-lg-4 col-form-label required  fs-6">
+                    Apellido(s)
+                  </label>
+                  <div class="col-lg-6">
+                    <input type="text" name="lastName" class="form-control form-control-sm form-control-solid" placeholder="Apellido" [(ngModel)]="customerOne.person.lastName">
+                  </div>
+                </div>
+
+                <div class="row mb-6  px-5">
+                  <label for="" class="col-lg-4 col-form-label required  fs-6">
+                    Documento de Identidad
+                  </label>
+                  <div class="col-lg-6">
+                    <input type="text" name="documentNumber" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="customerOne.person.documentNumber">
+                  </div>
+                </div>
+
+                <div class="row mb-6  px-5">
+                  <label for="" class="col-lg-4 col-form-label required  fs-6">
+                    Genero
+                  </label>
+                  <div class="col-lg-6">
+                    <input type="text" name="sex" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="customerOne.person.sex">
+                  </div>
+                </div>
+
+                <div class="row mb-6  px-5">
+                  <label for="" class="col-lg-4 col-form-label required  fs-6">
+                    Fecha de Nacimiento
+                  </label>
+                  <div class="col-lg-6">
+                    <input type="text" name="birthdate" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="customerOne.person.birthdate">
+                  </div>
+                </div>
+
+                <div class="row mb-6  px-5">
+                  <label for="staticNameCategory" class="fw-bolder pt-4 pb-2">Direccion del Usuario:</label>
+                  <div class=" fw-bolder input-group-sm" *ngFor="let address of customerOne.addressRequests">
+
+                    <span class="input-group-text input-group-solid" >{{address.description}}</span>
+                  </div>
+                </div>
+
+
+                <!-- <div class="form-group row mb-6  px-5">
                   <label for="" class="col-lg-4 col-form-label required  fs-6">Categoria</label>
                   <div class="col-lg-8">
-                    <!-- <select class="form-select form-select-sm form-select-solid" id="" data-control="select2" data-placeholder="Seleccionar la opcion"></select> -->
                     <select class="form-select form-select-sm form-select-solid" id="" data-control="select2" data-placeholder="Seleccionar la opcion">
                       <option >{{productOne.category.nameCategory}}</option>
                       <option *ngFor="let categoryAlls of categoryAll;">{{categoryAlls.nameCategory}}</option>
                     </select>
                   </div>
-                </div>
+                </div> -->
 
-                <div class="row mb-6  px-5">
+                <!-- <div class="row mb-6  px-5">
                   <label for="" class="col-lg-4 col-form-label required  fs-6">
                     Descripcion
                   </label>
                   <div class="col-lg-8">
                     <textarea class="form-control form-control-sm form-control-solid" name="descriptionProduct" rows="3" placeholder="Descripcion" [(ngModel)]="productOne.descriptionProduct">{{productOne.descriptionProduct}}</textarea>
                   </div>
-                </div>
+                </div> -->
 
                 <h3 class="fw-bolder mb-5">Imagenes</h3>
 
@@ -80,7 +133,7 @@
                   />
                 </div>
 
-                <div class="mb-5 mt-8">
+                <!-- <div class="mb-5 mt-8">
                   <div class="form-group row">
                     <div class="col-xl-8">
                       <div class="row pb-5">
@@ -103,33 +156,13 @@
                         </a>
                       </div>
                     </div>
-                    <!-- <div class="col-xl-4">
-                      <a href="#" class="btn btn-icon btn-primary">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
-                          <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-                          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                        </svg>
-                      </a>
-                    </div> -->
                   </div>
-                </div>
+                </div> -->
 
-                <div class="mb-5 mt-8">
+                <!-- <div class="mb-5 mt-8">
                   <div class="form-group row">
                     <div class="col-xl-8">
                       <div class="row pb-5">
-                        <!-- <label for="" class="fw-bolder pt-2 pb-2">Serie del Material</label>
-                        <div *ngFor="let valor of productColor" class="col-lg-1" >
-                          <div class="pl-5">
-                            <div  *ngIf="valor.id>0" [ngStyle]="{'background': valor.colorHex}" style="height: 40px; width: 40px; ">
-                            </div>
-                          </div>
-                        </div> -->
-                        <!-- <div *ngFor="let seriesAlls of seriesAll" class="card border border-success m-3" style="height: 70px; width: 180px;">
-                          <div  class="col-8 card-body text-success">
-                            <p  class="card-text">{{seriesAlls.seriesProduct}}</p>
-                          </div>
-                        </div> -->
                         <label for="" class="fw-bolder pt-2 pb-2">Numeros de Series</label>
                         <div *ngFor="let seriesAlls of seriesAll" class="card border border-primary col-auto m-2">
                           <div  class="col-auto text-primary p-1">
@@ -145,11 +178,11 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> -->
 
 
                 <div class="fv-row mb-10">
-                  <button type="submit" class="btn btn-primary w-100" data-bs-dismiss="modal"  style="background-color: #161654; color: white">Actualizar Producto</button>
+                  <button type="submit" class="btn btn-primary w-100" data-bs-dismiss="modal"  style="background-color: #161654; color: white">Actualizar Usuario</button>
                 </div>
 
                 <!-- <div class="">

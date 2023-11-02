@@ -4,6 +4,14 @@ import { User } from 'src/app/model/User';
 import { environment } from 'src/environments/environment';
 import { CustomerService } from 'src/app/services/customer.service';
 import {HttpHeaders, HttpResponse} from '@angular/common/http';
+import { UserCreateNewDTO } from 'src/app/model/DTO/UserCreateNewDTO';
+import { AddressDTO } from 'src/app/model/DTO/AddressDTO';
+import { Authority } from 'src/app/model/Authority';
+import { Person } from 'src/app/model/Person';
+import { UserService } from '../../../services/user.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 declare var $: any;
 @Component({
@@ -17,10 +25,19 @@ export class CustomerComponent implements OnInit {
   customerListFilter: string = 'ALL';
   table: any;
   projectUrl = `${environment.projectEndpoint}`;
-  customer: User[]=[];
 
+  person: Person = new Person(0,'','','','','','',true)
+  authority: Authority = new Authority('')
+  addressrequests: Array<AddressDTO> = [];
+
+  customer: UserCreateNewDTO = new UserCreateNewDTO(0,'','','',false,this.authority,false,'','',this.person,'',this.addressrequests);
+  customerOne: UserCreateNewDTO = new UserCreateNewDTO(0,'','','',false,this.authority,false,'','',this.person,'',this.addressrequests);
+  visibleFecha= true;
   constructor(
     private customerService: CustomerService,
+    private authService: AuthService,
+    private router: Router,
+    private userService: UserService,
   ) { }
 
   ngOnInit(): void {
@@ -32,7 +49,7 @@ export class CustomerComponent implements OnInit {
 
   changeCustomer(){
     delay(500);
-    this.getDatatablesPayment()
+    this.getDatatablesCustomers()
 
   }
 
@@ -43,11 +60,16 @@ export class CustomerComponent implements OnInit {
       console.log(resp.body)
       this.customer = resp.body;
 
+
     });
   }
 
+  cambiosuw(){
+    this.visibleFecha=!this.visibleFecha
+    this.getDatatablesCustomers()
+  }
 
-  getDatatablesPayment(){
+  getDatatablesCustomers(){
     delay(500);
     console.log("Cliente 3")
     let cont =1;
@@ -79,6 +101,7 @@ export class CustomerComponent implements OnInit {
           {
               className: 'text-center',
               data: 'createdAt',
+              visible: this.visibleFecha
           },
           {
               className: 'text-center',
@@ -104,12 +127,18 @@ export class CustomerComponent implements OnInit {
             let date = new Date(data)
             return date.toLocaleString();
         }
+
         },
         {
           targets: 4,
           render: function (data: any, type: any, row: any) {
-              return '<a href="javascript:void(0);" class="btn btn-sm btn-light btn-active-light-primary" data-watch-id="' + row.id + '" data-bs-toggle="modal" data-bs-target="#kt_modal_view">Ver' +
-                  '</a>';
+              // return '<a href="javascript:void(0);" class="btn btn-sm btn-light btn-active-light-primary" data-watch-id="' + row.id + '" data-bs-toggle="modal" data-bs-target="#kt_modal_view">Ver' +
+              //     '</a>';
+
+              return '<a href="javascript:void(0);" class="mt-1 ms-3 me-3 mb-1" data-watch-id="' + row.id + '"  >    <svg data-bs-toggle="modal" data-bs-target="#kt_modal_see_customer_1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#2677c5" class="bi bi-eye-fill" viewBox="0 0 16 16"><path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/><path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/></svg></a>'+
+                  '<a  href="javascript:void(0);" class="mt-1 ms-3 me-3 mb-1" data-customer-id="' + row.id + '">    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#1a422c" class="bi bi-pencil-fill" viewBox="0 0 16 16"><path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/></svg></a>'+
+                  '<a  href="javascript:void(0);" class="mt-1 ms-3 me-3 mb-1" data-deleted-id="' + row.id + '">    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#dd404f" class="bi bi-trash-fill" viewBox="0 0 16 16">' +
+                  '<path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/></svg></a>';
 
           }
       }
@@ -131,18 +160,81 @@ export class CustomerComponent implements OnInit {
   handleSearchDatatable();
   this.table.on('click', '[data-watch-id]', function () {
       // @ts-ignore
-      that.watchPayment($(this).data('watch-id'));
+      that.watchCustomer($(this).data('watch-id'));
   });
-  this.table.on('click', '[data-payment-id]', '[data-payment-code]', function () {
-      // @ts-ignore
-      that.dataSeePayment($(this).data('payment-id'),$(this).data('payment-code'));
+  this.table.on('click', '[data-customer-id]', function () {
+    // @ts-ignore
+    that.dataUpdateCustomer($(this).data('customer-id'));
   });
+  this.table.on('click', '[data-deleted-id]', function () {
+    // @ts-ignore
+    that.dataDeletedCustomer($(this).data('deleted-id'));
+  });
+  // this.table.on('click', '[data-payment-id]', '[data-payment-code]', function () {
+  //     // @ts-ignore
+  //     that.dataSeePayment($(this).data('payment-id'),$(this).data('payment-code'));
+  // });
 
   }
-  watchPayment(id: string) {
+  watchCustomer(id: number) {
     console.log(id);
+    this.userService.getUserDate(id)
+      .subscribe((resp) => {
+        this.customerOne = resp.body;
+        console.log(this.customerOne);
+        // let date = new Date(this.customerOne.person.birthdate).toLocaleString();
+        // console.log(this.user.addressrequests[0].description).toLocaleDateString('en-ES')
+        // this.customerOne.person.birthdate = date;
+      });
+  }
+  dataUpdateCustomer(id: string){
+    this.router.navigate([`/clientes/informacion/${id}`]);
+    console.log(id)
   }
 
+  dataDeletedCustomer(id: number){
+    console.log(id);
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+      title: 'Estas seguro?',
+      text: "¡No podrás recuperar la informacion!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: '¡Sí, bórralo!',
+      cancelButtonText: '¡No, cancelar!',
+      reverseButtons: true
+    }).then((result) => {
+      console.log("EntroAqui 1");
+      if (result.isConfirmed) {
+        console.log("EntroAqui 2");
+        this.userService.deleteCustomerById(id)
+          .subscribe((resp) => {
+            this.getDatatablesCustomers();
+            swalWithBootstrapButtons.fire(
+              '¡Eliminado!',
+              'El usuario ha sido eliminado.',
+              'success'
+            )
+        });
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelado',
+          'El usuario esta a salvo :)',
+          'error'
+        )
+      }
+    });
+
+  }
 
 
 

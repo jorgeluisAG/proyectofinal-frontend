@@ -33,7 +33,7 @@
                   <div class="image-input image-input-circle" data-kt-image-input="true" style="background-image: url(assets/img/perfil1.png)">
                     <img *ngIf="user?.imageUser===null && userCargaImagen===''" src="assets/img/user_blank.png" class="image-input-wrapper w-125px h-125px" alt="">
                     <img *ngIf="user?.imageUser!==null && userCargaImagen===''" src="data:image/png;base64,{{user.imageUser}}" class="image-input-wrapper w-125px h-125px" alt="">
-                    <img *ngIf="userCargaImagen!=='' || user?.imageUser===null" src="{{userCargaImagen}}" class="image-input-wrapper w-125px h-125px" alt="">
+                    <img *ngIf="userCargaImagen!==''" src="{{userCargaImagen}}" class="image-input-wrapper w-125px h-125px" alt="">
 
                     <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
                           data-kt-image-input-action="change"
@@ -216,8 +216,9 @@
             </div>
 
             <div class="card-header border-0 pt-6">
+              <!-- BUSCADOR DE NEGOCIO -->
               <div class="card-title">
-                  <div class="d-flex align-items-center position-relative my-1">
+                  <!-- <div class="d-flex align-items-center position-relative my-1">
                       <span class="svg-icon svg-icon-1 position-absolute ms-6">
                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                               <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="" />
@@ -225,7 +226,7 @@
                           </svg>
                       </span>
                       <input type="text" data-kt-customer-table-filter="search" class="form-control form-control-solid w-250px ps-15" placeholder="Buscar" />
-                  </div>
+                  </div> -->
               </div>
               <div class="card-toolbar">
 
@@ -236,7 +237,7 @@
                               <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                               <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                             </svg>
-                          </span>Editar</button>
+                          </span>Agregar</button>
                   </div>
                   <div class="d-flex justify-content-end" data-kt-customer-table-toolbar="base">
                       <button type="button" class="btn btn-light-danger me-3" >

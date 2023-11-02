@@ -47,7 +47,7 @@
             <div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500"
                  id="#kt_aside_menu" data-kt-menu="true">
 
-                <div class="menu-item">
+                <div class="menu-item" *ngIf="role==='ADMIN'">
                     <a class="menu-link" href="javascript:void(0);" [routerLink]="['/home-s']" routerLinkActive="active" >
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -61,14 +61,19 @@
                         <span class="menu-title">Inicio</span>
                     </a>
                 </div>
-                <div class="menu-item" >
+                <div class="menu-item" *ngIf="role==='ADMIN'">
                   <div class="menu-content pb-2">
-                      <span class="menu-section text-muted text-uppercase fs-8 ls-1">MENÚ DEL ADMINISTRADOR</span>
+                      <span class="menu-section text-muted text-uppercase fs-8 ls-1" >MENÚ DEL ADMINISTRADOR</span>
                   </div>
-              </div>
-                <div class="menu-item" >
+                </div>
+                <div class="menu-item" *ngIf="role==='PERSONAL'">
+                  <div class="menu-content pb-2">
+                      <span class="menu-section text-muted text-uppercase fs-8 ls-1" >MENÚ DEL PERSONAL</span>
+                  </div>
+                </div>
+                <div class="menu-item" *ngIf="role==='USER'">
                     <div class="menu-content pb-2">
-                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">MENÚ DEL CLIENTE</span>
+                        <span class="menu-section text-muted text-uppercase fs-8 ls-1" >MENÚ DEL CLIENTE</span>
                     </div>
                 </div>
                 <div class="menu-item">
@@ -85,7 +90,7 @@
                         <span class="menu-title">Mi Perfil</span>
                     </a>
                 </div>
-                <div class="menu-item">
+                <div class="menu-item" *ngIf="role==='ADMIN' || role==='PERSONAL'">
                     <a class="menu-link" href="javascript:void(0);" [routerLink]="['/inventario']" routerLinkActive="active"  >
                       <span class="menu-icon">
                         <span class="svg-icon svg-icon-2">
@@ -98,7 +103,7 @@
                       <span class="menu-title">Inventario</span>
                     </a>
                 </div>
-                <div class="menu-item" *ngIf="role==='USER'">
+                <div class="menu-item" >
                   <a class="menu-link" href="javascript:void(0);" [routerLink]="['/tienda']" routerLinkActive="active"  >
                     <span class="menu-icon">
                       <span class="svg-icon svg-icon-2">
@@ -112,7 +117,7 @@
                     <span class="menu-title">tienda</span>
                   </a>
                 </div>
-                <div class="menu-item">
+                <div class="menu-item" *ngIf="role==='ADMIN'">
                     <a class="menu-link" href="javascript:void(0);" [routerLink]="['/clientes']" routerLinkActive="active" >
                         <span class="menu-icon">
 
@@ -125,7 +130,7 @@
                         <span class="menu-title">Clientes</span>
                     </a>
                 </div>
-                <div class="menu-item">
+                <div class="menu-item" *ngIf="role==='ADMIN'">
                     <a class="menu-link" href="javascript:void(0);" [routerLink]="['/personales']" routerLinkActive="active" >
                       <span class="menu-icon">
 

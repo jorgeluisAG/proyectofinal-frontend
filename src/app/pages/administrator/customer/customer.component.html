@@ -38,7 +38,7 @@
                             </span>Filtrar</button>
                     </div> -->
                     <div class="d-flex justify-content-end" data-kt-customer-table-toolbar="base">
-                        <button type="button" class="btn btn-light-success me-3" >
+                        <button type="button" class="btn btn-light-success me-3" (click)="cambiosuw()">
                             <span class="svg-icon svg-icon-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                     <rect opacity="0.3" x="12.75" y="4.25" width="12" height="2" rx="1" transform="rotate(90 12.75 4.25)" fill="" />
@@ -81,8 +81,11 @@
 
 </div>
 
+
+
+
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_stacked_1">
-  Boton dale aa
+  Boton dale aaaa
   </button>
 
   <div class="modal fade" tabindex="-1" id="kt_modal_stacked_1" data-bs-backdrop="static">
@@ -175,5 +178,88 @@
           </div> -->
       </div>
   </div>
+</div>
 
+  <div class="modal fade" id="kt_modal_see_customer_1" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header" id="kt_modal_update_product_headerqwe">
+                <h3 class="fw-bolder">Datos del Usuario</h3>
+                <div class="btn btn-icon btn-sm btn-active-icon-primary" data-bs-dismiss="modal" aria-label="Close">
+                    <span class="svg-icon svg-icon-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                        <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                      </svg>
+                    </span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <form class="mx-4" novalidate="novalidate"  id="form" >
+                    <div class="mb-5">
 
+                      <div class="form-group row">
+                        <div class="col-xl-4 col-lg-4">
+                          <div class="symbol text-center">
+                            <img *ngIf="customerOne?.imageUser!==null || customerOne?.imageUser!==''" class="image-input-wrapper w-175px h-175px align-content-center" src="data:image/jpeg;base64,{{customerOne.imageUser}}"  alt="">
+                            <img *ngIf="customerOne?.imageUser===null || customerOne?.imageUser===''" class="image-input-wrapper w-125px h-125px"  src="assets/img/user_blank.png"  alt="">
+                          </div>
+                        </div>
+                        <div class="col-xl-8 col-lg-8">
+                          <div class=" fw-bolder input-group-sm">
+                            <label for="staticNameCategory" class="fw-bolder pt-2 pb-2">Nombre De Usuario:</label>
+                            <span class="input-group-text input-group-solid" >{{customerOne.userName}}</span>
+                          </div>
+                          <div class="form-group row">
+                            <div class="col-xl-6 col-md-6">
+                              <div class=" fw-bolder input-group-sm">
+                                <label for="staticStockTotal" class="fw-bolder pt-2 pb-2">Nombre(s):</label>
+                                <span class="input-group-text input-group-solid" >{{customerOne.person.firstName}}</span>
+                              </div>
+                            </div>
+                            <div class="col-xl-6 col-md-6">
+                              <div class=" fw-bolder input-group-sm">
+                                <label for="staticDescription" class="fw-bolder pt-2 pb-2">Apellido(s):</label>
+                                <span class="input-group-text input-group-solid" >{{customerOne.person.lastName}}</span>
+                              </div>
+                            </div>
+                            <div class=" fw-bolder input-group-sm">
+                              <label for="staticSice" class="fw-bolder pt-2 pb-2">Email:</label>
+                              <span class="input-group-text input-group-solid" >{{customerOne.email}}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="m-8"></div>
+                      <div class="form-group row">
+                        <h3>Informacion Personal</h3>
+                        <div class="col-12">
+                          <div class=" fw-bolder input-group-sm">
+                            <label for="staticNameCategory" class="fw-bolder pt-2 pb-2">Documento de Identidad:</label>
+                            <span class="input-group-text input-group-solid" >{{customerOne.person.documentNumber}}</span>
+                          </div>
+                          <div class=" fw-bolder input-group-sm">
+                            <label for="staticNameCategory" class="fw-bolder pt-2 pb-2">Numero de Contacto:</label>
+                            <span class="input-group-text input-group-solid" >{{customerOne.person.phoneNumber}}</span>
+                          </div>
+                          <div class=" fw-bolder input-group-sm">
+                            <label for="staticNameCategory" class="fw-bolder pt-2 pb-2">Fecha de Nacimiento:</label>
+                            <span class="input-group-text input-group-solid" >{{customerOne.person.birthdate}}</span>
+                          </div>
+                          <div class=" fw-bolder input-group-sm">
+                            <label for="staticNameCategory" class="fw-bolder pt-2 pb-2">Genero:</label>
+                            <span class="input-group-text input-group-solid" >{{customerOne.person.sex}}</span>
+                          </div>
+
+                          <div class=" fw-bolder input-group-sm" *ngFor="let address of customerOne.addressRequests">
+                            <label for="staticNameCategory" class="fw-bolder pt-4 pb-2">Direccion del Usuario:</label>
+                            <span class="input-group-text input-group-solid" >{{address.description}}</span>
+                          </div>
+                          <input type="text" readonly class="form-control-plaintext" *ngIf="customerOne.addressRequests.length===0" id="staticAddress" disabled placeholder="">
+                        </div>
+                      </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>

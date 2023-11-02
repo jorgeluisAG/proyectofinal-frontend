@@ -55,6 +55,9 @@ export class AuthService {
         this.router.navigate(['login']).then(r => {});
     }
 
+    getUser() {
+      return this.user;
+    }
     login(data: any): Observable<HttpResponse<any>> {
       let url = `${this.projectUrl}/api/authenticate`
       const headers = new HttpHeaders().set('Content-Type', 'application/json');

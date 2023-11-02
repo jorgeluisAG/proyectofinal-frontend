@@ -27,12 +27,12 @@ export class ProductService {
     return this.http.get(`${this.projectUrl}`, {headers: this.header, observe: 'response'});
   };
 
-  getById(id: number): Observable<HttpResponse<any>>{
+  getProductById(id: number): Observable<HttpResponse<any>>{
     return this.http.get(`${this.projectUrl}/${id}`, {headers: this.header, observe: 'response'});
   }
 
   getProductCategoryAll(id: number): Observable<HttpResponse<any>>{
-    return this.http.get(`${this.projectUrl}/category/${id}`, {headers: this.header, observe: 'response'});
+    return this.http.get(`${this.projectUrl}/category/different/${id}`, {headers: this.header, observe: 'response'});
   }
 
   getProductColorAll(id: number): Observable<HttpResponse<any>>{
@@ -41,6 +41,10 @@ export class ProductService {
 
   getProductSeriesAll(id: number): Observable<HttpResponse<any>>{
     return this.http.get(`${this.projectUrl}/series/${id}`, {headers: this.header, observe: 'response'});
+  }
+
+  deletedProductById(id: number) {
+    return this.http.delete(`${this.projectUrl}/deleted/${id}`, {headers: this.header, observe: 'response'});
   }
 
 }
