@@ -38,6 +38,12 @@ export class PersonalComponent implements OnInit {
   userNameFilter = false;
   firstNameFilter = false;
 
+  // filtros
+  fechaStatus = true;
+  nombreStatus = true;
+  emailStatus = true;
+  contactoStatus = true;
+
 
 
 
@@ -105,18 +111,22 @@ export class PersonalComponent implements OnInit {
           {
               className: 'text-center',
               data: 'createdAt',
+              visible: this.fechaStatus
           },
           {
               className: 'text-center',
               data: 'person.firstName',
+              visible: this.nombreStatus
           },
           {
               className: 'text-center',
               data: 'email',
+              visible: this.emailStatus
           },
           {
               className: 'text-center',
-              data: 'person.phoneNumber'
+              data: 'person.phoneNumber',
+              visible: this.contactoStatus
           },
           {
               className: 'text-center',
@@ -231,6 +241,16 @@ export class PersonalComponent implements OnInit {
 
   }
 
+  validFilter(){
+    this.getDatatablesPersonals()
+  }
 
+  resetFilter(){
+    this.fechaStatus=true;
+    this.nombreStatus=true;
+    this.emailStatus=true;
+    this.contactoStatus=true;
+    this.getDatatablesPersonals()
+  }
 
 }

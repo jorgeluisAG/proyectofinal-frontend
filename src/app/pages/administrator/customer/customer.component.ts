@@ -32,7 +32,12 @@ export class CustomerComponent implements OnInit {
 
   customer: UserCreateNewDTO = new UserCreateNewDTO(0,'','','',false,this.authority,false,'','',this.person,'',this.addressrequests);
   customerOne: UserCreateNewDTO = new UserCreateNewDTO(0,'','','',false,this.authority,false,'','',this.person,'',this.addressrequests);
-  visibleFecha= true;
+
+  fechaStatus= true;
+  nombreStatus=true;
+  emailStatus=true;
+  contactoStatus=true;
+
   constructor(
     private customerService: CustomerService,
     private authService: AuthService,
@@ -64,10 +69,6 @@ export class CustomerComponent implements OnInit {
     });
   }
 
-  cambiosuw(){
-    this.visibleFecha=!this.visibleFecha
-    this.getDatatablesCustomers()
-  }
 
   getDatatablesCustomers(){
     delay(500);
@@ -101,19 +102,22 @@ export class CustomerComponent implements OnInit {
           {
               className: 'text-center',
               data: 'createdAt',
-              visible: this.visibleFecha
+              visible: this.fechaStatus
           },
           {
               className: 'text-center',
               data: 'person.firstName',
+              visible: this.nombreStatus
           },
           {
               className: 'text-center',
               data: 'email',
+              visible: this.emailStatus
           },
           {
               className: 'text-center',
-              data: 'person.phoneNumber'
+              data: 'person.phoneNumber',
+              visible: this.contactoStatus
           },
           {
               className: 'text-center',
@@ -268,5 +272,17 @@ export class CustomerComponent implements OnInit {
         }
       ]
     });
+  }
+
+  validFilter(){
+    this.getDatatablesCustomers()
+  }
+
+  resetFilter(){
+    this.fechaStatus=true;
+    this.nombreStatus=true;
+    this.emailStatus=true;
+    this.contactoStatus=true;
+    this.getDatatablesCustomers()
   }
 }

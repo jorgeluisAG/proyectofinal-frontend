@@ -4,6 +4,7 @@ import { MonitoringComponent } from './monitoring/monitoring.component';
 import { CirculationAreaComponent } from "./circulation-area/circulation-area.component";
 import { SimulationComponent } from "./simulation/simulation.component";
 import { RecordsComponent } from "./records/records.component";
+import { CalendarComponent } from "./calendar/calendar.component";
 
 const pagesRoutes: Routes = [
   {
@@ -29,6 +30,11 @@ const pagesRoutes: Routes = [
     {
       path: 'historial',
       component: RecordsComponent,
+      data: { title: 'Area del Historial de Vehiculos'},
+    },
+    {
+      path: 'calendar',
+      component: CalendarComponent,
       data: { title: 'Area del Historial de Vehiculos'},
     },
 

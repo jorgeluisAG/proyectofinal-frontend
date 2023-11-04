@@ -66,7 +66,7 @@ export class StoreProductComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("Paso 1 si")
-    this.getProductListAll()
+    this.getProductListAll();
   }
 
   getProductListAll(){
@@ -120,4 +120,15 @@ export class StoreProductComponent implements OnInit {
 
     })
   }
+
+  productSaleData(id: any){
+    let productId = id.getAttribute('data-product-id');
+    //let productId = id.dataset.productId;
+    console.log(productId);
+
+    this.router.navigate([`tienda/Product/${productId}`]);
+
+  }
+
+
 }

@@ -54,6 +54,13 @@ export class InventoryComponent implements OnInit {
     }
   ]
 
+  // filtros
+  nombreStatus = true;
+  categoriaStatus = true;
+  stockStatus = true;
+  precioStatus = true;
+
+
   constructor(
     private loader: LoaderService,
     private productService: ProductService,
@@ -132,10 +139,12 @@ export class InventoryComponent implements OnInit {
           {
               className: 'text-center',
               data: 'nameProduct',
+              visible: this.nombreStatus
           },
           {
               className: 'text-center',
               data: 'category.nameCategory',
+              visible: this.categoriaStatus
           },
           // {
           //     className: 'text-center',
@@ -143,11 +152,13 @@ export class InventoryComponent implements OnInit {
           // },
           {
               className: 'text-center',
-              data: 'stockTotal'
+              data: 'stockTotal',
+              visible: this.stockStatus
           },
           {
               className: 'text-center',
-              data: 'price'
+              data: 'price',
+              visible: this.precioStatus
           },
           {
               className: 'text-center',
@@ -258,5 +269,16 @@ export class InventoryComponent implements OnInit {
 
   }
 
+  validFilter(){
+    this.getDatatablesPayment()
+  }
+
+  resetFilter(){
+    this.stockStatus=true;
+    this.nombreStatus=true;
+    this.precioStatus=true;
+    this.categoriaStatus=true;
+    this.getDatatablesPayment()
+  }
 
 }

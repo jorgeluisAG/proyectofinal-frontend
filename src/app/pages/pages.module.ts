@@ -19,6 +19,7 @@ import { StoreProductComponent } from './client-pages/store-product/store-produc
 import { ProductDatesComponent } from './administrator/product-dates/product-dates.component';
 import { CustomerDataComponent } from './administrator/customer/customer-data/customer-data.component';
 import { PersonalDataComponent } from './administrator/personal/personal-data/personal-data.component';
+import { ProductSaleComponent } from './client-pages/product-sale/product-sale.component';
 
 @NgModule({
     declarations: [
@@ -33,6 +34,7 @@ import { PersonalDataComponent } from './administrator/personal/personal-data/pe
         ProductDatesComponent,
         CustomerDataComponent,
         PersonalDataComponent,
+        ProductSaleComponent,
   ],
     imports: [
         CommonModule,

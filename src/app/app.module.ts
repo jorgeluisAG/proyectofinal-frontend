@@ -22,6 +22,7 @@ import { PagesComponent } from './pages/pages.component';
 import { LayoutModule } from './layout/layout.module';
 import { RegisterComponent } from './auth/register/register.component';
 import { RegistrationComponent } from './auth/registration/registration.component';
+import { ScheduleModule, RecurrenceEditorModule,DayService, WeekService, WorkWeekService,MonthService,MonthAgendaService } from '@syncfusion/ej2-angular-schedule';
 
 
 @NgModule({
@@ -47,9 +48,10 @@ import { RegistrationComponent } from './auth/registration/registration.componen
         ReactiveFormsModule,
         PipesModule,
         LayoutModule,
+        ScheduleModule, RecurrenceEditorModule,
     ],
     providers: [
-
+      DayService,WeekService,WorkWeekService,MonthService,MonthAgendaService
     ],
     bootstrap: [AppComponent]
 })

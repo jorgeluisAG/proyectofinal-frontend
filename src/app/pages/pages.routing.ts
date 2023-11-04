@@ -16,6 +16,7 @@ import { InventoryComponent } from './administrator/inventory/inventory.componen
 import { ProductDatesComponent } from './administrator/product-dates/product-dates.component';
 import { CustomerDataComponent } from './administrator/customer/customer-data/customer-data.component';
 import { PersonalDataComponent } from './administrator/personal/personal-data/personal-data.component';
+import { ProductSaleComponent } from './client-pages/product-sale/product-sale.component';
 
 const pagesRoutes: Routes = [
 
@@ -53,6 +54,14 @@ const pagesRoutes: Routes = [
       path: 'tienda',
       component: StoreProductComponent,
       data: { title: 'Panel de los productos'},
+      // canActivate: [AuthGuard],
+      // canActivate: [UserGuard]
+
+    },
+    {
+      path: 'tienda/Product/:id',
+      component: ProductSaleComponent,
+      data: { title: 'Panel del producto de venta'},
       // canActivate: [AuthGuard],
       // canActivate: [UserGuard]
 

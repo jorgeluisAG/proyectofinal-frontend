@@ -110,8 +110,8 @@
                 </div>
 
 
-                <div *ngFor="let product of products; index as i" class="col-xl-3 col-md-4v col-sm-6" data-bs-toggle="modal" data-bs-target="#kt_modal_see_product_1" style="cursor: pointer">
-                  <div class="card shadow-sm p-4 m-2" [ngStyle]="{'background': i%2===0? 'darkgray': 'azure'}">
+                <div #productID *ngFor="let product of products; index as i" class="col-xl-3 col-md-4v col-sm-6" [attr.data-product-id]="product.id"  style="cursor: pointer">
+                  <div class="card shadow-sm p-4 m-2" [ngStyle]="{'background': i%2===0? 'darkgray': 'azure'}" (click)="productSaleData(productID)">
                     <!-- <div class="card-header">
 
                     </div> -->
@@ -120,6 +120,9 @@
                         <img src="data:image/png;base64,{{product.stockTotal}}" alt="" style="width: 100px;">
                         <div class="text-center">
                           {{product.price}}
+                        </div>
+                        <div>
+                          {{product.id}}
                         </div>
                     <!-- </div> -->
                     <!-- <div class="card-footer">
