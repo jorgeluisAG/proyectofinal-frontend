@@ -22,7 +22,7 @@ export class ProductSaleComponent implements OnInit {
   productColorResponses: Array<ProductColorDTO> = [];
   productSeriesResponses: Array<ProductSeriesDTO> = [];
   productImagesResponses: Array<ProductImagesDTO> = [];
-  productOne: ProductDTO = new ProductDTO(0,'','',0,0,false,this.category,this.productColorResponses,this.productSeriesResponses,this.productImagesResponses);
+  productOne: ProductDTO = new ProductDTO(0,'','',0,0,'',false,this.category,this.productColorResponses,this.productSeriesResponses,this.productImagesResponses);
 
 
   constructor(
@@ -42,6 +42,10 @@ export class ProductSaleComponent implements OnInit {
   }
 
   pageStoreProduct(){
+    this.router.navigate(['/tienda'])
+  }
+
+  returnStoreList(){
     this.router.navigate(['/tienda'])
   }
 
