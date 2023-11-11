@@ -1,0 +1,49 @@
+/* .alineandoCentro{
+  text-align: center;
+}
+.container_area_edit{
+  position: relative;
+  height: 50px;
+  line-height: 30px;
+}
+.input_dis{
+  position: absolute;
+  width: 100%;
+  outline: none;
+  font-size: 1.1em;
+  padding: 0 20px;
+  line-height: 30px;
+  border-radius: 10px;
+  border: 2px solid #e3e4e5;
+  background: transparent;
+  transition: 0.1s ease;
+  z-index: 1111;
+}
+.labelline{
+  position: absolute;
+  font-size: 1.1em;
+  color: black;
+  padding: 0 20px;
+  margin: 0 10px;
+  background-color: white;
+  transition: 0.1s ease;
+}
+.input_dis:focus,
+.input_dis:valid{
+  color: black;
+  border: 2.2px solid black;
+}
+.input_dis:focus + .labelline,
+.input_dis:valid + .labelline{
+  color: black;
+  height: 30px;
+  line-height:  40px;
+  padding: 0 11px;
+  transform: translate(-10px, -20px) scale(0.88);
+  z-index: 1111;
+} */
+
+
+/* .border-input{
+  border: 1px solid #e4e6ef;
+} */

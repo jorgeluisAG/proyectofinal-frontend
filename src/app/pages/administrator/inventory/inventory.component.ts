@@ -27,7 +27,7 @@ export class InventoryComponent implements OnInit {
   productColorResponses: Array<ProductColorDTO> = [];
   productSeriesResponses: Array<ProductSeriesDTO> = [];
   productImagesResponses: Array<ProductImagesDTO> = [];
-  productOne: ProductDTO = new ProductDTO(0,'','',0,0,false,this.category,this.productColorResponses,this.productSeriesResponses,this.productImagesResponses);
+  productOne: ProductDTO = new ProductDTO(0,'','',0,0,'',false,this.category,this.productColorResponses,this.productSeriesResponses,this.productImagesResponses);
 
   cambioTabla=true;
   inventoryFilter: string = 'ALL';
@@ -59,6 +59,8 @@ export class InventoryComponent implements OnInit {
   categoriaStatus = true;
   stockStatus = true;
   precioStatus = true;
+  longitudStatus = false;
+  descripcionStatus = false;
 
 
   constructor(
@@ -134,7 +136,7 @@ export class InventoryComponent implements OnInit {
       columns: [
           {
               className: 'text-center',
-              data: 'id',
+              data: null,
           },
           {
               className: 'text-center',
@@ -146,10 +148,6 @@ export class InventoryComponent implements OnInit {
               data: 'category.nameCategory',
               visible: this.categoriaStatus
           },
-          // {
-          //     className: 'text-center',
-          //     data: 'descriptionProduct'
-          // },
           {
               className: 'text-center',
               data: 'stockTotal',
@@ -162,12 +160,29 @@ export class InventoryComponent implements OnInit {
           },
           {
               className: 'text-center',
+              data: 'sizeProduct',
+              visible: this.longitudStatus
+          },
+          {
+              className: 'text-center',
+              data: 'descriptionProduct',
+              visible: this.descripcionStatus
+          },
+          {
+              className: 'text-center',
               data: null
           }
       ],
       columnDefs: [
         {
-          targets: 5,
+          targets: 0,
+          render: function (data: any) {
+
+              return cont++;
+          }
+        },
+        {
+          targets: 7,
           render: function (data: any, type: any, row: any) {
               // return '<a href="javascript:void(0);" class="btn bg-body" data-watch-id="' + row.id + '" data-bs-toggle="modal" data-bs-target="#kt_modal_see_product_1">    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="blue" class="bi bi-eye-fill" viewBox="0 0 16 16"><path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/><path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/></svg></a>'+
               //     '<a  href="javascript:void(0);" class="btn bg-body" data-product-id="' + row.id + '">    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-pencil-fill" viewBox="0 0 16 16"><path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/></svg></a>';
@@ -274,10 +289,13 @@ export class InventoryComponent implements OnInit {
   }
 
   resetFilter(){
-    this.stockStatus=true;
-    this.nombreStatus=true;
-    this.precioStatus=true;
-    this.categoriaStatus=true;
+    this.nombreStatus = true;
+    this.categoriaStatus = true;
+    this.stockStatus = true;
+    this.precioStatus = true;
+    this.longitudStatus = false;
+    this.descripcionStatus = false;
+
     this.getDatatablesPayment()
   }
 
