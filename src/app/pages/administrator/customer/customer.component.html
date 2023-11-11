@@ -63,10 +63,16 @@
                         <table class="table align-middle table-row-dashed fs-6 gy-5" id="customer_list_table" >
                             <thead>
                             <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0" style="background: #006AB7;">
-                                <th class="min-w-125px text-center text-white">Fecha</th>
-                                <th class="min-w-125px text-center text-white">Nombre</th>
+                                <th class="min-w-125px text-center text-white">Creado El:</th>
+                                <th class="min-w-125px text-center text-white">Nom. Usuario</th>
                                 <th class="min-w-125px text-center text-white">E-mail</th>
+                                <th class="min-w-125px text-center text-white">C.I.</th>
+                                <th class="min-w-125px text-center text-white">Nombre(s)</th>
+                                <th class="min-w-125px text-center text-white">Apellido(s)</th>
+                                <th class="min-w-125px text-center text-white">F. Nacimiento</th>
+                                <th class="min-w-125px text-center text-white">Genero</th>
                                 <th class="min-w-125px text-center text-white">Contacto</th>
+                                <th class="min-w-125px text-center text-white">Direccion</th>
                                 <th class="min-w-125px text-center text-white">Detalles</th>
                             </tr>
                             </thead>
@@ -91,101 +97,8 @@
 
 
 
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_stacked_1">
-  Boton dale aaaa
-  </button>
-
-  <div class="modal fade" tabindex="-1" id="kt_modal_stacked_1" data-bs-backdrop="static">
-  <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h3 class="modal-title">Modal title</h3>
-
-              <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
-                  <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
-              </div>
-              <!--end::Close-->
-          </div>
-
-          <div class="modal-body">
-              ...
-
-              <button type="button" class="btn btn-primary" data-bs-stacked-modal="#kt_modal_stacked_2">
-                  aver si sale
-              </button>
-          </div>
-
-          <div class="modal-footer">
-              <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-              <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-          </div>
-      </div>
-  </div>
 
 
-
-</div>
-
-<div class="modal fade" tabindex="-1" id="kt_modal_view">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 class="modal-title">Modal title</h3>
-
-          <!--begin::Close-->
-          <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
-              <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
-          </div>
-          <!--end::Close-->
-      </div>
-          <!-- <div class="modal-header" id="kt_modal_view_customers_headerqwe">
-              <h2 class="fw-bolder">Actualizar Usuario</h2>
-              <div class="btn btn-icon btn-sm btn-active-icon-primary" data-bs-dismiss="modal" aria-label="Close">
-                  <span class="svg-icon svg-icon-1">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                          <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
-                                transform="rotate(-45 6 17.3137)" fill=""/>
-                          <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)"
-                                fill=""/>
-                      </svg>
-                  </span>
-              </div>
-          </div> -->
-          <!--
-          <div class="modal-body">
-              <form class="mx-5" novalidate="novalidate"  id="form" >
-                  <div class="mb-5">
-                      <div class="fv-row mb-10">
-                          <label class="form-label required">Nombres</label>
-                          <input name="name"  id="firstName2" class="form-control form-control-lg form-control-solid"/>
-                      </div>
-                      <div class="fv-row mb-10">
-                          <label class="form-label required">Apellidos</label>
-                          <input name="lastname" class="form-control form-control-lg form-control-solid"  id="lastname2"/>
-                      </div>
-                      <div class="fv-row mb-10">
-                          <label class="fs-6 fw-bold form-label required">Correo Electrónico de Contacto</label>
-                          <input name="email" class="form-control form-control-lg form-control-solid"  id="email2" disabled />
-                      </div>
-                      <div class="fv-row mb-10">
-                          <label class="fs-6 fw-bold form-label required me-2">Nro de Celular de Contacto</label>
-                          <input name="phone" id="phone2" type="tel"
-                                 class="form-control form-control-lg form-control-solid" />
-                          <div class="form-text">Reportes diarios le llegaran a este número de Whatsapp.</div>
-                      </div>
-                      <div class="fv-row mb-10">
-                          <label class="fs-6 fw-bold form-label required">Nro de Carnet</label>
-                          <input name="ci" class="form-control form-control-lg form-control-solid"  id="ci2"/>
-                      </div>
-                      <div class="fv-row mb-10">
-                          <button type="submit" class="btn btn-primary w-100" style="background-color: #161654; color: white">Actualizar Usuario</button>
-                      </div>
-                  </div>
-              </form>
-          </div> -->
-      </div>
-  </div>
-</div>
 
   <div class="modal fade" id="kt_modal_see_customer_1" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -205,10 +118,10 @@
                     <div class="mb-5">
 
                       <div class="form-group row">
-                        <div class="col-xl-4 col-lg-4">
+                        <div class="col-xl-4 col-lg-4 centro-img">
                           <div class="symbol text-center">
-                            <img *ngIf="customerOne?.imageUser!==null || customerOne?.imageUser!==''" class="image-input-wrapper w-175px h-175px align-content-center" src="data:image/jpeg;base64,{{customerOne.imageUser}}"  alt="">
-                            <img *ngIf="customerOne?.imageUser===null || customerOne?.imageUser===''" class="image-input-wrapper w-125px h-125px"  src="assets/img/user_blank.png"  alt="">
+                            <img *ngIf="customerOne?.imageUser!==null" class="image-input-wrapper w-175px h-175px align-content-center" src="data:image/jpeg;base64,{{customerOne.imageUser}}"  alt="">
+                            <img *ngIf="customerOne?.imageUser===null" class="image-input-wrapper w-175px h-175px"  src="assets/img/user_blank.png"  alt="">
                           </div>
                         </div>
                         <div class="col-xl-8 col-lg-8">
@@ -256,7 +169,6 @@
                             <label for="staticNameCategory" class="fw-bolder pt-2 pb-2">Genero:</label>
                             <span class="input-group-text input-group-solid" >{{customerOne.person.sex}}</span>
                           </div>
-
                           <div class=" fw-bolder input-group-sm" *ngFor="let address of customerOne.addressRequests">
                             <label for="staticNameCategory" class="fw-bolder pt-4 pb-2">Direccion del Usuario:</label>
                             <span class="input-group-text input-group-solid" >{{address.description}}</span>
@@ -297,26 +209,62 @@
                 <label class="form-check form-check-custom form-check-solid mb-4">
                     <input class="form-check-input" type="checkbox" value="0" [(ngModel)]="fechaStatus" />
                     <span class="form-check-label fs-5 fw-bold">
-                        Fecha
+                        Fecha de Creacion
                     </span>
                 </label>
                 <label class="form-check form-check-custom form-check-solid mb-4">
-                    <input class="form-check-input" type="checkbox" value="1" [(ngModel)]="nombreStatus" />
+                  <input class="form-check-input" type="checkbox" value="1" [(ngModel)]="nombreUsuarioStatus" />
+                  <span class="form-check-label fs-5 fw-bold">
+                      Nombre de Usuario
+                  </span>
+                </label>
+                <label class="form-check form-check-custom form-check-solid mb-4">
+                  <input class="form-check-input" type="checkbox" value="2" [(ngModel)]="emailStatus"/>
+                  <span class="form-check-label fs-5 fw-bold">
+                      Email
+                  </span>
+                </label>
+                <label class="form-check form-check-custom form-check-solid mb-4">
+                  <input class="form-check-input" type="checkbox" value="3" [(ngModel)]="docIdentidadStatus"/>
+                  <span class="form-check-label fs-5 fw-bold">
+                      Documento de Identidad
+                  </span>
+                </label>
+                <label class="form-check form-check-custom form-check-solid mb-4">
+                    <input class="form-check-input" type="checkbox" value="4" [(ngModel)]="nombreStatus" />
                     <span class="form-check-label fs-5 fw-bold">
-                        Nombre
+                        Nombre(s)
                     </span>
                 </label>
                 <label class="form-check form-check-custom form-check-solid mb-4">
-                    <input class="form-check-input" type="checkbox" value="2" [(ngModel)]="emailStatus"/>
-                    <span class="form-check-label fs-5 fw-bold">
-                        Email
-                    </span>
+                  <input class="form-check-input" type="checkbox" value="5" [(ngModel)]="apellidoStatus" />
+                  <span class="form-check-label fs-5 fw-bold">
+                      Apellido(s)
+                  </span>
                 </label>
                 <label class="form-check form-check-custom form-check-solid mb-4">
-                    <input class="form-check-input" type="checkbox" value="3" [(ngModel)]="contactoStatus"/>
+                  <input class="form-check-input" type="checkbox" value="6" [(ngModel)]="fechaNacimientoStatus" />
+                  <span class="form-check-label fs-5 fw-bold">
+                      Fecha de Nacimiento
+                  </span>
+                </label>
+                <label class="form-check form-check-custom form-check-solid mb-4">
+                  <input class="form-check-input" type="checkbox" value="7" [(ngModel)]="generoStatus" />
+                  <span class="form-check-label fs-5 fw-bold">
+                      Genero
+                  </span>
+                </label>
+                <label class="form-check form-check-custom form-check-solid mb-4">
+                    <input class="form-check-input" type="checkbox" value="8" [(ngModel)]="contactoStatus"/>
                     <span class="form-check-label fs-5 fw-bold">
                         Contacto
                     </span>
+                </label>
+                <label class="form-check form-check-custom form-check-solid mb-4">
+                  <input class="form-check-input" type="checkbox" value="9" [(ngModel)]="direccionStatus"/>
+                  <span class="form-check-label fs-5 fw-bold">
+                      Direccion
+                  </span>
                 </label>
 
                 <div class="d-flex justify-content-end">

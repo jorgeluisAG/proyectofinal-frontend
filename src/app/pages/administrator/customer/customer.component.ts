@@ -12,6 +12,7 @@ import { UserService } from '../../../services/user.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { DatePipe } from '@angular/common';
 
 declare var $: any;
 @Component({
@@ -33,10 +34,16 @@ export class CustomerComponent implements OnInit {
   customer: UserCreateNewDTO = new UserCreateNewDTO(0,'','','',false,this.authority,false,'','',this.person,'',this.addressrequests);
   customerOne: UserCreateNewDTO = new UserCreateNewDTO(0,'','','',false,this.authority,false,'','',this.person,'',this.addressrequests);
 
-  fechaStatus= true;
-  nombreStatus=true;
-  emailStatus=true;
-  contactoStatus=true;
+  fechaStatus = true;
+  nombreUsuarioStatus = true;
+  emailStatus = true;
+  docIdentidadStatus = false;
+  nombreStatus = false;
+  apellidoStatus = false;
+  fechaNacimientoStatus = false;
+  generoStatus = false;
+  contactoStatus = true;
+  direccionStatus = false;
 
   constructor(
     private customerService: CustomerService,
@@ -100,41 +107,80 @@ export class CustomerComponent implements OnInit {
       },
       columns: [
           {
-              className: 'text-center',
-              data: 'createdAt',
-              visible: this.fechaStatus
+            className: 'text-center',
+            data: 'createdAt',
+            visible: this.fechaStatus
           },
           {
-              className: 'text-center',
-              data: 'person.firstName',
-              visible: this.nombreStatus
+            className: 'text-center',
+            data: 'userName',
+            visible: this.nombreUsuarioStatus
           },
           {
-              className: 'text-center',
-              data: 'email',
-              visible: this.emailStatus
+            className: 'text-center',
+            data: 'email',
+            visible: this.emailStatus
           },
           {
-              className: 'text-center',
-              data: 'person.phoneNumber',
-              visible: this.contactoStatus
+            className: 'text-center',
+            data: 'person.documentNumber',
+            visible: this.docIdentidadStatus
           },
           {
-              className: 'text-center',
-              data: null
+            className: 'text-center',
+            data: 'person.firstName',
+            visible: this.nombreStatus
+          },
+          {
+            className: 'text-center',
+            data: 'person.lastName',
+            visible: this.apellidoStatus
+          },
+          {
+            className: 'text-center',
+            data: 'person.birthdate',
+            visible: this.fechaNacimientoStatus
+          },
+          {
+            className: 'text-center',
+            data: 'person.sex',
+            visible: this.generoStatus
+          },
+          {
+            className: 'text-center',
+            data: 'person.phoneNumber',
+            visible: this.contactoStatus
+          },
+          {
+            className: 'text-center',
+            data: 'addressRequests[0].description',
+            visible: this.direccionStatus
+          },
+          {
+            className: 'text-center',
+            data: null
           }
       ],
       columnDefs: [
         {
           targets: 0,
           render: function (data: any) {
-            let date = new Date(data)
-            return date.toLocaleString();
-        }
 
+            let pipe = new DatePipe('en-US');
+            let date = pipe.transform(new Date(data), 'yyyy-MM-dd')
+            return date;
+        }
         },
+        // {
+        //   targets: 9,
+        //   render: function (data: any) {
+        //     let date = new Date(data)
+        //     return date.toLocaleString();
+        // }
+
+        // },
         {
-          targets: 4,
+          targets: 10,
           render: function (data: any, type: any, row: any) {
               // return '<a href="javascript:void(0);" class="btn btn-sm btn-light btn-active-light-primary" data-watch-id="' + row.id + '" data-bs-toggle="modal" data-bs-target="#kt_modal_view">Ver' +
               //     '</a>';
@@ -174,10 +220,7 @@ export class CustomerComponent implements OnInit {
     // @ts-ignore
     that.dataDeletedCustomer($(this).data('deleted-id'));
   });
-  // this.table.on('click', '[data-payment-id]', '[data-payment-code]', function () {
-  //     // @ts-ignore
-  //     that.dataSeePayment($(this).data('payment-id'),$(this).data('payment-code'));
-  // });
+
 
   }
   watchCustomer(id: number) {
@@ -241,6 +284,30 @@ export class CustomerComponent implements OnInit {
   }
 
 
+  validFilter(){
+    this.getDatatablesCustomers()
+  }
+
+  resetFilter(){
+
+    this.fechaStatus = true;
+    this.nombreUsuarioStatus = true;
+    this.emailStatus = true;
+    this.docIdentidadStatus = false;
+    this.nombreStatus = false;
+    this.apellidoStatus = false;
+    this.fechaNacimientoStatus = false;
+    this.generoStatus = false;
+    this.contactoStatus = true;
+    this.direccionStatus = false;
+    this.getDatatablesCustomers()
+  }
+
+
+
+
+
+
 
   cargarDatos(){
     let status = {
@@ -274,15 +341,9 @@ export class CustomerComponent implements OnInit {
     });
   }
 
-  validFilter(){
-    this.getDatatablesCustomers()
-  }
 
-  resetFilter(){
-    this.fechaStatus=true;
-    this.nombreStatus=true;
-    this.emailStatus=true;
-    this.contactoStatus=true;
-    this.getDatatablesCustomers()
-  }
+
+
+
+
 }

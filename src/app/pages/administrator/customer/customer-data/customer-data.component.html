@@ -10,6 +10,8 @@
               <span class="h-20px border-gray-100 border-start mx-4"></span>
               <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-6 my-1">
                 <li class="breadcrumb-item text-dark">Editar Cliente</li>
+                <!-- <span class="badge badge-info" *ngIf="true">Activo</span> -->
+                <!-- <span class="badge badge-primary" *ngIf="valoir ===0">Inactivo</span> -->
             </ul>
           </div>
       </div>
@@ -18,10 +20,19 @@
   <div class="post d-flex flex-column" id="kt_post">
     <div id="kt_content_container" class="container-fluid" >
         <div class="card">
-          <div class="card-body pt-8" >
-            <h2 class="fw-bolder alineandoCentro">Datos del Cliente</h2>
+          <div class="card-header border-0 pt-6">
+            <h2 class="fw-bolder ">Datos del Cliente</h2>
+                <div class="btn btn-icon btn-sm btn-active-icon-primary" (click)="returnCustmers()">
+                    <span class="svg-icon svg-icon-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                        <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                      </svg>
+                    </span>
+                </div>
+          </div>
+          <div class="card-body pt-1" >
 
-            <form class="mx-4" novalidate="novalidate" id="form" (ngSubmit)="returnCustomers()">
+            <form class="mx-4" novalidate="novalidate" id="form" (ngSubmit)="updateCustomers()">
                 <div class="row mb-6 mt-8 px-5">
                   <label for="" class="col-lg-4 col-form-label required  fs-6">
                     Nombre de Usuario
@@ -35,7 +46,7 @@
                   <label for="" class="col-lg-4 col-form-label required  fs-6">
                     Email
                   </label>
-                  <div class="col-lg-6">
+                  <div class="col-lg-8">
                     <input type="email" name="email" class="form-control form-control-sm form-control-solid" placeholder="Correo Electrónico" [(ngModel)]="customerOne.email">
                   </div>
                 </div>
@@ -44,7 +55,7 @@
                   <label for="" class="col-lg-4 col-form-label required  fs-6">
                     Numero de Celular
                   </label>
-                  <div class="col-lg-6">
+                  <div class="col-lg-8">
                     <input type="text" name="phoneNumber" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="customerOne.person.phoneNumber">
                   </div>
                 </div>
@@ -53,7 +64,7 @@
                   <label for="" class="col-lg-4 col-form-label required  fs-6">
                     Nombre(s)
                   </label>
-                  <div class="col-lg-6">
+                  <div class="col-lg-8">
                     <input type="text" name="firstName" class="form-control form-control-sm form-control-solid" placeholder="Nombre" [(ngModel)]="customerOne.person.firstName">
                   </div>
                 </div>
@@ -62,7 +73,7 @@
                   <label for="" class="col-lg-4 col-form-label required  fs-6">
                     Apellido(s)
                   </label>
-                  <div class="col-lg-6">
+                  <div class="col-lg-8">
                     <input type="text" name="lastName" class="form-control form-control-sm form-control-solid" placeholder="Apellido" [(ngModel)]="customerOne.person.lastName">
                   </div>
                 </div>
@@ -71,7 +82,7 @@
                   <label for="" class="col-lg-4 col-form-label required  fs-6">
                     Documento de Identidad
                   </label>
-                  <div class="col-lg-6">
+                  <div class="col-lg-8">
                     <input type="text" name="documentNumber" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="customerOne.person.documentNumber">
                   </div>
                 </div>
@@ -80,7 +91,7 @@
                   <label for="" class="col-lg-4 col-form-label required  fs-6">
                     Genero
                   </label>
-                  <div class="col-lg-6">
+                  <div class="col-lg-8">
                     <input type="text" name="sex" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="customerOne.person.sex">
                   </div>
                 </div>
@@ -89,16 +100,19 @@
                   <label for="" class="col-lg-4 col-form-label required  fs-6">
                     Fecha de Nacimiento
                   </label>
-                  <div class="col-lg-6">
+                  <div class="col-lg-8">
                     <input type="text" name="birthdate" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="customerOne.person.birthdate">
                   </div>
                 </div>
 
                 <div class="row mb-6  px-5">
-                  <label for="staticNameCategory" class="fw-bolder pt-4 pb-2">Direccion del Usuario:</label>
-                  <div class=" fw-bolder input-group-sm" *ngFor="let address of customerOne.addressRequests">
-
-                    <span class="input-group-text input-group-solid" >{{address.description}}</span>
+                  <label for="staticNameCategory" class="col-lg-4 col-form-label">Direccion del Usuario </label>
+                  <div class=" col-lg-8">
+                    <input *ngIf="customerOne.addressRequests.length<=0" type="text" name="description" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="direccionPut">
+                    <div  *ngFor="let address of customerOne.addressRequests">
+                      <input *ngIf="customerOne.addressRequests.length>0" type="text" name="description" class="form-control form-control-sm form-control-solid" placeholder="a" [(ngModel)]="address.description">
+                      <!-- <span class="input-group-text input-group-solid" >{{address.description}}</span> -->
+                    </div>
                   </div>
                 </div>
 
