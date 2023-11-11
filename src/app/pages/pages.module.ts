@@ -16,10 +16,13 @@ import { CustomerComponent } from './administrator/customer/customer.component';
 import { PersonalComponent } from './administrator/personal/personal.component';
 import { LocationsModule } from './administrator/locations/locations.module';
 import { StoreProductComponent } from './client-pages/store-product/store-product.component';
-import { ProductDatesComponent } from './administrator/product-dates/product-dates.component';
+import { ProductDatesComponent } from './administrator/inventory/product-dates/product-dates.component';
 import { CustomerDataComponent } from './administrator/customer/customer-data/customer-data.component';
 import { PersonalDataComponent } from './administrator/personal/personal-data/personal-data.component';
 import { ProductSaleComponent } from './client-pages/product-sale/product-sale.component';
+import { CalendarComponent } from './administrator/calendar/calendar.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
     declarations: [
@@ -35,8 +38,11 @@ import { ProductSaleComponent } from './client-pages/product-sale/product-sale.c
         CustomerDataComponent,
         PersonalDataComponent,
         ProductSaleComponent,
+        CalendarComponent,
   ],
     imports: [
+
+        NgSelectModule,
         CommonModule,
         PipesModule,
         FormsModule,
@@ -44,9 +50,10 @@ import { ProductSaleComponent } from './client-pages/product-sale/product-sale.c
         CardModule,
         InlineSVGModule,
         PagesRoutung,
-
         LocationsModule,
-    ],
+        FullCalendarModule
+
+      ],
     exports: [
       CommonModule,
       HomeAdmComponent

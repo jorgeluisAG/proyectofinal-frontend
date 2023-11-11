@@ -30,6 +30,7 @@ export class UserService {
       return this.http.get(`${this.projectUrl}`, {headers: this.header, observe: 'response'});
     };
 
+
     createNewUserByConfirm(user: UserCreateDTO): Observable<HttpResponse<any>> {
       //const headers = new HttpHeaders().set('Content-Type', 'application/json');
       return this.http.post(`${this.projectUrl}/confirm/`,user, {headers: this.header, observe: 'response'});
@@ -43,6 +44,12 @@ export class UserService {
       //const headers = new HttpHeaders().set('Content-Type', 'application/json');
       return this.http.put(`${this.projectUrl}/change/`, user, {headers: this.header, observe: 'response'});
     }
+
+    updateUserCustomer(user: UserCreateNewDTO): Observable<HttpResponse<any>> {
+      //const headers = new HttpHeaders().set('Content-Type', 'application/json');
+      return this.http.put(`${this.projectUrl}/change/customer`, user, {headers: this.header, observe: 'response'});
+    }
+
     deleteUserById(id: number) {
       return this.http.delete(`${this.projectUrl}/deleted/${id}`, {headers: this.header, observe: 'response'});
     }

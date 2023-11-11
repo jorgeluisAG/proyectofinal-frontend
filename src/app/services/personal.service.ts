@@ -19,7 +19,9 @@ export class PersonalService {
     return this.http.get(`${this.projectUrl}`, {headers: this.header, observe: 'response'});
   };
 
-
+  getUserEmployeesAll(): Observable<HttpResponse<any>> {
+    return this.http.get(`${this.projectUrl}/employees`, {headers: this.header, observe: 'response'});
+  };
 
 
 }

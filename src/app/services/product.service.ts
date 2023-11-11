@@ -27,6 +27,10 @@ export class ProductService {
     return this.http.get(`${this.projectUrl}`, {headers: this.header, observe: 'response'});
   };
 
+  getProductStoreAll(): Observable<HttpResponse<any>> {
+    return this.http.get(`${this.projectUrl}/store`, {headers: this.header, observe: 'response'});
+  };
+
   getProductById(id: number): Observable<HttpResponse<any>>{
     return this.http.get(`${this.projectUrl}/${id}`, {headers: this.header, observe: 'response'});
   }

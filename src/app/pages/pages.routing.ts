@@ -13,10 +13,11 @@ import { LocationsComponent } from './administrator/locations/locations.componen
 import { PersonalComponent } from './administrator/personal/personal.component';
 import { StoreProductComponent } from './client-pages/store-product/store-product.component';
 import { InventoryComponent } from './administrator/inventory/inventory.component';
-import { ProductDatesComponent } from './administrator/product-dates/product-dates.component';
+import { ProductDatesComponent } from './administrator/inventory/product-dates/product-dates.component';
 import { CustomerDataComponent } from './administrator/customer/customer-data/customer-data.component';
 import { PersonalDataComponent } from './administrator/personal/personal-data/personal-data.component';
 import { ProductSaleComponent } from './client-pages/product-sale/product-sale.component';
+import { CalendarComponent } from './administrator/calendar/calendar.component';
 
 const pagesRoutes: Routes = [
 
@@ -65,6 +66,13 @@ const pagesRoutes: Routes = [
       // canActivate: [AuthGuard],
       // canActivate: [UserGuard]
 
+    },
+    {
+      path: 'calendario',
+      component: CalendarComponent,
+      data: { title: 'Area del Historial de Vehiculos'},
+      // canActivate: [AuthGuard],
+      // canActivate: [UserGuard]
     },
     {
       path: 'clientes',
