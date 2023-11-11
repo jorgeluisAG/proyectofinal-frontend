@@ -11,6 +11,7 @@ export class ProductDTO {
     public descriptionProduct: string,
     public stockTotal: number,
     public price: number,
+    public sizeProduct: string,
     public status: boolean,
     public category: Category,
     public productColorResponses: ProductColorDTO[],
