@@ -34,7 +34,8 @@ export class StoreProductComponent implements OnInit {
   productColorResponses: Array<ProductColorDTO> = [];
   productSeriesResponses: Array<ProductSeriesDTO> = [];
   productImagesResponses: Array<ProductImagesDTO> = [];
-  productAll: any = new ProductDTO(0,'','',0,0,'',false,this.category,this.productColorResponses,this.productSeriesResponses,this.productImagesResponses);
+  // productAll: any = new ProductDTO(0,'','',0,0,'',false,this.category,this.productColorResponses,this.productSeriesResponses,this.productImagesResponses);
+  productAll: ProductDTO[] = [];
 
   productListFilter: string = 'ALL';
   table: any;

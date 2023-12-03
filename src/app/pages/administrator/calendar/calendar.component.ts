@@ -31,8 +31,9 @@ export class CalendarComponent implements OnInit {
   authority: Authority = new Authority('')
   addressrequests: Array<AddressDTO> = [];
 
-  employeesAll: UserCreateNewDTO = new UserCreateNewDTO(0,'','','',false,this.authority,false,'','',this.person,'',this.addressrequests);
+  employeesAll1: UserCreateNewDTO = new UserCreateNewDTO(0,'','','',false,this.authority,false,'','',this.person,'',this.addressrequests);
 
+  employeesAll: UserCreateNewDTO[] = [];
   employeesAlt: any[];
 
   nombreUsuario = "";
@@ -71,7 +72,7 @@ export class CalendarComponent implements OnInit {
     .subscribe((resp: HttpResponse<any>) => {
       console.log(resp.body)
       this.employeesAll = resp.body;
-      this.employeesAlt = resp.body;
+      // this.employeesAlt = resp.body;
       console.log(this.employeesAll)
       console.log(this.employeesAlt)
     });
@@ -143,7 +144,7 @@ export class CalendarComponent implements OnInit {
   }
 
   handleDateSelect(selectInfo: DateSelectArg) {
-    const title = prompt('Please enter a new title for your event');
+    const title = prompt('Ingrese el Mensaje o Tarea del Empleado');
     const calendarApi = selectInfo.view.calendar;
 
     calendarApi.unselect(); // clear date selection

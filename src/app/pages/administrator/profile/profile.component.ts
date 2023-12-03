@@ -242,7 +242,9 @@ export class ProfileComponent implements OnInit {
                   customClass: {
                       confirmButton: 'btn btn-success'
                   }
-              })
+              }).then(r => {
+                this.ngOnInit();
+              });
         });
   }
 }

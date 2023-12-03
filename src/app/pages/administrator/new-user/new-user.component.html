@@ -1,0 +1,389 @@
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content" style="padding: 5px 0 !important;">
+  <div class="toolbar" id="kt_toolbar">
+      <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+          <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+              <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Nuevo Usuario</h1>
+              <span class="h-20px border-gray-200 border-start mx-4"></span>
+              <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
+                  <li class="breadcrumb-item text-dark">Agregar Usuario</li>
+              </ul>
+          </div>
+      </div>
+  </div>
+
+  <div class="post d-flex flex-column" id="kt_post">
+    <div class="col-xl-8 col-md-10 col-sm-10 col-10 mx-auto"  >
+        <div class="card">
+            <!-- <div class="card-header border-0 pt-6">
+                <div class="card-title">
+                    <div class="d-flex align-items-center position-relative my-1">
+                        <span class="svg-icon svg-icon-1 position-absolute ms-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="" />
+                                <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="" />
+                            </svg>
+                        </span>
+                        <input type="text" data-kt-customer-table-filter="search" class="form-control form-control-solid w-250px ps-15" placeholder="Buscar" />
+                    </div>
+                </div>
+                <div class="card-toolbar" >
+
+                    <div class="d-flex justify-content-end" data-kt-customer-table-toolbar="base" >
+                            <button type="button" class="btn btn-light-primary me-3"  id="kt_drawer_filter_toggle" data-bs-toggle="modal" data-bs-target="#kt_modal_see_filter">
+                            <span class="svg-icon svg-icon-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z" fill="" />
+                                </svg>
+                            </span>Filtrar</button>
+                    </div>
+                </div>
+            </div> -->
+
+            <div class="card-body pt-8">
+              <div class="">
+                <select class="form-select form-select-sm form-select-solid" data-control="select" data-placeholder="Seleccionar la opcion" [(ngModel)]="opcionesSelect">
+                  <option value="ADMIN">ADMINISTRADOR</option>
+                  <option value="PERSONAL">EMPLEADO</option>
+                  <option value="USER">CLIENTE</option>
+                </select>
+              </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+<div class="m-4"></div>
+
+  <div class="post d-flex flex-column" id="kt_create_adm" *ngIf="opcionesSelect==='ADMIN'">
+    <div  class="col-xl-8 col-md-10 col-sm-10 col-10 mx-auto"   >
+      <div class="card">
+        <div class="card-body pt-1" >
+          <h2 class="text-center pt-8 pb-4">Agregar Nuevo Administrador</h2>
+          <form class="mx-4" novalidate="novalidate" id="form" (ngSubmit)="createAdministrator()">
+              <div class="row mb-6 mt-8 px-5">
+                <label for="" class="col-lg-4 col-form-label required  fs-6">
+                  Nombre de Usuario
+                </label>
+                <div class="col-lg-8">
+                  <input type="text" name="userNameAdm" class="form-control form-control-sm form-control-solid" placeholder="Nombre de Usuario" [(ngModel)]="userNameAdm">
+                </div>
+              </div>
+
+              <div class="row mb-6  px-5">
+                <label for="" class="col-lg-4 col-form-label required  fs-6">
+                  Email
+                </label>
+                <div class="col-lg-8">
+                  <input type="email" name="emailAdm" class="form-control form-control-sm form-control-solid" placeholder="Correo Electrónico" [(ngModel)]="emailAdm">
+                </div>
+              </div>
+
+              <div class="row mb-6  px-5">
+                <label for="" class="col-lg-4 col-form-label required  fs-6">
+                  Numero de Celular
+                </label>
+                <div class="col-lg-8">
+                  <input type="text" name="phoneNumberAdm" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="phoneNumberAdm">
+                </div>
+              </div>
+
+              <div class="row mb-6  px-5">
+                <label for="" class="col-lg-4 col-form-label required  fs-6">
+                  Nombre(s)
+                </label>
+                <div class="col-lg-8">
+                  <input type="text" name="firstNameAdm" class="form-control form-control-sm form-control-solid" placeholder="Nombre" [(ngModel)]="firstNameAdm">
+                </div>
+              </div>
+
+              <div class="row mb-6  px-5">
+                <label for="" class="col-lg-4 col-form-label required  fs-6">
+                  Apellido(s)
+                </label>
+                <div class="col-lg-8">
+                  <input type="text" name="lastNameAdm" class="form-control form-control-sm form-control-solid" placeholder="Apellido" [(ngModel)]="lastNameAdm">
+                </div>
+              </div>
+
+              <div class="row mb-6  px-5">
+                <label for="" class="col-lg-4 col-form-label required  fs-6">
+                  Documento de Identidad
+                </label>
+                <div class="col-lg-8">
+                  <input type="text" name="documentNumberAdm" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="documentNumberAdm">
+                </div>
+              </div>
+
+              <div class="row mb-6  px-5">
+                <label for="" class="col-lg-4 col-form-label required  fs-6">
+                  Genero
+                </label>
+                <div class="col-lg-4" *ngFor="let sexAll of sexAlls">
+                  <label class="form-check-label ps-2" for="{{sexAll}}">
+                    <input class="form-check-input" id="{{sexAll}}" [value]='sexAll' type="radio" name="sexAlls" [(ngModel)]="genderAdm">
+                    {{sexAll}}
+                  </label>
+                </div>
+              </div>
+
+              <div class="row mb-6  px-5">
+                <label for="" class="col-lg-4 col-form-label required  fs-6">
+                  Fecha de Nacimiento
+                </label>
+                <div class="col-lg-8">
+                  <input type="date" name="birthdateAdm" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="birthdateAdm">
+                </div>
+              </div>
+
+              <div class="row mb-6  px-5">
+                <label for="staticNameCategory" class="col-lg-4 col-form-label required  fs-6">Direccion del Usuario </label>
+                <div class=" col-lg-8">
+                  <input type="text" name="direccionAdm" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="direccionAdm">
+                </div>
+              </div>
+
+              <h3 class="fw-bolder mb-5">Imagenes</h3>
+
+              <div class="d-flex flex-center h-300px">
+                <img
+                    src="assets/img/perfil1.png"
+                    data-src="assets/img/perfil2.png"
+                    class="rounded mx-auto d-block"
+                    alt=""
+                />
+              </div>
+              <div class="fv-row mb-10">
+                <button type="submit" class="btn btn-primary w-100" data-bs-dismiss="modal"  style="background-color: #161654; color: white">Crear Nuevo Administradore</button>
+              </div>
+
+          </form>
+
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="m-4"></div> -->
+
+  <div class="post d-flex flex-column" id="kt_create_adm" *ngIf="opcionesSelect==='PERSONAL'">
+    <div class="col-xl-8 col-md-10 col-sm-10 col-10 mx-auto" >
+      <div class="card">
+        <div class="card-body pt-1" >
+          <h2 class="text-center pt-8 pb-4">Agregar Nuevo Empleado</h2>
+          <form class="mx-4" novalidate="novalidate" id="form" (ngSubmit)="createEmployee()">
+              <div class="row mb-6 mt-8 px-5">
+                <label for="" class="col-lg-4 col-form-label required  fs-6">
+                  Nombre de Usuario
+                </label>
+                <div class="col-lg-6">
+                  <input type="text" name="userNameAdm" class="form-control form-control-sm form-control-solid" placeholder="Nombre de Usuario" [(ngModel)]="userNameAdm">
+                </div>
+              </div>
+
+              <div class="row mb-6  px-5">
+                <label for="" class="col-lg-4 col-form-label required  fs-6">
+                  Email
+                </label>
+                <div class="col-lg-6">
+                  <input type="email" name="emailAdm" class="form-control form-control-sm form-control-solid" placeholder="Correo Electrónico" [(ngModel)]="emailAdm">
+                </div>
+              </div>
+
+              <div class="row mb-6  px-5">
+                <label for="" class="col-lg-4 col-form-label required  fs-6">
+                  Numero de Celular
+                </label>
+                <div class="col-lg-6">
+                  <input type="text" name="phoneNumberAdm" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="phoneNumberAdm">
+                </div>
+              </div>
+
+              <div class="row mb-6  px-5">
+                <label for="" class="col-lg-4 col-form-label required  fs-6">
+                  Nombre(s)
+                </label>
+                <div class="col-lg-6">
+                  <input type="text" name="firstNameAdm" class="form-control form-control-sm form-control-solid" placeholder="Nombre" [(ngModel)]="firstNameAdm">
+                </div>
+              </div>
+
+              <div class="row mb-6  px-5">
+                <label for="" class="col-lg-4 col-form-label required  fs-6">
+                  Apellido(s)
+                </label>
+                <div class="col-lg-6">
+                  <input type="text" name="lastNameAdm" class="form-control form-control-sm form-control-solid" placeholder="Apellido" [(ngModel)]="lastNameAdm">
+                </div>
+              </div>
+
+              <div class="row mb-6  px-5">
+                <label for="" class="col-lg-4 col-form-label required  fs-6">
+                  Documento de Identidad
+                </label>
+                <div class="col-lg-6">
+                  <input type="text" name="documentNumberAdm" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="documentNumberAdm">
+                </div>
+              </div>
+
+              <div class="row mb-6  px-5">
+                <label for="" class="col-lg-4 col-form-label required  fs-6">
+                  Genero
+                </label>
+                <div class="col-lg-3" *ngFor="let sexAll of sexAlls">
+                  <label class="form-check-label ps-2" for="{{sexAll}}">
+                    <input class="form-check-input" id="{{sexAll}}" [value]='sexAll' type="radio" name="sexAlls" [(ngModel)]="genderAdm">
+                    {{sexAll}}
+                  </label>
+                </div>
+              </div>
+
+              <div class="row mb-6  px-5">
+                <label for="" class="col-lg-4 col-form-label required  fs-6">
+                  Fecha de Nacimiento
+                </label>
+                <div class="col-lg-6">
+                  <input type="date" name="birthdateAdm" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="birthdateAdm">
+                </div>
+              </div>
+
+              <div class="row mb-6  px-5">
+                <label for="staticNameCategory" class="col-lg-4 col-form-label required  fs-6">Direccion del Empleado </label>
+                <div class=" col-lg-8">
+                  <input type="text" name="direccionAdm" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="direccionAdm">
+                </div>
+              </div>
+
+              <h3 class="fw-bolder mb-5">Imagenes</h3>
+
+              <div class="d-flex flex-center h-300px">
+                <img
+                    src="assets/img/perfil1.png"
+                    data-src="assets/img/perfil2.png"
+                    class="rounded mx-auto d-block"
+                    alt=""
+                />
+              </div>
+              <div class="fv-row mb-10">
+                <button type="submit" class="btn btn-primary w-100" data-bs-dismiss="modal"  style="background-color: #161654; color: white">Crear Nuevo Empleado</button>
+              </div>
+
+          </form>
+
+          </div>
+      </div>
+    </div>
+  </div>
+
+<!-- <div class="m-4"></div> -->
+
+  <div class="post d-flex flex-column" id="kt_create_adm" *ngIf="opcionesSelect==='USER'">
+    <div  class="col-xl-8 col-md-10 col-sm-10 col-10 mx-auto" >
+      <div class="card">
+        <div class="card-body pt-1" >
+          <h2 class="text-center pt-8 pb-4">Agregar Nuevo Cliente</h2>
+          <form class="mx-4" novalidate="novalidate" id="form" (ngSubmit)="createCustomer()">
+              <div class="row mb-6 mt-8 px-5">
+                <label for="" class="col-lg-4 col-form-label required  fs-6">
+                  Nombre de Usuario
+                </label>
+                <div class="col-lg-8">
+                  <input type="text" name="userNameAdm" class="form-control form-control-sm form-control-solid" placeholder="Nombre de Usuario" [(ngModel)]="userNameAdm">
+                </div>
+              </div>
+
+              <div class="row mb-6  px-5">
+                <label for="" class="col-lg-4 col-form-label required  fs-6">
+                  Email
+                </label>
+                <div class="col-lg-8">
+                  <input type="email" name="emailAdm" class="form-control form-control-sm form-control-solid" placeholder="Correo Electrónico" [(ngModel)]="emailAdm">
+                </div>
+              </div>
+
+              <div class="row mb-6  px-5">
+                <label for="" class="col-lg-4 col-form-label required  fs-6">
+                  Numero de Celular
+                </label>
+                <div class="col-lg-8">
+                  <input type="text" name="phoneNumberAdm" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="phoneNumberAdm">
+                </div>
+              </div>
+
+              <div class="row mb-6  px-5">
+                <label for="" class="col-lg-4 col-form-label required  fs-6">
+                  Nombre(s)
+                </label>
+                <div class="col-lg-8">
+                  <input type="text" name="firstNameAdm" class="form-control form-control-sm form-control-solid" placeholder="Nombre" [(ngModel)]="firstNameAdm">
+                </div>
+              </div>
+
+              <div class="row mb-6  px-5">
+                <label for="" class="col-lg-4 col-form-label required  fs-6">
+                  Apellido(s)
+                </label>
+                <div class="col-lg-8">
+                  <input type="text" name="lastNameAdm" class="form-control form-control-sm form-control-solid" placeholder="Apellido" [(ngModel)]="lastNameAdm">
+                </div>
+              </div>
+
+              <div class="row mb-6  px-5">
+                <label for="" class="col-lg-4 col-form-label required  fs-6">
+                  Documento de Identidad
+                </label>
+                <div class="col-lg-8">
+                  <input type="text" name="documentNumberAdm" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="documentNumberAdm">
+                </div>
+              </div>
+
+              <div class="row mb-6  px-5">
+                <label for="" class="col-lg-4 col-form-label required  fs-6">
+                  Genero
+                </label>
+                <div class="col-lg-4" *ngFor="let sexAll of sexAlls">
+                  <label class="form-check-label ps-2" for="{{sexAll}}">
+                    <input class="form-check-input" id="{{sexAll}}" [value]='sexAll' type="radio" name="sexAlls" [(ngModel)]="genderAdm">
+                    {{sexAll}}
+                  </label>
+                </div>
+              </div>
+
+              <div class="row mb-6  px-5">
+                <label for="" class="col-lg-4 col-form-label required  fs-6">
+                  Fecha de Nacimiento
+                </label>
+                <div class="col-lg-8">
+                  <input type="date" name="birthdateAdm" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="birthdateAdm">
+                </div>
+              </div>
+
+              <div class="row mb-6  px-5">
+                <label for="staticNameCategory" class="col-lg-4 col-form-label required  fs-6">Direccion del Cliente </label>
+                <div class=" col-lg-8">
+                  <input type="text" name="direccionAdm" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="direccionAdm">
+                </div>
+              </div>
+
+              <h3 class="fw-bolder mb-5">Imagenes</h3>
+
+              <div class="d-flex flex-center h-300px">
+                <img
+                    src="assets/img/perfil1.png"
+                    data-src="assets/img/perfil2.png"
+                    class="rounded mx-auto d-block"
+                    alt=""
+                />
+              </div>
+              <div class="fv-row mb-10">
+                <button type="submit" class="btn btn-primary w-100" data-bs-dismiss="modal"  style="background-color: #161654; color: white">Crear Nuevo Cliente</button>
+              </div>
+
+          </form>
+
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

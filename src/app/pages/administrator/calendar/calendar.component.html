@@ -34,10 +34,10 @@
                 </div>
               </div> -->
                 <div class="card-title">
-                    <div class="d-flex align-items-center position-relative my-1">
+                    <div class="d-flex align-items-center position-relative my-1 ">
                       <select class="form-select form-select-lg form-select-solid w-100"  [(ngModel)]="selectedEmployeId" (change)="getCalendarUser()">
                         <option  [value]="0">Seleccione un empleado</option>
-                        <option *ngFor="let employee of employeesAlt;" [value]="employee.id" >{{employee.userName}}</option>
+                        <option *ngFor="let employee of employeesAll;" [value]="employee.id" >{{employee.userName}}</option>
                       </select>
                     </div>
                 </div>

@@ -80,14 +80,45 @@
 
                 <h3 class="fw-bolder mb-5">Imagenes</h3>
 
-                <div class="d-flex flex-center h-300px">
+                <!-- <div class="d-flex flex-center h-300px">
                   <img
                       src="assets/img/perfil1.png"
                       data-src="assets/img/perfil2.png"
                       class="rounded mx-auto d-block"
                       alt=""
                   />
+                </div> -->
+
+                <div class="d-flex flex-center flex-column">
+                  <!--IMAGEN -->
+                  <div class="image-input image-input-wrapper" data-kt-image-input="true" style="background-image: url(assets/img/intro-perfil.png)">
+                    <img *ngIf="productOne.productImagesResponses[0]?.imageProduct===null && productImageCargarOne===''" src="assets/img/intro-perfil.png" class="image-input-wrapper w-200px h-200px" alt="">
+                    <img *ngIf="productOne.productImagesResponses[0]?.imageProduct!==null && productImageCargarOne===''" src="data:image/png;base64,{{productOne.productImagesResponses[0].imageProduct}}" class="image-input-wrapper w-200px h-200px">
+                    <img *ngIf="productImageCargarOne!==''" src="{{productImageCargarOne}}" class="image-input-wrapper w-200px h-200px" >
+
+                    <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                          data-kt-image-input-action="change"
+                          title="Cambiar Imagen">
+                      <i class="bi bi-pencil-fill"><span class="path1"></span><span class="path2"></span></i>
+                      <input #myInputProduct type="file" name="avatar" accept=".png, .jpg, .jpeg" (change)="cargarProductImagen($event)"/>
+                      <input type="hidden" name="avatar_remove" />
+                    </label>
+
+                    <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" *ngIf="productImageCargarOne!==''"
+                          data-kt-image-input-action="remove"
+                          (click)="eliminarProductImagen()"
+                          title="Eliminar Imagen">
+                      <i class="bi bi-x-lg"></i>
+                    </span>
+                  </div>
+              <!--Boton Guardar Imagen-->
+                    <span title="Guardar Imagen" *ngIf="productImageCargarOne!==''" class="mt-2">
+                      <a  class="btn btn-sm btn-light-primary" style="background-color: #161654; color: white" (click)="guardarProductImagen()">Guardar Imagen</a>
+                    </span>
                 </div>
+
+
+
 
                 <div class="mb-5 mt-8">
                   <div class="form-group row">
@@ -104,7 +135,7 @@
                             <h5>{{colorAll1.stockColor}}</h5>
                           </div>
                         </div>
-                        <a href="#" class="btn btn-icon btn-primary mx-3"  style="height: 45px; width: 50px; " >
+                        <a href="#" class="btn btn-icon btn-primary mx-3"  style="height: 45px; width: 50px; " data-bs-toggle="modal" data-bs-target="#kt_modal_see_colors">
                           <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="" viewBox="0 0 16 16">
                             <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
                             <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
@@ -179,4 +210,69 @@
 
 
 
+</div>
+
+
+
+
+
+<div class="modal fade" id="kt_modal_see_colors" tabindex="-1" aria-hidden="true" >
+  <div class="modal-dialog modal-dialog-centered mw-450px">
+      <div class="modal-content">
+          <!--begin::Modal header-->
+          <div class="modal-header">
+              <!--begin::Modal title-->
+              <h2 class="fw-bolder">Color del Material</h2>
+              <!--end::Modal title-->
+              <!--begin::Close-->
+              <div id="kt_customers_export_close" class="btn btn-icon btn-sm btn-active-icon-primary">
+                  <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                  <span class="svg-icon svg-icon-1" data-bs-dismiss="modal">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="" />
+                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="" />
+              </svg>
+            </span>
+                  <!--end::Svg Icon-->
+              </div>
+              <!--end::Close-->
+          </div>
+          <div class="modal-body scroll-y">
+            <div class="form-group row">
+              <label for="" class="col-lg-4 fs-5 fw-bold d-flex justify-content-center align-items-center">
+                Colores&nbsp;
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                </svg>
+              </label>
+              <div class="col-lg-8">
+                <select class="form-select form-select-sm form-select-solid" id="" data-control="select" data-placeholder="Seleccionar la opcion" [(ngModel)]="selectedColorsId" >
+                  <option [value]="0" selected >Seleccionar el Color</option>
+                  <option *ngFor="let colorsNameAll of alumColorAll;" [value]="colorsNameAll.colorName">{{colorsNameAll.colorName}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="m-10"></div>
+            <div class="form-group row">
+              <label for="" class="col-lg-4 fs-5 fw-bold d-flex justify-content-center align-items-center">
+                Cantidad&nbsp;
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                </svg>
+              </label>
+              <div class="col-lg-8">
+                <input min="1" type="number" name="stockColor" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="stockColorData">
+              </div>
+            </div>
+            <div class="m-10"></div>
+              <!-- <div class="d-flex justify-content-end">
+                  <button type="reset" class="btn btn-light btn-active-light-primary me-2" data-bs-dismiss="modal" data-kt-customer-table-filter="reset" (click)="resetFilter()">Restablecer</button>
+                  <button type="submit" class="btn btn-primary" data-bs-toggle="modal"  (click)="validFilter()">Aplicar</button>
+              </div> -->
+              <div class="fv-row mb-10">
+                <button type="submit" class="btn btn-primary w-100" data-bs-dismiss="modal"  style="background-color: #161654; color: white" [disabled]="selectedColorsId=='0' || stockColorData=='' || stockColorData===null" (click)="updateOneProductColorById()">Agregar Color</button>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>

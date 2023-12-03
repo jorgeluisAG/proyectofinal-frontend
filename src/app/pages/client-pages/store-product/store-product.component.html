@@ -116,12 +116,15 @@
 
                     </div> -->
                     <!-- <div class="card-body algo"> -->
-                      <img class="rounded-3" src="data:image/png;base64,{{product.productImagesResponses[0].imageProduct}}" alt="" style="width: 100; height: 175px;">
+
+                      <img *ngIf="product.productImagesResponses[0]?.imageProduct" class="rounded-3" src="data:image/png;base64,{{product.productImagesResponses[0].imageProduct}}" alt="" style="width: 100; height: 175px;">
+                      <img *ngIf="!product.productImagesResponses[0]?.imageProduct" class="rounded-3" src="/assets/img/intro-perfil.png" alt="" style="width: 100; height: 175px;">
+
                       <div class="m-2"></div>
                       <h3 class="card-title">{{product.nameProduct.toUpperCase()}}</h3>
                       <div class="m-8"></div>
                         <div class="text">
-                          Cantidad: {{product.price}}
+                          Cantidad: {{product.stockTotal}}
                         </div>
                         <!-- <div>
                           {{product.id}}
