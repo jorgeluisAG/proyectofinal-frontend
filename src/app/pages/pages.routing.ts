@@ -18,6 +18,8 @@ import { CustomerDataComponent } from './administrator/customer/customer-data/cu
 import { PersonalDataComponent } from './administrator/personal/personal-data/personal-data.component';
 import { ProductSaleComponent } from './client-pages/product-sale/product-sale.component';
 import { CalendarComponent } from './administrator/calendar/calendar.component';
+import { NewUserComponent } from './administrator/new-user/new-user.component';
+import { NewProductComponent } from './administrator/new-product/new-product.component';
 
 const pagesRoutes: Routes = [
 
@@ -34,6 +36,13 @@ const pagesRoutes: Routes = [
         data: { title: 'Panel de Usuario'},
         // canActivate: [AuthGuard],
         // canActivate: [UserGuard]
+    },
+    {
+      path: 'nuevo-producto',
+      component: NewProductComponent,
+      data: { title: 'Area del nuevo producto'},
+      // canActivate: [AuthGuard],
+      // canActivate: [UserGuard]
     },
     {
       path: 'inventario',
@@ -71,6 +80,13 @@ const pagesRoutes: Routes = [
       path: 'calendario',
       component: CalendarComponent,
       data: { title: 'Area del Historial de Vehiculos'},
+      // canActivate: [AuthGuard],
+      // canActivate: [UserGuard]
+    },
+    {
+      path: 'nuevo-usuario',
+      component: NewUserComponent,
+      data: { title: 'Area del nuevo usuario'},
       // canActivate: [AuthGuard],
       // canActivate: [UserGuard]
     },

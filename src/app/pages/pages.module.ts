@@ -23,6 +23,8 @@ import { ProductSaleComponent } from './client-pages/product-sale/product-sale.c
 import { CalendarComponent } from './administrator/calendar/calendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { NewUserComponent } from './administrator/new-user/new-user.component';
+import { NewProductComponent } from './administrator/new-product/new-product.component';
 
 @NgModule({
     declarations: [
@@ -39,6 +41,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
         PersonalDataComponent,
         ProductSaleComponent,
         CalendarComponent,
+        NewUserComponent,
+        NewProductComponent,
   ],
     imports: [
 
