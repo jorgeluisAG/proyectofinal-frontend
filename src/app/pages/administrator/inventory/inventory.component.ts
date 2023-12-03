@@ -231,6 +231,7 @@ export class InventoryComponent implements OnInit {
     .subscribe((resp) => {
       this.productOne = resp.body;
       //this.productUpdate = this.product;
+      console.log("this.productOne")
       console.log(this.productOne)
     });
   }

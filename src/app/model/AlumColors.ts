@@ -3,6 +3,7 @@ export class AlumColors {
     public id: number,
     public colorName: string,
     public hex: string,
+    public stockColor?: any,
   ) { }
 }
 
