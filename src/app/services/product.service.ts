@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import { ProductColorDTO } from '../model/DTO/ProductColorDTO';
 import { ProductDTO } from '../model/DTO/ProductDTO';
+import { ProductNewDTO } from '../model/DTO/ProductNewDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -69,8 +70,8 @@ export class ProductService {
     return this.http.put(`${this.projectUrl}/image/update`,imageProduct, {headers: this.header, observe: 'response'});
   }
 
-  createProductNew(productDTO: ProductDTO): Observable<HttpResponse<any>> {
-    return this.http.put(`${this.projectUrl}/confirm`,productDTO, {headers: this.header, observe: 'response'});
+  createProductNew(productNewDTO: ProductNewDTO): Observable<HttpResponse<any>> {
+    return this.http.post(`${this.projectUrl}/confirm`,productNewDTO, {headers: this.header, observe: 'response'});
   }
 
 

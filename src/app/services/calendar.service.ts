@@ -31,5 +31,9 @@ export class CalendarService {
           observe: 'response',
           headers: this.headers
       });
-  };
+    };
+
+    getEmployeesWorkCalendarAll(): Observable<HttpResponse<any>> {
+      return this.http.get(`${this.projectUrl}/list/all`, {headers: this.headers, observe: 'response'});
+    };
 }

@@ -12,6 +12,7 @@ import { AddressDTO } from 'src/app/model/DTO/AddressDTO';
 import { UserCreateNewDTO } from 'src/app/model/DTO/UserCreateNewDTO';
 import { PersonalService } from 'src/app/services/personal.service';
 import { HttpResponse } from '@angular/common/http';
+import Swal from 'sweetalert2';
 
 let eventGuid = 0;
 
@@ -143,8 +144,37 @@ export class CalendarComponent implements OnInit {
 
   }
 
-  handleDateSelect(selectInfo: DateSelectArg) {
-    const title = prompt('Ingrese el Mensaje o Tarea del Empleado');
+  async handleDateSelect(selectInfo: DateSelectArg) {
+
+    // Swal.fire({
+    //   title: 'Asignar Trabajo o Área de Tarea',
+    //   text: 'Ingrese el Mensaje o Tarea del Empleado',
+    //   icon: 'success',
+    //   buttonsStyling: false,
+    //   confirmButtonText: "Cerrar",
+    //   customClass: {
+    //       confirmButton: 'btn btn-primary'
+    //   }
+    // }).then(r => {
+    //   //$('#kt_modal_update_profile').modal('hide');
+    //   // this.router.navigate(['/clientes']);
+    // });
+
+    const { value: text } = await Swal.fire({
+      input: "textarea",
+      inputLabel: "Message",
+      inputPlaceholder: "Type your message here...",
+      inputAttributes: {
+        "aria-label": "Type your message here"
+      },
+      showCancelButton: true
+    });
+    if (text) {
+      // Swal.fire(text);
+      var title=text;
+    }
+
+    // const title = prompt('Ingrese el Mensaje o Tarea del Empleado');
     const calendarApi = selectInfo.view.calendar;
 
     calendarApi.unselect(); // clear date selection

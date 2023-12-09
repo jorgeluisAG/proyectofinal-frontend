@@ -181,9 +181,9 @@
                 <div class="form-group row">
                   <div class="col-auto">
                     <div class="row pb-5">
-                      <label for="" class="fw-bolder pt-2 pb-2">Numeros de Series</label>
-                      <div *ngFor="let seriesAlls of seriesAll" class="card border border-primary col-auto m-2" [ngStyle]="{'background': seriesAlls.check==true ? 'rgb(130, 130, 221)' : 'none' }"  style="cursor: pointer" (click)="seriesAlls.check=!seriesAlls.check">
-                        <div  class="col-auto text-primary pt-2">
+                      <h4 for="" class="label label-large pt-2">Color del Material</h4>
+                      <div *ngFor="let seriesAlls of seriesAll" class="card border border-primary col-auto m-2" [ngStyle]="{'background': seriesAlls.check==true ? '#51d1f6' : 'none' }"  style="cursor: pointer" (click)="seriesAlls.check=!seriesAlls.check">
+                        <div  class="col-auto text-dark ">
                           <p  class="card-text">{{seriesAlls.seriesProduct}}</p>
                         </div>
                       </div>
@@ -253,7 +253,7 @@
                 />
               </div> -->
               <div class="fv-row mb-10">
-                <button type="submit" class="btn btn-primary w-100" style="background-color: #161654; color: white" (click)="createOneProductNew()">Crear Nuevo Producto</button>
+                <button type="submit" class="btn btn-primary w-100" style="background-color: #161654; color: white" (click)="createOneProductNewPerfil()">Crear Nuevo Producto</button>
               </div>
 
           <!-- </form> -->
@@ -403,7 +403,7 @@
                 />
               </div> -->
               <div class="fv-row mb-10">
-                <button type="submit" class="btn btn-primary w-100" style="background-color: #161654; color: white" (click)="createOneProductNew()">Crear Nuevo Producto</button>
+                <button type="submit" class="btn btn-primary w-100" style="background-color: #161654; color: white" (click)="createOneProductNewPanel()">Crear Nuevo Producto</button>
               </div>
 
           <!-- </form> -->
@@ -481,7 +481,7 @@
                 />
               </div> -->
               <div class="fv-row mb-10">
-                <button type="submit" class="btn btn-primary w-100" data-bs-dismiss="modal"  style="background-color: #161654; color: white" (click)="createOneProductNew()">Crear Nuevo Producto</button>
+                <button type="submit" class="btn btn-primary w-100" data-bs-dismiss="modal"  style="background-color: #161654; color: white" (click)="createOneProductNewCintas()">Crear Nuevo Producto</button>
               </div>
 
           <!-- </form> -->
@@ -549,7 +549,7 @@
 
 
               <div class="fv-row mb-10">
-                <button type="submit" class="btn btn-primary w-100" data-bs-dismiss="modal"  style="background-color: #161654; color: white" (click)="createOneProductNew()">Crear Nuevo Producto</button>
+                <button type="submit" class="btn btn-primary w-100" data-bs-dismiss="modal"  style="background-color: #161654; color: white" (click)="createOneProductNewSilicona()">Crear Nuevo Producto</button>
               </div>
 
           <!-- </form> -->

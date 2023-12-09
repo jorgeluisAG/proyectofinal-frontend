@@ -20,6 +20,7 @@ import { ProductSaleComponent } from './client-pages/product-sale/product-sale.c
 import { CalendarComponent } from './administrator/calendar/calendar.component';
 import { NewUserComponent } from './administrator/new-user/new-user.component';
 import { NewProductComponent } from './administrator/new-product/new-product.component';
+import { WorkListComponent } from './administrator/calendar/work-list/work-list.component';
 
 const pagesRoutes: Routes = [
 
@@ -80,6 +81,13 @@ const pagesRoutes: Routes = [
       path: 'calendario',
       component: CalendarComponent,
       data: { title: 'Area del Historial de Vehiculos'},
+      // canActivate: [AuthGuard],
+      // canActivate: [UserGuard]
+    },
+    {
+      path: 'tareas-asignadas',
+      component: WorkListComponent,
+      data: { title: 'Area del tareas asignadas'},
       // canActivate: [AuthGuard],
       // canActivate: [UserGuard]
     },

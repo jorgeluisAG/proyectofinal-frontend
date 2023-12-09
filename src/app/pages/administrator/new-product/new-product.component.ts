@@ -7,6 +7,7 @@ import { Category } from 'src/app/model/Category';
 import { ProductColorDTO } from 'src/app/model/DTO/ProductColorDTO';
 import { ProductDTO } from 'src/app/model/DTO/ProductDTO';
 import { ProductImagesDTO } from 'src/app/model/DTO/ProductImagesDTO';
+import { ProductNewDTO } from 'src/app/model/DTO/ProductNewDTO';
 import { ProductSeriesDTO } from 'src/app/model/DTO/ProductSeriesDTO';
 import { ProductService } from 'src/app/services/product.service';
 import { LoaderService } from 'src/app/shared/loader';
@@ -42,11 +43,11 @@ export class NewProductComponent implements OnInit {
   seriesAllSave: any[] = [];
 
   category: Category = new Category(0,'');
-  productColorResponses: Array<ProductColorDTO> = [];
-  productSeriesResponses: Array<ProductSeriesDTO> = [];
-  productImagesResponses: Array<ProductImagesDTO> = [];
+  alumColorStockRequests: Array<ProductColorDTO> = [];
+  aluminumSeriesRequests: Array<ProductSeriesDTO> = [];
+  productImagesRequests: Array<ProductImagesDTO> = [];
 
-  productOne: ProductDTO = new ProductDTO(0,'','',0,0,'',false,this.category,this.productColorResponses,this.productSeriesResponses,this.productImagesResponses);
+  productOne: ProductNewDTO = new ProductNewDTO(0,'','',0,0,'',false,0,this.alumColorStockRequests,this.aluminumSeriesRequests,this.productImagesRequests);
 
   constructor(
     private router: Router,
@@ -89,16 +90,19 @@ export class NewProductComponent implements OnInit {
     })
   }
 
-  createOneProductNew(){
+  createOneProductNewPerfil(){
     this.alumColorAllSave= [];
     this.seriesAllSave= [];
+
+    console.log(this.alumColorAll);
 
     this.alumColorAll.forEach(x=>{
       if(x.stockColor!=null){
         this.alumColorAllSave.push({
           id: x.id,
           colorName: x.colorName,
-          hex: x.hex
+          hex: x.hex,
+          stockColor: x.stockColor
         })
       }
     })
@@ -114,6 +118,7 @@ export class NewProductComponent implements OnInit {
 
     console.log(this.opcionesSelect);
     console.log(this.alumColorAllSave);
+    console.log(this.seriesAllSave);
     try{
       if(this.nameProduct?.length===0 || this.nameProduct===null){
         throw "Nombre del producto no ingresado";
@@ -131,7 +136,17 @@ export class NewProductComponent implements OnInit {
         throw "No ingresaste ninguna serie del producto";
       }
 
-      this.guardarDatos();
+      this.productOne.nameProduct=this.nameProduct;
+      this.productOne.descriptionProduct=this.description;
+      this.productOne.price=parseInt(this.price);
+      this.productOne.sizeProduct=this.sizeProduct+" metros";
+      this.productOne.status=true;
+      this.productOne.categoryId=1;
+      this.productOne.alumColorStockRequests=this.alumColorAllSave;
+      this.productOne.aluminumSeriesRequests=this.seriesAllSave;
+
+      console.log(this.productOne);
+      this.savedData(this.productOne);
     }
     catch(error){
 
@@ -170,6 +185,18 @@ export class NewProductComponent implements OnInit {
   //   console.log(json);
   }
 
+  createOneProductNewPanel(){
+
+  }
+
+  createOneProductNewCintas(){
+
+  }
+
+  createOneProductNewSilicona(){
+
+  }
+
   saltarError(error:any){
     console.log(error)
         Swal.fire({
@@ -184,9 +211,36 @@ export class NewProductComponent implements OnInit {
     });
   }
 
-  guardarDatos(){
+  savedData(productNewDTO: ProductNewDTO){
+    console.log(productNewDTO);
+    console.log("SE GUARDO");
 
-    console.log("SE GUARDO")
+    this.productService.createProductNew(productNewDTO)
+      .subscribe((resp) => {
+        Swal.fire({
+          title: 'Se creo el producto exitosamente',
+          text: 'Datos guardados exitosamente',
+          icon: 'success',
+          buttonsStyling: false,
+          confirmButtonText: "Cerrar",
+          customClass: {
+              confirmButton: 'btn btn-success'
+          }
+      }).then(r => {
+        this.router.navigate(['/inventario'])
+      });
+    }, error => {
+      Swal.fire({
+        title: 'Error al Crear el Producto',
+        text: 'Intente nuevamente',
+        icon: 'error',
+        buttonsStyling: false,
+        confirmButtonText: "Cerrar",
+        customClass: {
+            confirmButton: 'btn btn-danger'
+        }
+      }).then(r => {});
+    });
 
   }
 
