@@ -71,47 +71,10 @@ export class RegistrationComponent implements OnInit {
   changeFormat(){
     let ChangedFormat = this.pipe.transform(this.today, 'dd/MM/YYYY');
     this.changedDate = ChangedFormat;
-    console.log(this.changedDate);
-    console.log(this.today);
+    // console.log(this.changedDate);
+    // console.log(this.today);
   }
 
-  // loadLoginForm() {
-  //   this.loginForm = new FormGroup({
-  //       userName: new FormControl(this.user.userName, [
-  //         Validators.required,
-  //         Validators.minLength(4)
-  //       ]),
-  //       email: new FormControl(this.user.email, [
-  //         Validators.required,
-  //         Validators.minLength(4),
-  //         Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")
-  //       ]),
-  //       firstName: new FormControl(this.user.firstName, [
-  //         Validators.required,
-  //         Validators.minLength(2)
-  //       ]),
-  //       lastName: new FormControl(this.user.lastName, [
-  //         Validators.required,
-  //         Validators.minLength(2)
-  //       ]),
-  //       phone: new FormControl(this.user.phone, [
-  //         Validators.required,
-  //         Validators.minLength(2)
-  //       ]),
-  //       documentNumber: new FormControl(this.user.documentNumber, [
-  //         Validators.required,
-  //         Validators.minLength(5)
-  //       ]),
-  //       password: new FormControl(this.user.password, [
-  //         Validators.required,
-  //         Validators.minLength(5)
-  //       ]),
-  //       passwordC: new FormControl(this.passwordC, [
-  //         Validators.required,
-  //         Validators.minLength(5)
-  //     ]),
-  //   });
-  // }
 
   createUser(){
     this.user.userName=this.userName;
@@ -169,9 +132,9 @@ export class RegistrationComponent implements OnInit {
           }
       }).then(r => {});
     }
-    console.log(this.user.userName)
-    console.log(this.userName)
-    console.log(this.gender)
+    // console.log(this.user.userName)
+    // console.log(this.userName)
+    // console.log(this.gender)
 
   }
 

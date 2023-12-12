@@ -67,12 +67,12 @@ export class ProfileComponent implements OnInit {
         //this.userService.getUserDate("13d96253-3048-4e93-ba50-28512be4fcfd")
         // @ts-ignore
         let idUserAuthorized = JSON.parse(localStorage?.getItem('dataUser')).id;
-        console.log(idUserAuthorized);
+        // console.log(idUserAuthorized);
         this.userService.getUserDate(idUserAuthorized)
             .subscribe((resp: HttpResponse<any>) => {
                 this.user = resp.body;
                 this.userUpdate = this.user;
-                console.log(this.user)
+                // console.log(this.user)
 
                 let date = new Date(this.user.person.birthdate).toLocaleDateString('en-ES');
                 //console.log(this.user.addressrequests[0].description)
@@ -203,13 +203,13 @@ export class ProfileComponent implements OnInit {
     }
 
     cargaImagen(event: any) {
-      console.log("CARGA IMAGE")
+      // console.log("CARGA IMAGE")
       let file = event.target.files[0];
       let reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
         this.userCargaImagen=reader.result+"";
-        console.log(reader.result);
+        // console.log(reader.result);
     };
     }
     eliminarImage(){
@@ -219,9 +219,9 @@ export class ProfileComponent implements OnInit {
     }
 
     reset() {
-      console.log(this.myInputVariable.nativeElement.value)
+      // console.log(this.myInputVariable.nativeElement.value)
       this.myInputVariable.nativeElement.value = "";
-      console.log(this.myInputVariable.nativeElement.value)
+      // console.log(this.myInputVariable.nativeElement.value)
   }
 
   guardarImagen(){
@@ -229,13 +229,13 @@ export class ProfileComponent implements OnInit {
       id: this.user.id,
       imageUser: this.userCargaImagen.split(",").pop(),
     };
-    console.log(valores)
+    // console.log(valores)
     this.userService.putImagenUser(valores)
             .subscribe((resp: HttpResponse<any>) => {
                 this.user = resp.body;
                 this.eliminarImage();
-                console.log(this.user)
-                console.log(valores.imageUser);
+                // console.log(this.user)
+                // console.log(valores.imageUser);
                 localStorage.setItem('imagUser', valores.imageUser+'');
                 Swal.fire({
                   title: 'Imagen Actulizada',

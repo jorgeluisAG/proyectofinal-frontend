@@ -20,13 +20,13 @@ export class HeaderComponent implements OnInit {
 
     this.imageNewUser= (localStorage.getItem('imagUser')+'');
     this.personalDataUser = JSON.parse(localStorage.getItem('dataUser')+'');
-    console.log(this.personalDataUser)
+    // console.log(this.personalDataUser)
   }
 
   phofile(){
     // @ts-ignore
     let idUserAuthorized = JSON.parse(localStorage?.getItem('dataUser')).id;
-    console.log(idUserAuthorized)
+    // console.log(idUserAuthorized)
     this.router.navigate(['/perfil'])
     //this.router.navigate(['/perfil',this.authService.getUser().id]).then();
 }

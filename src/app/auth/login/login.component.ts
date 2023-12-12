@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        console.log("ENTRO")
+        // console.log("ENTRO")
         this.isForgotPassword = false;
         this.confirmEmail();
         this.loadLoginForm();
@@ -78,7 +78,7 @@ export class LoginComponent implements OnInit {
             ]),
         });
 
-        console.log(this.user.userName)
+        // console.log(this.user.userName)
     }
     async login() {
         this.logout();
@@ -101,7 +101,7 @@ export class LoginComponent implements OnInit {
                   if ( resp && resp.body.id_token ) {
                       await this.authService.saveLogin(resp.body.user, resp.body.id_token);
                       this.router.navigate([resp.body.user.authority?.id === 'ADMIN' ? '/perfil' : '/perfil']).then(r => {
-                          console.log('AUTORIZADO');
+                          // console.log('AUTORIZADO');
                       });
                   } else {
                       Swal.fire({

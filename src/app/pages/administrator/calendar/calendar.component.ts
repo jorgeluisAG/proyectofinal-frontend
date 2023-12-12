@@ -69,14 +69,13 @@ export class CalendarComponent implements OnInit {
   }
 
   getEmployeesListAll(){
-    console.log(("Cliente 2"))
     this.personalService.getUserEmployeesAll()
     .subscribe((resp: HttpResponse<any>) => {
-      console.log(resp.body)
+      // console.log(resp.body)
       this.employeesAll = resp.body;
       // this.employeesAlt = resp.body;
-      console.log(this.employeesAll)
-      console.log(this.employeesAlt)
+      // console.log(this.employeesAll)
+
     });
   }
 
@@ -88,7 +87,7 @@ export class CalendarComponent implements OnInit {
       }
     }
     //this.prueba = this.employeesAlt.filter(y=> y.id === parseInt(this.selectedEmployeId))[0].userName;
-    console.log("daleee " + this.selectedEmployeId)
+    // console.log("daleee " + this.selectedEmployeId)
     // console.log("Aber  "+ this.prueba)
     //this.nombreUsuario= this.cars.filter(x=> x.id=== parseInt(this.selectedPersonId))[0].name;
     // console.log("XD  "+ this.nombreUsuario)
@@ -121,8 +120,8 @@ export class CalendarComponent implements OnInit {
         this.cargarCalendario()
 
 
-        console.log(this.datosEventoUsuario)
-        console.log(this.datosUsuarioColor1)
+        // console.log(this.datosEventoUsuario)
+        // console.log(this.datosUsuarioColor1)
       })
   }
 
@@ -200,9 +199,9 @@ export class CalendarComponent implements OnInit {
         end: selectInfo.endStr,
         allDay: selectInfo.allDay
       });
-      console.log(selectInfo.startStr)
-      console.log(selectInfo.endStr)
-      console.log(selectInfo.allDay)
+      // console.log(selectInfo.startStr)
+      // console.log(selectInfo.endStr)
+      // console.log(selectInfo.allDay)
       let addDato = {
         id: this.selectedEmployeId,
         title: title,
@@ -231,10 +230,10 @@ export class CalendarComponent implements OnInit {
       cancelButtonText: '¡cancelar!',
       reverseButtons: true
     }).then((result) => {
-      console.log("EntroAqui 1");
+      // console.log("EntroAqui 1");
       if (result.isConfirmed) {
-        console.log("EntroAqui 2");
-        console.log(parseInt(clickInfo.event.id));
+        // console.log("EntroAqui 2");
+        // console.log(parseInt(clickInfo.event.id));
         this.calendarService.deleteWorkCalendarById(parseInt(clickInfo.event.id))
           .subscribe((resp) => {
             clickInfo.event.remove();
@@ -293,8 +292,8 @@ export class CalendarComponent implements OnInit {
         fechaEndOf=this.fechaInicio+"T"+this.horaFinal;
       }
     }
-    console.log(this.fechaInicio)
-    console.log(this.fechaFinal)
+    // console.log(this.fechaInicio)
+    // console.log(this.fechaFinal)
     let addDato = {
       id: this.createEventId(),
       title: this.descripcion,
@@ -311,17 +310,17 @@ export class CalendarComponent implements OnInit {
       color: '#FFFFFF'
     }
     this.datosUsuarioColor1.push(addDato1)
-    console.log(this.datosUsuarioColor1)
+    // console.log(this.datosUsuarioColor1)
     this.calendarOptions!.initialEvents = this.datosUsuarioColor1;
 
   }
 
   guardarDatosPost(addDato: any){
     addDato.id = this.selectedEmployeId;
-    console.log(addDato);
+    // console.log(addDato);
     this.calendarService.postCalendarUser(addDato)
       .subscribe(resp =>{
-        console.log(resp.body);
+        // console.log(resp.body);
         if(this.selectedEmployeId==="0"){
           this.nombreUsuario = "";
         }

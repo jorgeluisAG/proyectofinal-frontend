@@ -79,14 +79,14 @@ export class CalendarPersonalComponent implements OnInit {
   }
 
   getEmployeesListAll(){
-    console.log(("Cliente 2"))
+    // console.log(("Cliente 2"))
     this.personalService.getUserEmployeesAll()
     .subscribe((resp: HttpResponse<any>) => {
-      console.log(resp.body)
+      // console.log(resp.body)
       this.employeesAll = resp.body;
       // this.employeesAlt = resp.body;
-      console.log(this.employeesAll)
-      console.log(this.employeesAlt)
+      // console.log(this.employeesAll)
+      // console.log(this.employeesAlt)
     });
   }
 
@@ -121,7 +121,7 @@ export class CalendarPersonalComponent implements OnInit {
         })
         this.cargarCalendario()
 
-        console.log(this.datosEventoUsuario)
+        // console.log(this.datosEventoUsuario)
       })
   }
 
@@ -185,9 +185,9 @@ export class CalendarPersonalComponent implements OnInit {
         end: selectInfo.endStr,
         allDay: selectInfo.allDay
       });
-      console.log(selectInfo.startStr)
-      console.log(selectInfo.endStr)
-      console.log(selectInfo.allDay)
+      // console.log(selectInfo.startStr)
+      // console.log(selectInfo.endStr)
+      // console.log(selectInfo.allDay)
       let addDato = {
         id: this.selectedEmployeId,
         title: title,
@@ -240,8 +240,8 @@ export class CalendarPersonalComponent implements OnInit {
         fechaEndOf=this.fechaInicio+"T"+this.horaFinal;
       }
     }
-    console.log(this.fechaInicio)
-    console.log(this.fechaFinal)
+    // console.log(this.fechaInicio)
+    // console.log(this.fechaFinal)
     let addDato = {
       id: this.createEventId(),
       title: this.descripcion,
@@ -250,7 +250,7 @@ export class CalendarPersonalComponent implements OnInit {
     }
     this.guardarDatosPost(addDato)
     this.datosEventoUsuario.push(addDato)
-    console.log(this.datosEventoUsuario)
+    // console.log(this.datosEventoUsuario)
     this.calendarOptions!.initialEvents = this.datosEventoUsuario;
 
   }
@@ -259,7 +259,7 @@ export class CalendarPersonalComponent implements OnInit {
     addDato.id = this.selectedEmployeId;
     this.calendarService.postCalendarUser(addDato)
       .subscribe(resp =>{
-        console.log(resp.body);
+        // console.log(resp.body);
         if(this.selectedEmployeId==="0"){
           this.nombreUsuario = "";
         }
@@ -284,7 +284,7 @@ export class CalendarPersonalComponent implements OnInit {
       buttonsStyling: true,
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log("SE ELIMINO LA TAREA");
+        // console.log("SE ELIMINO LA TAREA");
           // $.ajax({
           //     //url: 'usuario/eliminar/' + 1,
           //     method: 'DELETE',

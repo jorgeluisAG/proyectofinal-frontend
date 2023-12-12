@@ -54,7 +54,7 @@ export class ProductSaleComponent implements OnInit {
     this.productService.getProductById(this.id)
         .subscribe((resp) => {
           this.productOne = resp.body;
-          console.log(this.productOne)
+          // console.log(this.productOne)
     })
   }
 
@@ -64,7 +64,7 @@ export class ProductSaleComponent implements OnInit {
         .subscribe((resp) => {
           this.categoryAll = resp.body;
           //this.productUpdate = this.product;
-          console.log(this.categoryAll)
+          // console.log(this.categoryAll)
 
     })
   }

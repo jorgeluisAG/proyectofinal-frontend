@@ -60,7 +60,7 @@ export class PersonalComponent implements OnInit {
 
   ngOnInit(): void {
     //this.cargarDatos();
-    console.log("Cliente 1")
+    // console.log("Cliente 1")
     this.getPersonalListAll()
     this.changePersonal()
   }
@@ -72,22 +72,22 @@ export class PersonalComponent implements OnInit {
   }
 
   getPersonalListAll(){
-    console.log(("Cliente 2"))
+    // console.log(("Cliente 2"))
     this.personalService.getPersonalAll()
     .subscribe((resp: HttpResponse<any>) => {
-      console.log(resp.body)
+      // console.log(resp.body)
       this.personalOne = resp.body;
-      console.log(this.personalOne)
+      // console.log(this.personalOne)
     });
   }
 
 
   getDatatablesPersonals(){
     delay(500);
-    console.log("Cliente 3")
+    // console.log("Cliente 3")
     let cont =1;
     let url=`${this.projectUrl}/user`;
-    console.log(url)
+    // console.log(url)
     this.table = $("#personal_list_table").DataTable({
       //scrollY: "480px",
       searchDelay: 500,
@@ -220,7 +220,7 @@ export class PersonalComponent implements OnInit {
 
 
   watchPersonal(id: number) {
-    console.log(id);
+    // console.log(id);
     this.userService.getUserDate(id)
       .subscribe((resp) => {
         this.personalOne = resp.body;
@@ -229,11 +229,11 @@ export class PersonalComponent implements OnInit {
   }
   dataUpdatePersonal(id: string){
     this.router.navigate([`/personales/informacion/${id}`]);
-    console.log(id)
+    // console.log(id)
   }
 
   dataDeletedPersonal(id: number){
-    console.log(id);
+    // console.log(id);
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-success',
@@ -250,9 +250,9 @@ export class PersonalComponent implements OnInit {
       cancelButtonText: '¡No, cancelar!',
       reverseButtons: true
     }).then((result) => {
-      console.log("EntroAqui 1");
+      // console.log("EntroAqui 1");
       if (result.isConfirmed) {
-        console.log("EntroAqui 2");
+        // console.log("EntroAqui 2");
         this.userService.deletePersonalById(id)
           .subscribe((resp) => {
             this.getDatatablesPersonals();

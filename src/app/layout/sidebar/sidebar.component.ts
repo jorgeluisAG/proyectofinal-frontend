@@ -23,8 +23,8 @@ export class SidebarComponent implements OnInit {
 
     this.imageNewUser= (localStorage.getItem('imagUser')+'');
     this.personalDataUser = JSON.parse(localStorage.getItem('dataUser')+'');
-    console.log(this.role);
-    console.log(this.personalDataUser.id);
+    // console.log(this.role);
+    // console.log(this.personalDataUser.id);
   }
 
 

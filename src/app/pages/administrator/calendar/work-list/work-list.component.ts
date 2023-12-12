@@ -54,16 +54,16 @@ export class WorkListComponent implements OnInit {
     this.calendarService.getEmployeesWorkCalendarAll()
           .subscribe((resp: HttpResponse<any>) =>{
             this.workCalendar = resp.body;
-            console.log(this.workCalendar);
+            // console.log(this.workCalendar);
           })
   }
 
   getDatatablesWorkCalendar(){
     delay(500);
-    console.log("Cliente 3")
+    // console.log("Cliente 3")
     let cont =1;
     let url=`${this.projectUrl}/calendar/list/all`;
-    console.log(url)
+    // console.log(url)
     this.table = $("#work_calendar_list").DataTable({
       //scrollY: "480px",
       searchDelay: 500,
