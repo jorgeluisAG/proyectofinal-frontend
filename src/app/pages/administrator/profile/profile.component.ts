@@ -11,6 +11,7 @@ import { Authority } from 'src/app/model/Authority';
 import { AddressDTO } from 'src/app/model/DTO/AddressDTO';
 import { ResetPasswordDTO } from 'src/app/model/DTO/ResetPasswordDTO';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -51,6 +52,7 @@ export class ProfileComponent implements OnInit {
     constructor(
       private authService: AuthService,
       private userService: UserService,
+      private router:     Router,
 
     ) { }
 
@@ -233,6 +235,8 @@ export class ProfileComponent implements OnInit {
                 this.user = resp.body;
                 this.eliminarImage();
                 console.log(this.user)
+                console.log(valores.imageUser);
+                localStorage.setItem('imagUser', valores.imageUser+'');
                 Swal.fire({
                   title: 'Imagen Actulizada',
                   text: 'Se guardo la imagen exitosamente',
@@ -243,8 +247,13 @@ export class ProfileComponent implements OnInit {
                       confirmButton: 'btn btn-success'
                   }
               }).then(r => {
-                this.ngOnInit();
-              });
+                window.location.reload();
+                // this.router.navigate(['/']);
+                // this.ngOnInit();
+              }
+
+              );
+
         });
   }
 }

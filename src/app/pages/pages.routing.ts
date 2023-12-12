@@ -21,6 +21,7 @@ import { CalendarComponent } from './administrator/calendar/calendar.component';
 import { NewUserComponent } from './administrator/new-user/new-user.component';
 import { NewProductComponent } from './administrator/new-product/new-product.component';
 import { WorkListComponent } from './administrator/calendar/work-list/work-list.component';
+import { CalendarPersonalComponent } from './administrator/calendar-personal/calendar-personal.component';
 
 const pagesRoutes: Routes = [
 
@@ -80,7 +81,14 @@ const pagesRoutes: Routes = [
     {
       path: 'calendario',
       component: CalendarComponent,
-      data: { title: 'Area del Historial de Vehiculos'},
+      data: { title: 'Area del Historial de Tareas'},
+      // canActivate: [AuthGuard],
+      // canActivate: [UserGuard]
+    },
+    {
+      path: 'calendario-empleado',
+      component: CalendarPersonalComponent,
+      data: { title: 'Area del Historial de Tareas del Empleado'},
       // canActivate: [AuthGuard],
       // canActivate: [UserGuard]
     },

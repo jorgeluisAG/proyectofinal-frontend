@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import { UserService } from '../user.service';
 import { Observable } from 'rxjs';
 import { ResetPasswordDTO } from 'src/app/model/DTO/ResetPasswordDTO';
+import { Images } from '../../model/Images';
 
 @Injectable({
     providedIn: 'root'
@@ -68,6 +69,7 @@ export class AuthService {
       localStorage.setItem('token', token);
       localStorage.setItem('rol', user.authority.id);
       localStorage.setItem('dataUser', JSON.stringify(user));
+      localStorage.setItem('imagUser', user.imageUser);
       this.user = user;
       this.token = token;
 

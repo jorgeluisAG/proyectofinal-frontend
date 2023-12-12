@@ -9,6 +9,8 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
+  personalDataUser: any;
+  imageNewUser: any;
   constructor(
     public authService: AuthService,
     private router: Router
@@ -16,6 +18,9 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.imageNewUser= (localStorage.getItem('imagUser')+'');
+    this.personalDataUser = JSON.parse(localStorage.getItem('dataUser')+'');
+    console.log(this.personalDataUser)
   }
 
   phofile(){

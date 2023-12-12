@@ -10,6 +10,9 @@ export class SidebarComponent implements OnInit {
   tipoFacturas: any;
   isRegisteredSiat = false;
   role: any;
+  personalId: any;
+  personalDataUser: any;
+  imageNewUser: any;
   constructor(
       public authService: AuthService,
   ) {
@@ -17,7 +20,11 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
     this.role = localStorage.getItem('rol')
+
+    this.imageNewUser= (localStorage.getItem('imagUser')+'');
+    this.personalDataUser = JSON.parse(localStorage.getItem('dataUser')+'');
     console.log(this.role);
+    console.log(this.personalDataUser.id);
   }
 
 

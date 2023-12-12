@@ -16,7 +16,7 @@
         <div class="card">
             <div class="card-header border-0 pt-6">
                 <div class="card-title">
-                    <div class="d-flex align-items-center position-relative my-1">
+                    <!-- <div class="d-flex align-items-center position-relative my-1">
                         <span class="svg-icon svg-icon-1 position-absolute ms-6">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                 <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="" />
@@ -24,7 +24,7 @@
                             </svg>
                         </span>
                         <input type="text" data-kt-customer-table-filter="search" class="form-control form-control-solid w-250px ps-15" placeholder="Buscar" />
-                    </div>
+                    </div> -->
                 </div>
                 <div class="card-toolbar">
                     <div class="d-flex justify-content-end" data-kt-customer-table-toolbar="base">
@@ -50,64 +50,6 @@
             <div class="flex-lg-row-fluid">
               <div class="row m-2">
 
-                <!-- CARTAS DE LOS PRODUCTOS -->
-                <!-- <div class="col-xl-3 col-md-4 col-sm-6">
-                  <div class="card shadow-sm">
-                    <div class="card-header">
-                        <h3 class="card-title">Aluminio 1</h3>
-                        <div class="card-toolbar">
-                            <button type="button" class="btn btn-sm btn-light">
-                                Action
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        imagen
-                    </div>
-                    <div class="card-footer">
-                        100 Barras
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xl-3 col-md-4 col-sm-6">
-                  <div class="card shadow-sm">
-                    <div class="card-header">
-                        <h3 class="card-title">Aluminio 1</h3>
-                    </div>
-                    <div class="card-body">
-                        imagen
-                    </div>
-                    <div class="card-footer">
-                        100 Barras
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xl-3 col-md-4 col-sm-6">
-                  <div class="card shadow-sm">
-                    <div class="card-header">
-                        <h3 class="card-title">Aluminio 1</h3>
-                    </div>
-                    <div class="card-body">
-                        imagen
-                    </div>
-                    <div class="card-footer">
-                        100 Barras
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xl-3 col-md-4v col-sm-6">
-                  <div class="card shadow-sm">
-                    <div class="card-header">
-                        <h3 class="card-title">Aluminio 1</h3>
-                    </div>
-                    <div class="card-body">
-                        imagen
-                    </div>
-                    <div class="card-footer">
-                        100 Barras
-                    </div>
-                  </div>
-                </div> -->
 
 
                 <div #productID *ngFor="let product of productAll; index as i" class="col-xl-3 col-md-4v col-sm-6" [attr.data-product-id]="product.id"  style="cursor: pointer">

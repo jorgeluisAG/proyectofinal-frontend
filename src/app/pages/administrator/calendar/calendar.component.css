@@ -46,3 +46,7 @@ b { /* used for event dates/times */
   margin: 0 auto;
 }
 
+i{
+  color: white;
+  /* background-color: #009ef7; */
+}

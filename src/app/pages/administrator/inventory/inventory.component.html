@@ -99,9 +99,9 @@
                           <label for="staticNameCategory" class="fw-bolder pt-2 pb-2">Categoria:</label>
                           <span class="input-group-text input-group-solid" >{{productOne.category.nameCategory}}</span>
                         </div>
-                        <div class=" fw-bolder input-group-sm">
+                        <div class=" fw-bolder input-group-sm" *ngIf="productOne.sizeProduct!==null && productOne.sizeProduct!==''">
                           <label for="staticSice" class="fw-bolder pt-2 pb-2">Tamaño:</label>
-                          <span class="input-group-text input-group-solid" >600 metros</span>
+                          <span class="input-group-text input-group-solid" >{{productOne.sizeProduct}}</span>
                         </div>
                         <div class="form-group row">
                           <div class="col-xl-6 col-md-6">
@@ -112,9 +112,38 @@
                           </div>
                           <div class="col-xl-6 col-md-6">
                             <div class=" fw-bolder input-group-sm">
+                              <label for="staticStockTotal" class="fw-bolder pt-2 pb-2">Precio Unitario:</label>
+                              <span class="input-group-text input-group-solid" >{{productOne.price}}  Bs.</span>
+                            </div>
+
+                            <!-- <label for="staticDescription" class="fw-bolder pt-2 pb-2">Precio Unitario:</label>
+                            <div class="input-group mb-3 row">
+                              <div class="col-sm-6 "><span class="float-start input-group-text input-group-solid">left</span></div>
+                              <div class="col-sm-6"><span class="float-end">right</span></div> -->
+                              <!-- <span class="input-group form-control-sm form-control-solid" >{{productOne.price}}</span>
+                              <span class="input-group-text form-group-solid">Bs.</span>
+                              <div class="input-group-append input-group-sm form-group-solid">
+                                <span class="input-group-text input-group-solid">Bs.
+                                  <span class="input-group-text form-group-solid">Bs.</span>
+                                </span>
+                              </div> -->
+                            <!-- </div> -->
+                            <!-- <div class=" fw-bolder input-group-sm">
                               <label for="staticDescription" class="fw-bolder pt-2 pb-2">Precio Unitario:</label>
                               <span class="input-group-text input-group-solid" >{{productOne.price}}</span>
-                            </div>
+                              <span class="input-group-text form-group-solid">Bs.</span>
+                              <div class="input-group mb-3">
+
+                                <div class="input-group-append input-group-sm">
+                                  <span class="input-group-text form-group-solid">Bs.</span>
+                                </div>
+                              </div>
+                              <span class="input-group-text input-group-solid" >{{productOne.price}}</span>
+                              <input min="0" type="number" name="price" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="price">
+                              <div class="input-group-append input-group-sm form-group-solid">
+                                <span class="input-group-text form-group-solid">Bs.</span>
+                              </div>
+                            </div> -->
                           </div>
                           <!-- <div class="col-xl-4 col-md-4">
                             <div class=" fw-bolder input-group-sm">
@@ -156,22 +185,23 @@
                       </div>
 
                       <div class="col-xl-4 col-lg-4">
-                        <div class="row">
-                          <div class="symbol text-center" *ngFor="let imageAlls of productOne.productImagesResponses">
-                            <img class="image-input-wrapper w-100 h-100" src="data:image/png;base64,{{imageAlls.imageProduct}}"  alt="">
+                        <div class="row" *ngIf="productOne.productImagesResponses[0]?.imageProduct!==null && productOne.productImagesResponses[0]?.imageProduct!==''">
+                          <div class="symbol text-center">
+                            <img class="image-input-wrapper w-100 h-100" src="data:image/png;base64,{{productOne.productImagesResponses[0].imageProduct}}"  alt="">
                           </div>
                         </div>
-                        <div class="row">
-                          <label for="staticImageProduct" class="fw-bolder pt-2 pb-2">Imagen del Material</label>
+                        <div class="row" *ngIf="productOne.productImagesResponses[0]?.imageProduct!==null && productOne.productImagesResponses[0]?.imageProduct!==''">
+                          <label for="staticImageProduct" class="fw-bolder pt-2 pb-2 text-center">Imagen del Material</label>
                         </div>
                         <div class="m-8"></div>
-                        <div class="row">
+                        <div class="row" *ngIf="productOne.productImagesResponses[1]?.imageProduct!==null && productOne.productImagesResponses[1]?.imageProduct!==''">
                           <div class="symbol symbol-160px">
-                            <img src="assets/img/m-riel-superior.png" alt=""/>
+                            <!-- <img src="assets/img/m-riel-superior.png" alt=""/> -->
+                            <img class="image-input-wrapper w-100 h-100" src="data:image/png;base64,{{productOne.productImagesResponses[1].imageProduct}}"  alt="">
                           </div>
                         </div>
-                        <div class="row-auto">
-                          <label for="staticImageProduct" class="fw-bolder pt-2 pb-2">Medida del Material</label>
+                        <div class="row-auto" *ngIf="productOne.productImagesResponses[1]?.imageProduct!==null && productOne.productImagesResponses[1]?.imageProduct!==''">
+                          <label for="staticImageProduct1" class="fw-bolder pt-2 pb-2 text-center" >Dimensiones del Material</label>
                         </div>
                       </div>
 

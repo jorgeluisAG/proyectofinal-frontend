@@ -97,6 +97,18 @@ export class ProductDatesComponent implements OnInit {
     this.router.navigate(['/inventario'])
   }
   vamons(){
+    Swal.fire({
+      title: 'Datos actualizados exitosamente',
+      text: 'Se actualizo los datos del producto exitosament',
+      icon: 'success',
+      buttonsStyling: false,
+      confirmButtonText: "Cerrar",
+      customClass: {
+          confirmButton: 'btn btn-success'
+      }
+    }).then(r => {
+      this.router.navigate(['/inventario'])
+    });
     // this.router.navigate(['/inventario'])
   }
 
@@ -247,6 +259,19 @@ export class ProductDatesComponent implements OnInit {
         });
   }
 
-
+  updateProductOne(){
+    Swal.fire({
+      title: 'Datos actualizados exitosamente',
+      text: 'Se actualizo los datos del producto exitosament',
+      icon: 'success',
+      buttonsStyling: false,
+      confirmButtonText: "Cerrar",
+      customClass: {
+          confirmButton: 'btn btn-success'
+      }
+  }).then(r => {
+    this.router.navigate(['/inventario'])
+  });
+  }
 
 }

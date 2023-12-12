@@ -21,8 +21,9 @@
                   <option value="Selec">Seleccione la Opcion</option>
                   <option value="Perfil">Perfiles de Aluminio</option>
                   <option value="Panel">Paneles de Aluminio Compuesto</option>
-                  <option value="Cintas">Cintas Doble Contacto</option>
                   <option value="Silicona">Siliconas</option>
+                  <option value="Accesorio">Accesorios</option>
+                  <!-- <option value="Silicona">Siliconas</option> -->
                   <!-- <option value="Vidrios">Vidrios</option> -->
                   <!-- <option value="Acrilico">Acrilicos</option> -->
                 </select>
@@ -181,7 +182,7 @@
                 <div class="form-group row">
                   <div class="col-auto">
                     <div class="row pb-5">
-                      <h4 for="" class="label label-large pt-2">Color del Material</h4>
+                      <h4 for="" class="label label-large pt-2">Serie del Material</h4>
                       <div *ngFor="let seriesAlls of seriesAll" class="card border border-primary col-auto m-2" [ngStyle]="{'background': seriesAlls.check==true ? '#51d1f6' : 'none' }"  style="cursor: pointer" (click)="seriesAlls.check=!seriesAlls.check">
                         <div  class="col-auto text-dark ">
                           <p  class="card-text">{{seriesAlls.seriesProduct}}</p>
@@ -266,26 +267,19 @@
 
 <!-- MODAL DEL PERFIL DE ALUMINIO -->
 
-  <div class="modal fade" id="kt_modal_see_colors" tabindex="-1" aria-hidden="true" >
+  <!-- <div class="modal fade" id="kt_modal_see_colors" tabindex="-1" aria-hidden="true" >
     <div class="modal-dialog modal-dialog-centered mw-450px">
         <div class="modal-content">
-            <!--begin::Modal header-->
             <div class="modal-header">
-                <!--begin::Modal title-->
                 <h2 class="fw-bolder">Color del Material</h2>
-                <!--end::Modal title-->
-                <!--begin::Close-->
                 <div id="kt_customers_export_close" class="btn btn-icon btn-sm btn-active-icon-primary">
-                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
                     <span class="svg-icon svg-icon-1" data-bs-dismiss="modal">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                   <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="" />
                   <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="" />
                 </svg>
               </span>
-                    <!--end::Svg Icon-->
                 </div>
-                <!--end::Close-->
             </div>
             <div class="modal-body scroll-y">
               <div class="form-group row">
@@ -315,17 +309,13 @@
                 </div>
               </div>
               <div class="m-10"></div>
-                <!-- <div class="d-flex justify-content-end">
-                    <button type="reset" class="btn btn-light btn-active-light-primary me-2" data-bs-dismiss="modal" data-kt-customer-table-filter="reset" (click)="resetFilter()">Restablecer</button>
-                    <button type="submit" class="btn btn-primary" data-bs-toggle="modal"  (click)="validFilter()">Aplicar</button>
-                </div> -->
                 <div class="fv-row mb-10">
                   <button type="submit" class="btn btn-primary w-100" data-bs-dismiss="modal"  style="background-color: #161654; color: white" [disabled]="selectedColorsId=='0' || stockColorData=='' || stockColorData===null" (click)="createColorProductOne()">Agregar Color</button>
                 </div>
             </div>
         </div>
     </div>
-  </div>
+  </div> -->
 
 
 
@@ -342,28 +332,28 @@
           <h2 class="text-center pt-8 pb-4">Agregar Nuevo Panel</h2>
           <!-- <form class="mx-4" novalidate="novalidate" id="form" (ngSubmit)="createPerfilProduct()"> -->
             <div class="row mb-6 mt-8 px-5">
-              <label for="" class="col-lg-4 col-form-label required  fs-6">
+              <label for="" class="col-lg-5 col-form-label required  fs-6">
                 Nombre del Producto
               </label>
-              <div class="col-lg-6">
+              <div class="col-lg-7">
                 <input type="text" name="nameProduct" class="form-control form-control-sm form-control-solid" placeholder="Nombre del Perfil" [(ngModel)]="nameProduct">
               </div>
             </div>
 
-            <div class="row mb-6  px-5">
-              <label for="" class="col-lg-4 col-form-label required  fs-6">
+            <!-- <div class="row mb-6 mt-8 px-5">
+              <label for="" class="col-lg-5 col-form-label required  fs-6">
                 Cantidad
               </label>
-              <div class="col-lg-6">
+              <div class="col-lg-7">
                 <input min="1" type="number" name="stockTotal" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="stockTotal">
               </div>
-            </div>
+            </div> -->
 
             <div class="row mb-6  px-5">
-              <label for="" class="col-lg-4 col-form-label required  fs-6">
-                Precio
+              <label for="" class="col-lg-5 col-form-label required  fs-6">
+                Precio Unitario
               </label>
-              <div class="col-lg-6">
+              <div class="col-lg-7">
                 <div class="input-group mb-3">
                   <input min="0" type="number" name="price" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="price">
                   <div class="input-group-append input-group-sm form-group-solid">
@@ -373,35 +363,59 @@
               </div>
             </div>
 
-              <div class="row mb-6  px-5">
-                <label for="" class="col-lg-4 col-form-label required  fs-6">
-                  Grosor
-                </label>
-                <div class="col-lg-6">
-                  <input type="text" name="thickness" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="sizeProduct">
+            <div class="row mb-6  px-5">
+              <label for="" class="col-lg-5 col-form-label fs-6">
+                Descripcion
+              </label>
+              <div class="col-lg-7">
+                <textarea class="form-control form-control-sm form-control-solid" name="descriptionProduct" rows="3" placeholder="Detalles del Producto" [(ngModel)]="description"></textarea>
+              </div>
+            </div>
+
+            <div class="mb-5 mt-8">
+              <div class="form-group row">
+                <div class="col-xl-12">
+                  <div class="row">
+                    <h4 for="" class="label label-large pt-2">Color del Material</h4>
+                    <div class="row">
+                      <div class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                        <div class="row ps-3 pt-9 mt-9">
+                          Color
+                        </div>
+                        <div class="row ps-3 pt-8 mt-5">
+                          Cantidad
+                        </div>
+                      </div>
+
+                    <!-- <div class="border border-dark text-center" [ngStyle]="{'background': 'transparent'}" style="height: 45px; width: 50px; ">Color </div> -->
+                    <div class="col-9 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+                      <div class="row">
+                        <div *ngFor="let colorAll1 of alumColorAll; let i = index;" class="col-auto mt-6" >
+                          <div class="text-center">
+                            {{colorAll1.colorName}}
+                          </div>
+                          <div class="d-flex justify-content-center">
+                            <div class="border border-dark" *ngIf="colorAll1.id>0" [ngStyle]="{'background': colorAll1.hex}" style="height: 60px; width: 66px; ">
+                            </div>
+                          </div>
+                          <div class="m-1"></div>
+                          <div class="h-50 d-flex align-items-center justify-content-center">
+                            <input min="1" type="number" style="width: 66px;" [(ngModel)]="colorAll1.stockColor">
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    </div>
+                  </div>
                 </div>
               </div>
+            </div>
 
-              <div class="row mb-6  px-5">
-                <label for="" class="col-lg-4 col-form-label required  fs-6">
-                  Descripcion
-                </label>
-                <div class="col-lg-6">
-                  <input type="text" name="description" class="form-control form-control-sm form-control-solid" placeholder="Detalles del Producto" [(ngModel)]="description">
-                </div>
-              </div>
+            <div class="mb-6">
 
-
-              <!-- <h3 class="fw-bolder mb-5">Imagenes</h3>
-
-              <div class="d-flex flex-center h-300px">
-                <img
-                    src="assets/img/perfil1.png"
-                    data-src="assets/img/perfil2.png"
-                    class="rounded mx-auto d-block"
-                    alt=""
-                />
-              </div> -->
+            </div>
               <div class="fv-row mb-10">
                 <button type="submit" class="btn btn-primary w-100" style="background-color: #161654; color: white" (click)="createOneProductNewPanel()">Crear Nuevo Producto</button>
               </div>
@@ -413,137 +427,61 @@
     </div>
   </div>
 
-  <div class="post d-flex flex-column" id="kt_create_cintas" *ngIf="opcionesSelect==='Cintas'">
-    <div class="col-xl-7 col-md-10 col-sm-10 col-10 mx-auto" >
-      <div class="card">
-        <div class="card-body pt-1" >
-          <h2 class="text-center pt-8 pb-4">Agregar Nueva Cintas</h2>
-          <!-- <form class="mx-4" novalidate="novalidate" id="form" (ngSubmit)="createPerfilProduct()"> -->
-            <div class="row mb-6 mt-8 px-5">
-              <label for="" class="col-lg-4 col-form-label required  fs-6">
-                Nombre del Producto
-              </label>
-              <div class="col-lg-6">
-                <input type="text" name="nameProduct" class="form-control form-control-sm form-control-solid" placeholder="Nombre de la Cinta" [(ngModel)]="nameProduct">
-              </div>
-            </div>
-
-              <div class="row mb-6  px-5">
-                <label for="" class="col-lg-4 col-form-label required  fs-6">
-                  Cantidad de Rollos
-                </label>
-                <div class="col-lg-6">
-                  <input min="1" type="number" name="stockTotal" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="stockTotal">
-                </div>
-              </div>
-
-              <div class="row mb-6  px-5">
-                <label for="" class="col-lg-4 col-form-label required  fs-6">
-                  Precio
-                </label>
-                <div class="col-lg-6">
-                  <div class="input-group mb-3">
-                    <input min="0" type="number" name="price" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="price">
-                    <div class="input-group-append input-group-sm form-group-solid">
-                      <span class="input-group-text form-group-solid">Bs.</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- <div class="row mb-6  px-5">
-                <label for="" class="col-lg-4 col-form-label required  fs-6">
-                  Grosor
-                </label>
-                <div class="col-lg-8">
-                  <input type="text" name="sizeProduct" class="form-control form-control-sm form-control-solid" placeholder="Nombre" [(ngModel)]="sizeProduct">
-                </div>
-              </div> -->
-
-              <div class="row mb-6  px-5">
-                <label for="" class="col-lg-4 col-form-label required  fs-6">
-                  Descripcion
-                </label>
-                <div class="col-lg-8">
-                  <input type="text" name="description" class="form-control form-control-sm form-control-solid" placeholder="Detalles del Producto" [(ngModel)]="description">
-                </div>
-              </div>
-
-
-              <!-- <h3 class="fw-bolder mb-5">Imagenes</h3>
-
-              <div class="d-flex flex-center h-300px">
-                <img
-                    src="assets/img/perfil1.png"
-                    data-src="assets/img/perfil2.png"
-                    class="rounded mx-auto d-block"
-                    alt=""
-                />
-              </div> -->
-              <div class="fv-row mb-10">
-                <button type="submit" class="btn btn-primary w-100" data-bs-dismiss="modal"  style="background-color: #161654; color: white" (click)="createOneProductNewCintas()">Crear Nuevo Producto</button>
-              </div>
-
-          <!-- </form> -->
-
-          </div>
-      </div>
-    </div>
-  </div>
 
   <div class="post d-flex flex-column" id="kt_create_siliconas" *ngIf="opcionesSelect==='Silicona'">
     <div class="col-xl-7 col-md-10 col-sm-10 col-10 mx-auto" >
       <div class="card">
         <div class="card-body pt-1" >
-          <h2 class="text-center pt-8 pb-4">Agregar Nuevo Accesorio</h2>
+          <h2 class="text-center pt-8 pb-4">Agregar una Nueva Silicona</h2>
           <!-- <form class="mx-4" novalidate="novalidate" id="form" (ngSubmit)="createPerfilProduct()"> -->
-              <div class="row mb-6 mt-8 px-5">
-                <label for="" class="col-lg-4 col-form-label required  fs-6">
-                  Nombre del Producto
-                </label>
-                <div class="col-lg-7">
-                  <input type="text" name="nameProduct" class="form-control form-control-sm form-control-solid" placeholder="Producto" [(ngModel)]="nameProduct">
-                </div>
+            <div class="row mb-6 mt-8 px-5">
+              <label for="" class="col-lg-5 col-form-label required  fs-6">
+                Nombre del Producto
+              </label>
+              <div class="col-lg-7">
+                <input type="text" name="nameProduct" class="form-control form-control-sm form-control-solid" placeholder="Nombre del Perfil" [(ngModel)]="nameProduct">
               </div>
+            </div>
 
-              <div class="row mb-6  px-5">
-                <label for="" class="col-lg-4 col-form-label required  fs-6">
-                  Cantidad
-                </label>
-                <div class="col-lg-7">
-                  <input min="1" type="number" name="stockTotal" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="stockTotal">
-                </div>
+            <div class="row mb-6 mt-8 px-5">
+              <label for="" class="col-lg-5 col-form-label required  fs-6">Color de la Silicona</label>
+              <div class="col-lg-7">
+                <select class="form-select form-select-sm form-select-solid" id="" data-control="select" data-placeholder="Seleccionar la opcion" [(ngModel)]="selectColorNameId">
+                  <option [value]="0" selected >Seleccionar el Color</option>
+                  <option *ngFor="let colorSilicona of alumColorAll;" [value]="colorSilicona.id">{{colorSilicona.colorName}}</option>
+                </select>
               </div>
+            </div>
 
-              <div class="row mb-6  px-5">
-                <label for="" class="col-lg-4 col-form-label required  fs-6">
-                  Precio
-                </label>
-                <div class="col-lg-7">
-                  <div class="input-group mb-3">
-                    <input min="0" type="number" name="price" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="price">
-                    <div class="input-group-append input-group-sm form-group-solid">
-                      <span class="input-group-text form-group-solid">Bs.</span>
-                    </div>
+            <div class="row mb-6  px-5">
+              <label for="" class="col-lg-5 col-form-label required  fs-6">
+                Precio Unitario
+              </label>
+              <div class="col-lg-7">
+                <div class="input-group mb-3">
+                  <input min="0" type="number" name="price" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="price">
+                  <div class="input-group-append input-group-sm form-group-solid">
+                    <span class="input-group-text form-group-solid">Bs.</span>
                   </div>
                 </div>
               </div>
+            </div>
 
-              <div class="row mb-6  px-5">
-                <label for="" class="col-lg-4 col-form-label required  fs-6">
-                  Marca
-                </label>
-                <div class="col-lg-5">
-                  <input type="text" name="brand" class="form-control form-control-sm form-control-solid" placeholder="Marca del Producto" [(ngModel)]="brandProduct">
-                </div>
+            <div class="row mb-6 mt-8 px-5">
+              <label for="" class="col-lg-5 col-form-label required  fs-6">
+                Cantidad
+              </label>
+              <div class="col-lg-7">
+                <input min="1" type="number" name="stockTotal" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="stockTotal">
               </div>
+            </div>
 
               <div class="row mb-6  px-5">
-                <label for="" class="col-lg-4 col-form-label required  fs-6">
+                <label for="" class="col-lg-5 col-form-label fs-6">
                   Descripcion
                 </label>
-                <div class="col-lg-5">
-                  <input type="text" name="description" class="form-control form-control-sm form-control-solid" placeholder="Detalles del Producto" [(ngModel)]="description">
+                <div class="col-lg-7">
+                  <textarea class="form-control form-control-sm form-control-solid" name="descriptionProduct" rows="3" placeholder="Detalles del Producto" [(ngModel)]="description"></textarea>
                 </div>
               </div>
 
@@ -558,6 +496,92 @@
       </div>
     </div>
   </div>
+
+  <div class="post d-flex flex-column" id="kt_create_cintas" *ngIf="opcionesSelect==='Accesorio'">
+    <div class="col-xl-7 col-md-10 col-sm-10 col-10 mx-auto" >
+      <div class="card">
+        <div class="card-body pt-1" >
+          <h2 class="text-center pt-8 pb-4">Agregar un Nuevo Accesorio</h2>
+          <!-- <form class="mx-4" novalidate="novalidate" id="form" (ngSubmit)="createPerfilProduct()"> -->
+            <div class="row mb-6 mt-8 px-5">
+              <label for="" class="col-lg-5 col-form-label required  fs-6">
+                Nombre del Producto
+              </label>
+              <div class="col-lg-7">
+                <input type="text" name="nameProduct" class="form-control form-control-sm form-control-solid" placeholder="Nombre del Perfil" [(ngModel)]="nameProduct">
+              </div>
+            </div>
+
+            <div class="row mb-6  px-5">
+              <label for="" class="col-lg-5 col-form-label required  fs-6">
+                Precio Unitario
+              </label>
+              <div class="col-lg-7">
+                <div class="input-group mb-3">
+                  <input min="0" type="number" name="price" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="price">
+                  <div class="input-group-append input-group-sm form-group-solid">
+                    <span class="input-group-text form-group-solid">Bs.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-6 mt-8 px-5">
+              <label for="" class="col-lg-5 col-form-label required  fs-6">
+                Cantidad
+              </label>
+              <div class="col-lg-7">
+                <input min="1" type="number" name="stockTotal" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="stockTotal">
+              </div>
+            </div>
+
+              <div class="row mb-6  px-5">
+                <label for="" class="col-lg-5 col-form-label fs-6">
+                  Descripcion
+                </label>
+                <div class="col-lg-7">
+                  <textarea class="form-control form-control-sm form-control-solid" name="descriptionProduct" rows="3" placeholder="Detalles del Producto" [(ngModel)]="description"></textarea>
+                </div>
+              </div>
+
+
+              <!-- <h3 class="fw-bolder mb-5">Imagenes</h3>
+
+              <div class="d-flex flex-center h-300px">
+                <img
+                    src="assets/img/perfil1.png"
+                    data-src="assets/img/perfil2.png"
+                    class="rounded mx-auto d-block"
+                    alt=""
+                />
+              </div> -->
+              <div class="fv-row mb-10">
+                <button type="submit" class="btn btn-primary w-100" data-bs-dismiss="modal"  style="background-color: #161654; color: white" (click)="createOneProductNewAccesorio()">Crear Nuevo Producto</button>
+              </div>
+
+          <!-- </form> -->
+
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <div class="post d-flex flex-column" id="kt_create_acrilico" *ngIf="opcionesSelect==='Acrilico'">
     <div class="col-xl-7 col-md-10 col-sm-10 col-10 mx-auto" >

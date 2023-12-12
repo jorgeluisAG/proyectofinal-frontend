@@ -5,4 +5,5 @@
 export const environment = {
   production: false,
   projectEndpoint: 'http://localhost:8080/v1',
+  //projectEndpoint: 'http://ec2-18-116-81-101.us-east-2.compute.amazonaws.com:8080/v1',
 };

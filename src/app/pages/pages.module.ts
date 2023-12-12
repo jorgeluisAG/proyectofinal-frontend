@@ -26,6 +26,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { NewUserComponent } from './administrator/new-user/new-user.component';
 import { NewProductComponent } from './administrator/new-product/new-product.component';
 import { WorkListComponent } from './administrator/calendar/work-list/work-list.component';
+import { CalendarPersonalComponent } from './administrator/calendar-personal/calendar-personal.component';
 
 @NgModule({
     declarations: [
@@ -45,6 +46,7 @@ import { WorkListComponent } from './administrator/calendar/work-list/work-list.
         NewUserComponent,
         NewProductComponent,
         WorkListComponent,
+        CalendarPersonalComponent,
   ],
     imports: [
 

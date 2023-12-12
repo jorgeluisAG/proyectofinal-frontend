@@ -35,6 +35,7 @@ export class NewProductComponent implements OnInit {
   description = '';
   selectedColorsId = "0";
   stockColorData = "";
+  selectColorNameId = "0";
 
   alumColorAll: Array<AlumColors> = [];
   alumColorAllSave:any[] = [];
@@ -138,7 +139,7 @@ export class NewProductComponent implements OnInit {
 
       this.productOne.nameProduct=this.nameProduct;
       this.productOne.descriptionProduct=this.description;
-      this.productOne.price=parseInt(this.price);
+      this.productOne.price=parseFloat(this.price);
       this.productOne.sizeProduct=this.sizeProduct+" metros";
       this.productOne.status=true;
       this.productOne.categoryId=1;
@@ -186,16 +187,169 @@ export class NewProductComponent implements OnInit {
   }
 
   createOneProductNewPanel(){
+    this.alumColorAllSave= [];
 
-  }
+    console.log(this.alumColorAll);
 
-  createOneProductNewCintas(){
+    this.alumColorAll.forEach(x=>{
+      if(x.stockColor!=null){
+        this.alumColorAllSave.push({
+          id: x.id,
+          colorName: x.colorName,
+          hex: x.hex,
+          stockColor: x.stockColor
+        })
+      }
+    })
 
+    try{
+      if(this.nameProduct?.length===0 || this.nameProduct===null){
+        throw "Nombre del producto no ingresado";
+      }
+      if(this.price?.length===0 || this.price===null){
+        throw "Precio Unitario del producto no ingresado";
+      }
+
+      if(this.alumColorAllSave.length==0){
+        throw "No ingresaste ninguna cantidad del producto";
+      }
+      this.productOne.nameProduct=this.nameProduct;
+      this.productOne.descriptionProduct=this.description;
+      this.productOne.price=parseFloat(this.price);
+      this.productOne.status=true;
+      this.productOne.categoryId=2;
+      this.productOne.alumColorStockRequests=this.alumColorAllSave;
+
+      console.log(this.productOne);
+      this.savedData(this.productOne);
+    }
+    catch(error){
+
+      this.saltarError(error);
+    }
   }
 
   createOneProductNewSilicona(){
+    this.alumColorAllSave= [];
+
+    console.log(this.alumColorAll);
+    console.log(this.selectColorNameId);
+
+    this.alumColorAll.forEach(x=>{
+      if(x.id===parseInt(this.selectColorNameId)){
+        this.alumColorAllSave.push({
+          id: x.id,
+          colorName: x.colorName,
+          hex: x.hex,
+          stockColor: this.stockTotal
+        })
+      }
+    })
+
+
+    console.log(this.opcionesSelect);
+    console.log(this.alumColorAllSave);
+    // console.log(this.seriesAllSave);
+    try{
+      if(this.nameProduct?.length===0 || this.nameProduct===null){
+        throw "Nombre del producto no ingresado";
+      }
+      if(this.selectColorNameId?.length===0 || this.selectColorNameId==="0"){
+        throw "Color del producto no ingresado";
+      }
+      if(this.price?.length===0 || this.price===null){
+        throw "Precio Unitario del producto no ingresado";
+      }
+      if(this.alumColorAllSave.length==0){
+        throw "No ingresaste ninguna cantidad del producto";
+      }
+      this.productOne.nameProduct=this.nameProduct;
+      this.productOne.descriptionProduct=this.description;
+      this.productOne.price=parseFloat(this.price);
+      this.productOne.status=true;
+      this.productOne.categoryId=3;
+      this.productOne.alumColorStockRequests=this.alumColorAllSave;
+
+      console.log(this.productOne);
+      this.savedData(this.productOne);
+    }
+    catch(error){
+
+      this.saltarError(error);
+    }
 
   }
+
+  createOneProductNewAccesorio(){
+    // this.alumColorAllSave= [];
+    // this.seriesAllSave= [];
+
+    console.log(this.alumColorAll);
+
+    // this.alumColorAll.forEach(x=>{
+    //   if(x.stockColor!=null){
+    //     this.alumColorAllSave.push({
+    //       id: x.id,
+    //       colorName: x.colorName,
+    //       hex: x.hex,
+    //       stockColor: x.stockColor
+    //     })
+    //   }
+    // })
+
+    // this.seriesAll.forEach(x=>{
+    //   if(x.check==true){
+    //     this.seriesAllSave.push({
+    //       id: x.id,
+    //       seriesProduct: x.seriesProduct
+    //     })
+    //   }
+    // })
+
+    console.log(this.opcionesSelect);
+    console.log(this.alumColorAllSave);
+    console.log(this.seriesAllSave);
+    try{
+      if(this.nameProduct?.length===0 || this.nameProduct===null){
+        throw "Nombre del producto no ingresado";
+      }
+      if(this.price?.length===0 || this.price===null){
+        throw "Precio Unitario del producto no ingresado";
+      }
+      if(this.sizeProduct?.length===0 || this.sizeProduct===null){
+        throw "Tamaño del producto no ingresado";
+      }
+      if(this.stockTotal?.length===0 || this.stockTotal===null){
+        throw "No ingresaste ninguna cantidad del producto";
+      }
+      // if(this.alumColorAllSave.length==0){
+      //   throw "No ingresaste ninguna cantidad del producto";
+      // }
+      // if(this.seriesAllSave.length==0){
+      //   throw "No ingresaste ninguna serie del producto";
+      // }
+
+      this.productOne.nameProduct=this.nameProduct;
+      this.productOne.descriptionProduct=this.description;
+      this.productOne.price=parseFloat(this.price);
+      // this.productOne.sizeProduct=this.sizeProduct+" metros";
+      this.productOne.stockTotal=parseInt(this.stockTotal);
+      this.productOne.status=true;
+      this.productOne.categoryId=4;
+      // this.productOne.alumColorStockRequests=this.alumColorAllSave;
+      // this.productOne.aluminumSeriesRequests=this.seriesAllSave;
+
+      console.log(this.productOne);
+      this.savedData(this.productOne);
+    }
+    catch(error){
+
+      this.saltarError(error);
+    }
+
+  }
+
+
 
   saltarError(error:any){
     console.log(error)

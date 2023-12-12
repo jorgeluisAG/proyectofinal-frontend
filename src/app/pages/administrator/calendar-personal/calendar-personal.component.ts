@@ -13,21 +13,26 @@ import { UserCreateNewDTO } from 'src/app/model/DTO/UserCreateNewDTO';
 import { PersonalService } from 'src/app/services/personal.service';
 import { HttpResponse } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import { ActivatedRoute } from '@angular/router';
+
 
 let eventGuid = 0;
 
 @Component({
-  selector: 'app-calendar',
-  templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.css']
+  selector: 'app-calendar-personal',
+  templateUrl: './calendar-personal.component.html',
+  styleUrls: ['./calendar-personal.component.css']
 })
-export class CalendarComponent implements OnInit {
+export class CalendarPersonalComponent implements OnInit {
+
+  personalDataUser: any;
+
   cars = [
     { id: 1, name: 'TIENE DATO 1' },
     { id: 2, name: 'TIENE DATOS 2' },
     { id: 3, name: 'TIENE DATO 3' },
     { id: 4, name: 'NOSE SI TIENE DATOS' },
-];
+  ];
   person: Person = new Person(0,'','','','','','',true)
   authority: Authority = new Authority('')
   addressrequests: Array<AddressDTO> = [];
@@ -53,19 +58,24 @@ export class CalendarComponent implements OnInit {
   calendarVisible1 = false;
   calendarOptions?: CalendarOptions;
   datosEventoUsuario: any[];
-  datosUsuarioColor1: any[]=[];
 
   currentEvents: EventApi[] = [];
 
   constructor(
     private calendarService: CalendarService,
     private changeDetector: ChangeDetectorRef,
+    private activatedRoute: ActivatedRoute,
     private personalService: PersonalService
-  ){}
+  ){
+    // activatedRoute.params.subscribe( params => {
+    //   this.id = params.id;
+    // });
+  }
 
   ngOnInit(): void {
-    this.getEmployeesListAll()
-
+    this.getEmployeesListAll();
+    this.personalDataUser = JSON.parse(localStorage.getItem('dataUser')+'');
+    this.getCalendarUser();
   }
 
   getEmployeesListAll(){
@@ -82,20 +92,21 @@ export class CalendarComponent implements OnInit {
 
   getCalendarUser(){
 
-    for(let i in this.employeesAll){
-      if(this.employeesAll[i].id===parseInt(this.selectedEmployeId)){
-        this.nombreUsuario = this.employeesAll[i].userName;
-      }
-    }
+    // for(let i in this.employeesAll){
+    //   if(this.employeesAll[i].id===parseInt(this.selectedEmployeId)){
+    //     this.nombreUsuario = this.employeesAll[i].userName;
+    //   }
+    // }
     //this.prueba = this.employeesAlt.filter(y=> y.id === parseInt(this.selectedEmployeId))[0].userName;
-    console.log("daleee " + this.selectedEmployeId)
+    // console.log("daleee " + this.selectedEmployeId)
     // console.log("Aber  "+ this.prueba)
     //this.nombreUsuario= this.cars.filter(x=> x.id=== parseInt(this.selectedPersonId))[0].name;
     // console.log("XD  "+ this.nombreUsuario)
-    if(this.selectedEmployeId==="0"){
-      this.nombreUsuario = "Seleccione un Empleado";
-    }
-    this.calendarService.getListCalendarUser(parseInt(this.selectedEmployeId))
+    // if(this.selectedEmployeId==="0"){
+    //   this.nombreUsuario = "Seleccione un Empleado";
+    // }
+    // console.log()
+    this.calendarService.getListCalendarUser(parseInt(this.personalDataUser.id))
       .subscribe(resp =>{
         this.datosEventoUsuario=resp.body;
         this.datosEventoUsuario.find(x=> {
@@ -108,21 +119,9 @@ export class CalendarComponent implements OnInit {
             x.end=valor1[0];
           }
         })
-        for(let i of this.datosEventoUsuario){
-          this.datosUsuarioColor1.push({
-            id: i.id,
-            start: i.start,
-            end: i.end,
-            title: i.title,
-            color: "#009ef7"
-          })
-        }
-
         this.cargarCalendario()
 
-
         console.log(this.datosEventoUsuario)
-        console.log(this.datosUsuarioColor1)
       })
   }
 
@@ -150,28 +149,14 @@ export class CalendarComponent implements OnInit {
       selectable: true,
       selectMirror: true,
       dayMaxEvents: true,
-      select: this.handleDateSelect.bind(this),
+      //select: this.handleDateSelect.bind(this),
       eventClick: this.handleEventClick.bind(this),
-      eventsSet: this.handleEvents.bind(this)
+      //eventsSet: this.handleEvents.bind(this)
     };
 
   }
 
   async handleDateSelect(selectInfo: DateSelectArg) {
-
-    // Swal.fire({
-    //   title: 'Asignar Trabajo o Área de Tarea',
-    //   text: 'Ingrese el Mensaje o Tarea del Empleado',
-    //   icon: 'success',
-    //   buttonsStyling: false,
-    //   confirmButtonText: "Cerrar",
-    //   customClass: {
-    //       confirmButton: 'btn btn-primary'
-    //   }
-    // }).then(r => {
-    //   //$('#kt_modal_update_profile').modal('hide');
-    //   // this.router.navigate(['/clientes']);
-    // });
 
     const { value: text } = await Swal.fire({
       input: "textarea",
@@ -183,7 +168,7 @@ export class CalendarComponent implements OnInit {
       showCancelButton: true
     });
     if (text) {
-      // Swal.fire(text);
+
       var title=text;
     }
 
@@ -215,50 +200,12 @@ export class CalendarComponent implements OnInit {
   }
 
   handleEventClick(clickInfo: EventClickArg) {
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger'
-      },
-      buttonsStyling: false
-    })
-    swalWithBootstrapButtons.fire({
-      title: 'Estas seguro?',
-      text: `¡No podrás recuperar la informacion! '${clickInfo.event.title}'`,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: '¡bórralo!',
-      cancelButtonText: '¡cancelar!',
-      reverseButtons: true
-    }).then((result) => {
-      console.log("EntroAqui 1");
-      if (result.isConfirmed) {
-        console.log("EntroAqui 2");
-        console.log(parseInt(clickInfo.event.id));
-        this.calendarService.deleteWorkCalendarById(parseInt(clickInfo.event.id))
-          .subscribe((resp) => {
-            clickInfo.event.remove();
-            swalWithBootstrapButtons.fire(
-              '¡Eliminado!',
-              'La tarea ha sido eliminado.',
-              'success'
-            )
-        });
-      } else (
-        /* Read more about handling dismissals below */
-        result.dismiss === Swal.DismissReason.cancel
-      )
-      // {
-      //   swalWithBootstrapButtons.fire(
-      //     'Cancelado',
-      //     'El producto esta a salvo :)',
-      //     'error'
-      //   )
-      // }
+    Swal.fire({
+      title: "Tarea del Dia",
+      text: `'${clickInfo.event.title}'`,
+      icon: "info"
     });
     // if (confirm(`Are you sure you want to delete the event 11'${clickInfo.event.title}'`)) {
-    //   console.log(clickInfo.event.title);
-    //   console.log(clickInfo.event.id)
     //   clickInfo.event.remove();
     // }
   }
@@ -302,23 +249,14 @@ export class CalendarComponent implements OnInit {
       end: fechaEndOf
     }
     this.guardarDatosPost(addDato)
-
-    let addDato1 = {
-      id: this.createEventId(),
-      title: this.descripcion,
-      start: fechaStartOf,
-      end: fechaEndOf,
-      color: '#FFFFFF'
-    }
-    this.datosUsuarioColor1.push(addDato1)
-    console.log(this.datosUsuarioColor1)
-    this.calendarOptions!.initialEvents = this.datosUsuarioColor1;
+    this.datosEventoUsuario.push(addDato)
+    console.log(this.datosEventoUsuario)
+    this.calendarOptions!.initialEvents = this.datosEventoUsuario;
 
   }
 
   guardarDatosPost(addDato: any){
     addDato.id = this.selectedEmployeId;
-    console.log(addDato);
     this.calendarService.postCalendarUser(addDato)
       .subscribe(resp =>{
         console.log(resp.body);
@@ -333,8 +271,34 @@ export class CalendarComponent implements OnInit {
       })
   }
 
-  dalePues(){
-
+  votonPrueba(){
+    Swal.fire({
+      icon: 'warning',
+      title: '¿Estás seguro/a de eliminar a este/a usuario/a?',
+      showConfirmButton: true,
+      confirmButtonText: 'ELIMINAR',
+      confirmButtonColor: '#3085d6',
+      showCancelButton: true,
+      cancelButtonText: 'CANCELAR',
+      cancelButtonColor: '#d33',
+      buttonsStyling: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log("SE ELIMINO LA TAREA");
+          // $.ajax({
+          //     //url: 'usuario/eliminar/' + 1,
+          //     method: 'DELETE',
+          //     success: function( data ) {
+          //         Swal.fire({
+          //             icon: 'success',
+          //             title: 'Usuario eliminado correctamente',
+          //             showConfirmButton: false,
+          //             timer: 1500,
+          //         })
+          //     }
+          // });
+      }
+    })
   }
 
 

@@ -5,7 +5,7 @@
               <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Calendario</h1>
               <span class="h-20px border-gray-200 border-start mx-4"></span>
               <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
-                  <li class="breadcrumb-item text-dark">Lista de Tareas de los Empleados</li>
+                  <li class="breadcrumb-item text-dark">Tareas de los Empleados</li>
               </ul>
           </div>
       </div>
@@ -37,10 +37,16 @@
                     <div class="d-flex align-items-center position-relative my-1 ">
                       <select class="form-select form-select-lg form-select-solid w-100"  [(ngModel)]="selectedEmployeId" (change)="getCalendarUser()">
                         <option  [value]="0">Seleccione un empleado</option>
-                        <option *ngFor="let employee of employeesAll;" [value]="employee.id" >{{employee.userName}}</option>
+                        <option *ngFor="let employee of employeesAll;" [value]="employee.id" >
+                          {{employee.person.firstName}} {{employee.person.lastName}} ➨ Usuario: {{employee.userName}}
+
+                        </option>
                       </select>
                     </div>
                 </div>
+                <!-- <div>
+                  <button (click)="dalePues()"> click</button>
+                </div> -->
                 <div class="card-toolbar">
 
                     <div class="d-flex justify-content-end" data-kt-customer-table-toolbar="base" >
@@ -59,9 +65,10 @@
               <ng-container *ngIf='calendarVisible'>
                 <div class='demo-app-main'>
                   <full-calendar  [options]='calendarOptions'>
-                    <ng-template #eventContent let-arg>
-                      <b>{{ arg.timeText }}</b>
-                      <i>{{ arg.event.title }}</i>
+                    <ng-template #eventContent let-arg >
+                        <b>{{ arg.timeText }}</b>
+                        <i>{{ arg.event.title }}</i>
+
                     </ng-template>
                   </full-calendar>
                 </div>
@@ -70,8 +77,8 @@
                 <div class='demo-app-main'>
                   <full-calendar  [options]='calendarOptions'>
                     <ng-template #eventContent let-arg>
-                      <b>{{ arg.timeText }}</b>
-                      <i>{{ arg.event.title }}</i>
+                        <b>{{ arg.timeText }}</b>
+                        <i>{{ arg.event.title }}</i>
                     </ng-template>
                   </full-calendar>
                 </div>

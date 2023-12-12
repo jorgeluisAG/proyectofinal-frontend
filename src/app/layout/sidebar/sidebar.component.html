@@ -1,11 +1,27 @@
-<!--begin::Aside-->
-<div id="kt_aside" class="aside aside-dark aside-hoverable" data-kt-drawer="true" data-kt-drawer-name="aside"
-     data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true"
-     data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="start"
-     data-kt-drawer-toggle="#kt_aside_mobile_toggle">
+
+<div id="kt_aside"
+      class="aside aside-dark aside-hoverable"
+      data-kt-drawer="true"
+      data-kt-drawer-name="aside"
+      data-kt-drawer-activate="{default: true, lg: false}"
+      data-kt-drawer-overlay="true"
+      data-kt-drawer-width="{default:'200px', '300px': '250px'}"
+      data-kt-drawer-direction="start"
+      data-kt-drawer-toggle="#kt_aside_mobile_toggle"
+      data-kt-drawer-close="#kt_aside_mobile_toggle1">
+
+<!-- <div id="kt_aside"
+class="aside aside-dark aside-hoverable"
+data-kt-drawer="true"
+data-kt-drawer-name="aside"
+data-kt-drawer-activate="{default: true, lg: false}"
+data-kt-drawer-toggle="#kt_aside_mobile_toggle"
+data-kt-drawer-overlay="true"
+ data-kt-drawer-width="{default:'300px', 'md': '500px'}"
+data-kt-drawer-close="#kt_aside_mobile_toggle1"> -->
+
     <div class="aside-logo flex-column-auto" id="kt_aside_logo">
         <a routerLink="">
-            <!-- <img alt="Logo" src="assets/img/sistemacademico.png" style="width: 190px;"/> -->
             <div class="text-white h1 text-center w-200px pt-3">ALUMINIO</div>
 
         </a>
@@ -25,16 +41,18 @@
         </div>
     </div>
     <div class="aside-user d-flex align-items-sm-center justify-content-center pt-5" style="padding: 0 25px;">
-        <div class="symbol symbol-50px">
-            <img src="/assets/img/user_blank.png" alt="">
+        <div class="symbol symbol-50px ps-6">
+            <!-- <img src="/assets/img/user_blank.png" alt=""> -->
+            <img *ngIf="personalDataUser?.imageUser===null || personalDataUser?.imageUser===''" src="assets/img/user_blank.png" class="image-input-wrapper w-55px h-55px" alt="user">
+            <img *ngIf="personalDataUser?.imageUser!==null && personalDataUser?.imageUser!==''" src="data:image/png;base64,{{imageNewUser}}" class="image-input-wrapper w-55px h-55px" alt="user">
         </div>
         <div class="aside-user-info flex-row-fluid flex-wrap ms-5" style="padding-left: 5px;">
             <div class="d-flex">
                 <div class="flex-grow-1 me-2">
-                    <a href="#" class="text-white text-hover-primary fs-6 fw-bold"> "NOMBRE" </a>
-                    <span class="text-gray-600 fw-bold d-block fs-8 mb-1"> "USERNAME" </span>
+                    <a href="#" class="text-white text-hover-primary fs-6 fw-bold"> {{personalDataUser.person.firstName}} </a>
+                    <span class="text-gray-600 fw-bold d-block fs-8 mb-1"> {{personalDataUser.userName}} </span>
                     <div class="d-flex align-items-center text-success fs-9">
-                        <span class="bg-success"></span> USUARIO </div>
+                        <span class="bg-success"></span> {{personalDataUser.authority.id}} </div>
                 </div>
             </div>
         </div>
@@ -47,8 +65,8 @@
             <div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500"
                  id="#kt_aside_menu" data-kt-menu="true">
 
-                <div class="menu-item" *ngIf="role==='ADMIN'">
-                    <a class="menu-link" href="javascript:void(0);" [routerLink]="['/home-s']" routerLinkActive="active" >
+                <!-- <div class="menu-item" *ngIf="role==='ADMIN'">
+                    <a class="menu-link" href="javascript:void(0);" [routerLink]="['/home-s']" routerLinkActive="active" id="kt_aside_mobile_toggle1" >
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -60,7 +78,7 @@
 
                         <span class="menu-title">Inicio</span>
                     </a>
-                </div>
+                </div> -->
                 <div class="menu-item" *ngIf="role==='ADMIN'">
                   <div class="menu-content pb-2">
                       <span class="menu-section text-muted text-uppercase fs-8 ls-1" >MENÚ DEL ADMINISTRADOR</span>
@@ -77,7 +95,7 @@
                     </div>
                 </div>
                 <div class="menu-item">
-                    <a class="menu-link" href="javascript:void(0);" [routerLink]="['/perfil']" routerLinkActive="active" >
+                    <a class="menu-link without-sub" href="javascript:void(0);" [routerLink]="['/perfil']" routerLinkActive="active" id="kt_aside_mobile_toggle1" >
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
                               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-bounding-box" viewBox="0 0 16 16">
@@ -91,7 +109,7 @@
                     </a>
                 </div>
                 <div class="menu-item" *ngIf="role==='ADMIN' || role==='PERSONAL'">
-                  <a class="menu-link" href="javascript:void(0);" [routerLink]="['/nuevo-producto']" routerLinkActive="active"  >
+                  <a class="menu-link" href="javascript:void(0);" [routerLink]="['/nuevo-producto']" routerLinkActive="active" id="kt_aside_mobile_toggle1"  >
                     <span class="menu-icon">
                       <span class="svg-icon svg-icon-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shop" viewBox="0 0 16 16">
@@ -103,7 +121,7 @@
                   </a>
                 </div>
                 <div class="menu-item" *ngIf="role==='ADMIN' || role==='PERSONAL'">
-                    <a class="menu-link" href="javascript:void(0);" [routerLink]="['/inventario']" routerLinkActive="active"  >
+                    <a class="menu-link" href="javascript:void(0);" [routerLink]="['/inventario']" routerLinkActive="active" id="kt_aside_mobile_toggle1"  >
                       <span class="menu-icon">
                         <span class="svg-icon svg-icon-2">
                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-seam" viewBox="0 0 16 16">
@@ -116,7 +134,7 @@
                     </a>
                 </div>
                 <div class="menu-item" >
-                  <a class="menu-link" href="javascript:void(0);" [routerLink]="['/tienda']" routerLinkActive="active"  >
+                  <a class="menu-link" href="javascript:void(0);" [routerLink]="['/tienda']" routerLinkActive="active" id="kt_aside_mobile_toggle1"  >
                     <span class="menu-icon">
                       <span class="svg-icon svg-icon-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-check" viewBox="0 0 16 16">
@@ -130,7 +148,21 @@
                   </a>
                 </div>
                 <div class="menu-item" *ngIf="role==='ADMIN'">
-                  <a class="menu-link" href="javascript:void(0);" [routerLink]="['/calendario']" routerLinkActive="active" >
+                  <a class="menu-link" href="javascript:void(0);" [routerLink]="['/calendario']" routerLinkActive="active" id="kt_aside_mobile_toggle1" >
+                      <span class="menu-icon">
+                              <span class="svg-icon svg-icon-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-day" viewBox="0 0 16 16">
+                                  <path d="M4.684 12.523v-2.3h2.261v-.61H4.684V7.801h2.464v-.61H4v5.332h.684zm3.296 0h.676V9.98c0-.554.227-1.007.953-1.007.125 0 .258.004.329.015v-.613a1.806 1.806 0 0 0-.254-.02c-.582 0-.891.32-1.012.567h-.02v-.504H7.98v4.105zm2.805-5.093c0 .238.192.425.43.425a.428.428 0 1 0 0-.855.426.426 0 0 0-.43.43zm.094 5.093h.672V8.418h-.672v4.105z"/>
+                                  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
+                                  <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
+                                </svg>
+                              </span>
+                      </span>
+                      <span class="menu-title">Calendario</span>
+                  </a>
+                </div>
+                <div class="menu-item" *ngIf="role==='PERSONAL'">
+                  <a class="menu-link" href="javascript:void(0);" [routerLink]="['/calendario-empleado']" routerLinkActive="active" id="kt_aside_mobile_toggle1" >
                       <span class="menu-icon">
                               <span class="svg-icon svg-icon-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-day" viewBox="0 0 16 16">
@@ -144,7 +176,7 @@
                   </a>
                 </div>
                 <div class="menu-item" *ngIf="role==='ADMIN'">
-                  <a class="menu-link" href="javascript:void(0);" [routerLink]="['/tareas-asignadas']" routerLinkActive="active" >
+                  <a class="menu-link" href="javascript:void(0);" [routerLink]="['/tareas-asignadas']" routerLinkActive="active" id="kt_aside_mobile_toggle1" >
                       <span class="menu-icon">
                               <span class="svg-icon svg-icon-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-medical" viewBox="0 0 16 16">
@@ -158,7 +190,7 @@
                   </a>
                 </div>
                 <div class="menu-item" *ngIf="role==='ADMIN' || role==='PERSONAL'">
-                  <a class="menu-link" href="javascript:void(0);" [routerLink]="['/nuevo-usuario']" routerLinkActive="active" >
+                  <a class="menu-link" href="javascript:void(0);" [routerLink]="['/nuevo-usuario']" routerLinkActive="active" id="kt_aside_mobile_toggle1" >
                       <span class="menu-icon">
                               <span class="svg-icon svg-icon-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
@@ -171,7 +203,7 @@
                   </a>
                 </div>
                 <div class="menu-item" *ngIf="role==='ADMIN'">
-                    <a class="menu-link" href="javascript:void(0);" [routerLink]="['/clientes']" routerLinkActive="active" >
+                    <a class="menu-link" href="javascript:void(0);" [routerLink]="['/clientes']" routerLinkActive="active" id="kt_aside_mobile_toggle1" >
                         <span class="menu-icon">
 
                                 <span class="svg-icon svg-icon-2">
@@ -184,15 +216,9 @@
                     </a>
                 </div>
                 <div class="menu-item" *ngIf="role==='ADMIN'">
-                    <a class="menu-link" href="javascript:void(0);" [routerLink]="['/personales']" routerLinkActive="active" >
+                    <a class="menu-link" href="javascript:void(0);" [routerLink]="['/personales']" routerLinkActive="active" id="kt_aside_mobile_toggle1" >
                       <span class="menu-icon">
 
-                        <!-- <span class="svg-icon svg-icon-2">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path opacity="0.3" d="M17 10H11C10.4 10 10 9.6 10 9V8C10 7.4 10.4 7 11 7H17C17.6 7 18 7.4 18 8V9C18 9.6 17.6 10 17 10ZM22 4V3C22 2.4 21.6 2 21 2H11C10.4 2 10 2.4 10 3V4C10 4.6 10.4 5 11 5H21C21.6 5 22 4.6 22 4ZM22 15V14C22 13.4 21.6 13 21 13H11C10.4 13 10 13.4 10 14V15C10 15.6 10.4 16 11 16H21C21.6 16 22 15.6 22 15ZM18 20V19C18 18.4 17.6 18 17 18H11C10.4 18 10 18.4 10 19V20C10 20.6 10.4 21 11 21H17C17.6 21 18 20.6 18 20Z" fill="currentColor"/>
-                                <path d="M8 5C8 6.7 6.7 8 5 8C3.3 8 2 6.7 2 5C2 3.3 3.3 2 5 2C6.7 2 8 3.3 8 5ZM5 4C4.4 4 4 4.4 4 5C4 5.6 4.4 6 5 6C5.6 6 6 5.6 6 5C6 4.4 5.6 4 5 4ZM8 16C8 17.7 6.7 19 5 19C3.3 19 2 17.7 2 16C2 14.3 3.3 13 5 13C6.7 13 8 14.3 8 16ZM5 15C4.4 15 4 15.4 4 16C4 16.6 4.4 17 5 17C5.6 17 6 16.6 6 16C6 15.4 5.6 15 5 15Z" fill="currentColor"/>
-                            </svg>
-                        </span> -->
                             <span class="svg-icon svg-icon-2">
                               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M17.8254 27.3337H4.17203C3.1536 27.3337 2.17688 26.9291 1.45674 26.2089C0.736602 25.4888 0.332031 24.5121 0.332031 23.4937V4.50699C0.332031 3.48856 0.736602 2.51184 1.45674 1.7917C2.17688 1.07156 3.1536 0.666992 4.17203 0.666992H17.8254C18.8438 0.666992 19.8205 1.07156 20.5407 1.7917C21.2608 2.51184 21.6654 3.48856 21.6654 4.50699V23.4937C21.6654 24.5121 21.2608 25.4888 20.5407 26.2089C19.8205 26.9291 18.8438 27.3337 17.8254 27.3337ZM10.9987 7.33366C10.4713 7.33366 9.95571 7.49006 9.51718 7.78307C9.07865 8.07609 8.73685 8.49257 8.53502 8.97984C8.33319 9.46711 8.28038 10.0033 8.38327 10.5206C8.48616 11.0378 8.74014 11.513 9.11308 11.8859C9.48602 12.2589 9.96117 12.5129 10.4785 12.6158C10.9957 12.7186 11.5319 12.6658 12.0192 12.464C12.5065 12.2622 12.9229 11.9204 13.216 11.4818C13.509 11.0433 13.6654 10.5277 13.6654 10.0003C13.6654 9.29308 13.3844 8.6148 12.8843 8.11471C12.3842 7.61461 11.7059 7.33366 10.9987 7.33366ZM15.3587 19.3337C15.5794 19.347 15.8 19.3052 16.0005 19.2121C16.2011 19.1189 16.3753 18.9774 16.5076 18.8002C16.6398 18.623 16.7259 18.4157 16.7581 18.1969C16.7903 17.9781 16.7676 17.7548 16.692 17.547C16.2027 16.4571 15.3998 15.5378 14.3858 14.9061C13.3718 14.2744 12.1926 13.9591 10.9987 14.0003C9.81328 13.9677 8.64459 14.2856 7.63898 14.9141C6.63337 15.5426 5.83553 16.4538 5.34537 17.5337C4.9987 18.4003 5.70536 19.3337 7.38536 19.3337H15.3587ZM24.332 12.667H22.9987V18.0003H24.332C24.6857 18.0003 25.0248 17.8598 25.2748 17.6098C25.5249 17.3598 25.6654 17.0206 25.6654 16.667V14.0003C25.6654 13.6467 25.5249 13.3076 25.2748 13.0575C25.0248 12.8075 24.6857 12.667 24.332 12.667ZM24.332 4.66699H22.9987V10.0003H24.332C24.6857 10.0003 25.0248 9.85985 25.2748 9.6098C25.5249 9.35975 25.6654 9.02061 25.6654 8.66699V6.00033C25.6654 5.6467 25.5249 5.30756 25.2748 5.05752C25.0248 4.80747 24.6857 4.66699 24.332 4.66699Z" />
@@ -203,7 +229,7 @@
                         <span class="menu-title">Personal</span>
                     </a>
                 </div>
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                <!-- <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                   <span class="menu-link">
                       <span class="menu-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
@@ -216,7 +242,7 @@
                   </span>
                   <div class="menu-sub menu-sub-accordion">
                       <div class="menu-item">
-                          <a class="menu-link" href="javascript:void(0);" [routerLink]="['/ubicacion/monitoreo']" routerLinkActive="active">
+                          <a class="menu-link" href="javascript:void(0);" [routerLink]="['/ubicacion/monitoreo']" routerLinkActive="active" id="kt_aside_mobile_toggle1">
                               <span class="menu-bullet">
                                   <span class="bullet bullet-dot"></span>
                               </span>
@@ -224,7 +250,7 @@
                           </a>
                       </div>
                       <div class="menu-item">
-                          <a class="menu-link" href="javascript:void(0);" [routerLink]="['/ubicacion/circulacion']" routerLinkActive="active">
+                          <a class="menu-link" href="javascript:void(0);" [routerLink]="['/ubicacion/circulacion']" routerLinkActive="active" id="kt_aside_mobile_toggle1">
                               <span class="menu-bullet">
                                   <span class="bullet bullet-dot"></span>
                               </span>
@@ -232,7 +258,7 @@
                           </a>
                       </div>
                       <div class="menu-item">
-                          <a class="menu-link" href="javascript:void(0);" [routerLink]="['/ubicacion/simulacion']" routerLinkActive="active">
+                          <a class="menu-link" href="javascript:void(0);" [routerLink]="['/ubicacion/simulacion']" routerLinkActive="active" id="kt_aside_mobile_toggle1">
                               <span class="menu-bullet">
                                   <span class="bullet bullet-dot"></span>
                               </span>
@@ -240,7 +266,7 @@
                           </a>
                       </div>
                       <div class="menu-item">
-                        <a class="menu-link" href="javascript:void(0);" [routerLink]="['/ubicacion/historial']" routerLinkActive="active">
+                        <a class="menu-link" href="javascript:void(0);" [routerLink]="['/ubicacion/historial']" routerLinkActive="active" id="kt_aside_mobile_toggle1">
                             <span class="menu-bullet">
                                 <span class="bullet bullet-dot"></span>
                             </span>
@@ -248,13 +274,13 @@
                         </a>
                       </div>
                   </div>
-              </div>
+              </div> -->
 
 
 
 
 
-                <div class="menu-item pt-8">
+                <!-- <div class="menu-item pt-8">
                     <a class="menu-link" href="javascript:void(0)" (click)="logout()">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -266,7 +292,7 @@
                         </span>
                         <span class="menu-title">Salir</span>
                     </a>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -279,7 +305,7 @@
                     <path d="M19.5 18L18.1 19.4C17.7 19.8 17.1 19.8 16.7 19.4L5.40001 8.1C5.00001 7.7 5.00001 7.1 5.40001 6.7L6.80001 5.3C7.20001 4.9 7.80001 4.9 8.20001 5.3L19.5 16.6C19.9 16.9 19.9 17.6 19.5 18Z" fill=""/>
                 </svg>
             </span>
-            <span class="btn-label">Salir</span>
+            <span class="btn-label">Salir1</span>
         </a>
     </div>
 </div>

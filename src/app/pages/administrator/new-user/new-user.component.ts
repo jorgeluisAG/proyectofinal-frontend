@@ -13,6 +13,7 @@ declare var intlTelInput: any;
 })
 export class NewUserComponent implements OnInit {
 
+  role: any;
   opcionesSelect= 'USER';
   userNameAdm = '';
   emailAdm = '';
@@ -26,6 +27,9 @@ export class NewUserComponent implements OnInit {
   genderAdm: string;
   sexAlls: string[] = ["Hombre","Mujer"];
 
+
+
+
   constructor(
     private router: Router,
     private userService: UserService,
@@ -33,6 +37,7 @@ export class NewUserComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.role = localStorage.getItem('rol')
   }
 
   createAdministrator(){
@@ -71,19 +76,17 @@ export class NewUserComponent implements OnInit {
   }
   createCustomer(){
     Swal.fire({
-      title: 'Producto Creado',
-      text: 'Producto Agregado correctamente',
+      title: 'Cliente creado exitosamente',
+      text: 'Se creo los datos del cliente exitosament',
       icon: 'success',
       buttonsStyling: false,
       confirmButtonText: "Cerrar",
       customClass: {
-          confirmButton: 'btn btn-primary'
+          confirmButton: 'btn btn-success'
       }
-  }).then(r => {
-    this.router.navigate(['/clientes']);
-      //$('#kt_modal_update_profile').modal('hide');
-      // this.getUserById();
-  });
+    }).then(r => {
+      this.router.navigate(['/clientes'])
+    });
 
   }
 

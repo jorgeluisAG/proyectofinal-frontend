@@ -42,9 +42,9 @@
             <div class="card-body pt-8">
               <div class="">
                 <select class="form-select form-select-sm form-select-solid" data-control="select" data-placeholder="Seleccionar la opcion" [(ngModel)]="opcionesSelect">
-                  <option value="ADMIN">ADMINISTRADOR</option>
-                  <option value="PERSONAL">EMPLEADO</option>
-                  <option value="USER">CLIENTE</option>
+                  <option *ngIf="role==='ADMIN'" value="ADMIN">ADMINISTRADOR</option>
+                  <option *ngIf="role==='ADMIN' || role==='PERSONAL'" value="PERSONAL">EMPLEADO</option>
+                  <option *ngIf="role==='ADMIN' || role==='PERSONAL'" value="USER">CLIENTE</option>
                 </select>
               </div>
             </div>
@@ -54,7 +54,7 @@
 
 <div class="m-4"></div>
 
-  <div class="post d-flex flex-column" id="kt_create_adm" *ngIf="opcionesSelect==='ADMIN'">
+  <div class="post d-flex flex-column" id="kt_create_adm" *ngIf="opcionesSelect==='ADMIN' ">
     <div  class="col-xl-8 col-md-10 col-sm-10 col-10 mx-auto"   >
       <div class="card">
         <div class="card-body pt-1" >
@@ -80,15 +80,6 @@
 
               <div class="row mb-6  px-5">
                 <label for="" class="col-lg-4 col-form-label required  fs-6">
-                  Numero de Celular
-                </label>
-                <div class="col-lg-8">
-                  <input type="text" name="phoneNumberAdm" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="phoneNumberAdm">
-                </div>
-              </div>
-
-              <div class="row mb-6  px-5">
-                <label for="" class="col-lg-4 col-form-label required  fs-6">
                   Nombre(s)
                 </label>
                 <div class="col-lg-8">
@@ -107,7 +98,7 @@
 
               <div class="row mb-6  px-5">
                 <label for="" class="col-lg-4 col-form-label required  fs-6">
-                  Documento de Identidad
+                  CI:
                 </label>
                 <div class="col-lg-8">
                   <input type="text" name="documentNumberAdm" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="documentNumberAdm">
@@ -136,13 +127,23 @@
               </div>
 
               <div class="row mb-6  px-5">
-                <label for="staticNameCategory" class="col-lg-4 col-form-label required  fs-6">Direccion del Usuario </label>
-                <div class=" col-lg-8">
-                  <input type="text" name="direccionAdm" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="direccionAdm">
+                <label for="" class="col-lg-4 col-form-label required  fs-6">
+                  Numero de Celular
+                </label>
+                <div class="col-lg-8">
+                  <input type="tel" name="phoneNumberAdm" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="phoneNumberAdm">
                 </div>
               </div>
 
-              <h3 class="fw-bolder mb-5">Imagenes</h3>
+              <div class="row mb-6  px-5">
+                <label for="staticNameCategory" class="col-lg-4 col-form-label  fs-6">Direccion del Administrador </label>
+                <div class=" col-lg-8">
+                  <textarea class="form-control form-control-sm form-control-solid" name="direccionAdm" rows="3" placeholder="Direccion de referencia opcional" [(ngModel)]="direccionAdm"></textarea>
+                  <!-- <input type="text" name="direccionAdm" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="direccionAdm"> -->
+                </div>
+              </div>
+
+              <!-- <h3 class="fw-bolder mb-5">Imagenes</h3>
 
               <div class="d-flex flex-center h-300px">
                 <img
@@ -151,7 +152,7 @@
                     class="rounded mx-auto d-block"
                     alt=""
                 />
-              </div>
+              </div> -->
               <div class="fv-row mb-10">
                 <button type="submit" class="btn btn-primary w-100" data-bs-dismiss="modal"  style="background-color: #161654; color: white">Crear Nuevo Administradore</button>
               </div>
@@ -175,7 +176,7 @@
                 <label for="" class="col-lg-4 col-form-label required  fs-6">
                   Nombre de Usuario
                 </label>
-                <div class="col-lg-6">
+                <div class="col-lg-8">
                   <input type="text" name="userNameAdm" class="form-control form-control-sm form-control-solid" placeholder="Nombre de Usuario" [(ngModel)]="userNameAdm">
                 </div>
               </div>
@@ -184,17 +185,8 @@
                 <label for="" class="col-lg-4 col-form-label required  fs-6">
                   Email
                 </label>
-                <div class="col-lg-6">
+                <div class="col-lg-8">
                   <input type="email" name="emailAdm" class="form-control form-control-sm form-control-solid" placeholder="Correo Electrónico" [(ngModel)]="emailAdm">
-                </div>
-              </div>
-
-              <div class="row mb-6  px-5">
-                <label for="" class="col-lg-4 col-form-label required  fs-6">
-                  Numero de Celular
-                </label>
-                <div class="col-lg-6">
-                  <input type="text" name="phoneNumberAdm" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="phoneNumberAdm">
                 </div>
               </div>
 
@@ -202,7 +194,7 @@
                 <label for="" class="col-lg-4 col-form-label required  fs-6">
                   Nombre(s)
                 </label>
-                <div class="col-lg-6">
+                <div class="col-lg-8">
                   <input type="text" name="firstNameAdm" class="form-control form-control-sm form-control-solid" placeholder="Nombre" [(ngModel)]="firstNameAdm">
                 </div>
               </div>
@@ -211,16 +203,16 @@
                 <label for="" class="col-lg-4 col-form-label required  fs-6">
                   Apellido(s)
                 </label>
-                <div class="col-lg-6">
+                <div class="col-lg-8">
                   <input type="text" name="lastNameAdm" class="form-control form-control-sm form-control-solid" placeholder="Apellido" [(ngModel)]="lastNameAdm">
                 </div>
               </div>
 
               <div class="row mb-6  px-5">
                 <label for="" class="col-lg-4 col-form-label required  fs-6">
-                  Documento de Identidad
+                  CI:
                 </label>
-                <div class="col-lg-6">
+                <div class="col-lg-8">
                   <input type="text" name="documentNumberAdm" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="documentNumberAdm">
                 </div>
               </div>
@@ -229,7 +221,7 @@
                 <label for="" class="col-lg-4 col-form-label required  fs-6">
                   Genero
                 </label>
-                <div class="col-lg-3" *ngFor="let sexAll of sexAlls">
+                <div class="col-lg-4" *ngFor="let sexAll of sexAlls">
                   <label class="form-check-label ps-2" for="{{sexAll}}">
                     <input class="form-check-input" id="{{sexAll}}" [value]='sexAll' type="radio" name="sexAlls" [(ngModel)]="genderAdm">
                     {{sexAll}}
@@ -241,28 +233,53 @@
                 <label for="" class="col-lg-4 col-form-label required  fs-6">
                   Fecha de Nacimiento
                 </label>
-                <div class="col-lg-6">
+                <div class="col-lg-8">
                   <input type="date" name="birthdateAdm" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="birthdateAdm">
                 </div>
               </div>
 
+
               <div class="row mb-6  px-5">
-                <label for="staticNameCategory" class="col-lg-4 col-form-label required  fs-6">Direccion del Empleado </label>
-                <div class=" col-lg-8">
-                  <input type="text" name="direccionAdm" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="direccionAdm">
+                <label for="" class="col-lg-4 col-form-label required  fs-6">
+                  Numero de Celular
+                </label>
+                <div class="col-lg-8">
+                  <input type="text" name="phoneNumberAdm" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="phoneNumberAdm">
                 </div>
               </div>
 
-              <h3 class="fw-bolder mb-5">Imagenes</h3>
+              <h3 class="fw-bolder mb-5">Funciones del Empleado</h3>
 
-              <div class="d-flex flex-center h-300px">
-                <img
-                    src="assets/img/perfil1.png"
-                    data-src="assets/img/perfil2.png"
-                    class="rounded mx-auto d-block"
-                    alt=""
-                />
+              <div class="form-check ps-10">
+                <input class="form-check-input " type="checkbox" value="" id="flexCheckDefault" checked>
+                <label class="form-check-label" for="flexCheckDefault">
+                    Registrar Productos
+                </label>
               </div>
+              <div class="m-4"></div>
+              <div class="form-check ps-10">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                <label class="form-check-label" for="flexCheckChecked">
+                    Lista de los Productos
+                </label>
+              </div>
+              <div class="m-4"></div>
+              <div class="form-check ps-10">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                <label class="form-check-label" for="flexCheckChecked">
+                    Tienda
+                </label>
+              </div>
+              <div class="m-4"></div>
+              <div class="form-check ps-10">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                <label class="form-check-label" for="flexCheckChecked">
+                    Calendario de Tareas
+                </label>
+              </div>
+              <div class="m-8"></div>
+
+
               <div class="fv-row mb-10">
                 <button type="submit" class="btn btn-primary w-100" data-bs-dismiss="modal"  style="background-color: #161654; color: white">Crear Nuevo Empleado</button>
               </div>
@@ -302,15 +319,6 @@
 
               <div class="row mb-6  px-5">
                 <label for="" class="col-lg-4 col-form-label required  fs-6">
-                  Numero de Celular
-                </label>
-                <div class="col-lg-8">
-                  <input type="text" name="phoneNumberAdm" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="phoneNumberAdm">
-                </div>
-              </div>
-
-              <div class="row mb-6  px-5">
-                <label for="" class="col-lg-4 col-form-label required  fs-6">
                   Nombre(s)
                 </label>
                 <div class="col-lg-8">
@@ -329,7 +337,7 @@
 
               <div class="row mb-6  px-5">
                 <label for="" class="col-lg-4 col-form-label required  fs-6">
-                  Documento de Identidad
+                  CI
                 </label>
                 <div class="col-lg-8">
                   <input type="text" name="documentNumberAdm" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="documentNumberAdm">
@@ -348,23 +356,33 @@
                 </div>
               </div>
 
-              <div class="row mb-6  px-5">
+              <!-- <div class="row mb-6  px-5">
                 <label for="" class="col-lg-4 col-form-label required  fs-6">
                   Fecha de Nacimiento
                 </label>
                 <div class="col-lg-8">
                   <input type="date" name="birthdateAdm" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="birthdateAdm">
                 </div>
-              </div>
+              </div> -->
 
               <div class="row mb-6  px-5">
-                <label for="staticNameCategory" class="col-lg-4 col-form-label required  fs-6">Direccion del Cliente </label>
-                <div class=" col-lg-8">
-                  <input type="text" name="direccionAdm" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="direccionAdm">
+                <label for="" class="col-lg-4 col-form-label required  fs-6">
+                  Numero de Celular
+                </label>
+                <div class="col-lg-8">
+                  <input type="number" name="phoneNumberAdm" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="phoneNumberAdm">
                 </div>
               </div>
 
-              <h3 class="fw-bolder mb-5">Imagenes</h3>
+              <div class="row mb-6  px-5">
+                <label for="staticNameCategory" class="col-lg-4 col-form-label  fs-6">Direccion del Cliente </label>
+                <div class=" col-lg-8">
+                  <textarea class="form-control form-control-sm form-control-solid" name="direccionAdm" rows="3" placeholder="Direccion para la ubicacion de la entrega" [(ngModel)]="direccionAdm"></textarea>
+                  <!-- <input type="text" name="direccionAdm" class="form-control form-control-sm form-control-solid" placeholder="" [(ngModel)]="direccionAdm"> -->
+                </div>
+              </div>
+
+              <!-- <h3 class="fw-bolder mb-5">Imagenes</h3>
 
               <div class="d-flex flex-center h-300px">
                 <img
@@ -373,7 +391,7 @@
                     class="rounded mx-auto d-block"
                     alt=""
                 />
-              </div>
+              </div> -->
               <div class="fv-row mb-10">
                 <button type="submit" class="btn btn-primary w-100" data-bs-dismiss="modal"  style="background-color: #161654; color: white">Crear Nuevo Cliente</button>
               </div>
